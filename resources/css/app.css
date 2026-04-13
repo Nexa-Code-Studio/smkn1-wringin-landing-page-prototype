@@ -1,0 +1,124 @@
+@import 'tailwindcss';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ===== Self-Hosted Plus Jakarta Sans Font ===== */
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
+}
+
+/* ===== Tailwind Theme Configuration ===== */
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Brand Colors */
+    --color-brand-50: #f0f9fa;
+    --color-brand-100: #d0f0f5;
+    --color-brand-200: #a1e0eb;
+    --color-brand-300: #6dc8d6;
+    --color-brand-400: #3ba3b3;
+    --color-brand-500: #1E5460;
+    --color-brand-600: #1E5460;
+    --color-brand-700: #17424d;
+    --color-brand-800: #14363f;
+    --color-brand-900: #132e35;
+    --color-brand-950: #0b1d22;
+
+    /* Secondary Colors */
+    --color-secondary-400: #fbbf24;
+    --color-secondary-500: #f59e0b;
+    --color-secondary-600: #d97706;
+}
+
+/* ===== Custom Utility Classes ===== */
+.hero-pattern {
+    background-color: #f8fafc;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e5460' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ===== Scroll-Triggered Animations ===== */
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    will-change: opacity, transform;
+}
+
+[data-animate].is-visible {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+}
+
+/* Animation variants — initial states */
+[data-animate="fade-up"] {
+    transform: translateY(40px);
+}
+
+[data-animate="fade-down"] {
+    transform: translateY(-40px);
+}
+
+[data-animate="fade-left"] {
+    transform: translateX(-50px);
+}
+
+[data-animate="fade-right"] {
+    transform: translateX(50px);
+}
+
+[data-animate="zoom-in"] {
+    transform: scale(0.9);
+}
+
+[data-animate="fade-in"] {
+    transform: none;
+}
+
+/* Stagger delays for children */
+[data-delay="100"] { transition-delay: 0.1s; }
+[data-delay="200"] { transition-delay: 0.2s; }
+[data-delay="300"] { transition-delay: 0.3s; }
+[data-delay="400"] { transition-delay: 0.4s; }
+[data-delay="500"] { transition-delay: 0.5s; }
+[data-delay="600"] { transition-delay: 0.6s; }
+
