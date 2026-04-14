@@ -2,11 +2,18 @@
 
 use Illuminate\Http\Request;
 
-require __DIR__ . '/../vendor/autoload.php';
+// 1. Pastikan Autoload ada
+$autoload = __DIR__ . '/../vendor/autoload.php';
+if (!file_exists($autoload)) {
+    die("Vendor autoload not found. Run composer install.");
+}
+require $autoload;
 
-// Memaksa Laravel menggunakan folder /tmp untuk cache/views karena Vercel Read-Only
+// 2. Bootstrapping
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 
+// 3. Paksa folder storage ke /tmp (Wajib di Vercel)
 $app->useStoragePath('/tmp');
 
+// 4. Jalankan Request
 $app->handleRequest(Request::capture());
