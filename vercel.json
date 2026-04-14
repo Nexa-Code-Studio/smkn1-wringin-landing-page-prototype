@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "framework": "laravel",
   "builds": [
     {
       "src": "api/index.php",
@@ -16,7 +15,7 @@
   ],
   "routes": [
     {
-      "src": "/(css|js|images|fonts)/(.*)",
+      "src": "/(css|js|images|fonts|build)/(.*)",
       "dest": "/public/$1/$2"
     },
     {
