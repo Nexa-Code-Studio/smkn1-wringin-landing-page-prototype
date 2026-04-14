@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budaya Positif - SMK Nusantara</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#1E5460',
+                            50: '#f0f9fa',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            600: '#1E5460',
+                            700: '#17424d',
+                            800: '#14363f',
+                            900: '#132e35',
+                        },
+                        secondary: {
+                            DEFAULT: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1E5460 0%, #132e35 100%);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+        .value-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .value-card.active {
+            background-color: #1E5460;
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(30, 84, 96, 0.3);
+        }
+        .value-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+        .value-content.active {
+            display: block;
+        }
+        .implementation-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        .implementation-content.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .checklist-item {
+            transition: background-color 0.2s;
+        }
+        .checklist-item.checked {
+            background-color: #f0f9fa;
+            border-color: #1E5460;
+        }
+        .checklist-text {
+            transition: color 0.2s;
+        }
+        .checked .checklist-text {
+            color: #1E5460;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-600 antialiased overflow-x-hidden">
+
+    <!-- Chosen Palette: Primary Brand (#1E5460), Accent Secondary (#f59e0b), Background Slate-50 (#f8fafc), Text Slate-900/600 -->
+    <!-- Application Structure Plan: The SPA is structured as an interactive journey. It begins with a strong Hero section to set the tone. Followed by an interactive "Core Values" grid where clicking reveals real-world implementations, preventing information overload. Next is "Implementasi Nyata" using a dynamic tabbed interface and a Chart.js visualization to quantify the impact of the Merit System. Then, a gamified "Daily Habits" checklist to actively engage users with the routines. Finally, Testimonials build trust before the CTA. This structure transforms static copywriting into an exploratory, credible experience for prospective students. -->
+    <!-- Visualization & Content Choices: 
+         1. Core Values -> Goal: Organize & Inform -> Viz: Interactive Cards -> Justification: Allows users to focus on one value at a time and see its concrete application.
+         2. Implementasi Nyata (Sistem Poin) -> Goal: Inform & Validate -> Viz: Chart.js Bar Chart -> Justification: Shows quantifiable impact of the culture program, making abstract concepts concrete. NO SVG/Mermaid used.
+         3. Daily Habits -> Goal: Engage & Educate -> Viz: Interactive Checklist -> Justification: Encourages active participation, helping users visualize themselves in the school environment. 
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white shadow-md">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-xl text-slate-800 leading-none">SMK <span class="text-brand">Nusantara</span></span>
+                        <span class="text-xs text-slate-500 font-medium tracking-wider">VOCATIONAL SCHOOL</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#nilai-inti" class="text-slate-600 hover:text-brand font-medium transition">Nilai Inti</a>
+                    <a href="#implementasi" class="text-slate-600 hover:text-brand font-medium transition">Implementasi</a>
+                    <a href="#kebiasaan" class="text-slate-600 hover:text-brand font-medium transition">Kebiasaan</a>
+                    <a href="#testimoni" class="text-slate-600 hover:text-brand font-medium transition">Testimoni</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-bg">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center mix-blend-overlay opacity-40"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-wide mb-6 backdrop-blur-sm">
+                    <i class="fa-solid fa-star text-secondary"></i>
+                    Budaya Positif Sekolah
+                </div>
+                <h1 class="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                    Lebih dari Sekadar Aturan,<br>Ini Cara Kami Berkarya
+                </h1>
+                <p class="text-xl text-brand-50 mb-4 font-medium">
+                    Membentuk karakter profesional muda melalui ekosistem belajar yang suportif, disiplin, dan berintegritas.
+                </p>
+                <p class="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl mx-auto">
+                    Di SMK Nusantara, budaya positif bukan sekadar slogan di dinding kelas. Kami mewujudkannya dalam setiap interaksi, proyek kolaborasi, dan rutinitas harian untuk menyiapkan siswa menghadapi tuntutan dunia industri yang nyata.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#nilai-inti" class="px-8 py-4 bg-secondary hover:bg-yellow-500 text-slate-900 font-bold rounded-full shadow-xl transition transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                        Lihat Kegiatan Siswa <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nilai-inti" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-3">Core Values</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Nilai Inti Pembentuk Karakter</h3>
+                <p class="text-slate-600 text-lg">
+                    Bagian ini menguraikan empat pilar utama budaya kami. Silakan klik pada setiap nilai di bawah ini untuk melihat deskripsi lengkap dan bagaimana kami menerapkannya secara nyata di lingkungan sekolah.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4 mb-8" id="values-nav">
+                <button class="value-card active p-6 rounded-2xl border border-slate-200 text-left cursor-pointer focus:outline-none" data-target="val-disiplin">
+                    <i class="fa-solid fa-stopwatch text-3xl mb-4 text-secondary"></i>
+                    <h4 class="font-bold text-lg mb-1">Disiplin Industri</h4>
+                    <p class="text-sm opacity-80 line-clamp-2">Standar kedisiplinan dunia kerja profesional.</p>
+                </button>
+                <button class="value-card bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left cursor-pointer hover:border-brand/50 focus:outline-none" data-target="val-integritas">
+                    <i class="fa-solid fa-shield-halved text-3xl mb-4 text-secondary"></i>
+                    <h4 class="font-bold text-lg text-slate-900 mb-1">Integritas Karya</h4>
+                    <p class="text-sm text-slate-500 line-clamp-2">Kejujuran dalam setiap tugas dan praktik.</p>
+                </button>
+                <button class="value-card bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left cursor-pointer hover:border-brand/50 focus:outline-none" data-target="val-kolaborasi">
+                    <i class="fa-solid fa-people-group text-3xl mb-4 text-secondary"></i>
+                    <h4 class="font-bold text-lg text-slate-900 mb-1">Kolaborasi Aktif</h4>
+                    <p class="text-sm text-slate-500 line-clamp-2">Kerja sama lintas keahlian jurusan.</p>
+                </button>
+                <button class="value-card bg-slate-50 p-6 rounded-2xl border border-slate-200 text-left cursor-pointer hover:border-brand/50 focus:outline-none" data-target="val-hormat">
+                    <i class="fa-solid fa-hand-holding-heart text-3xl mb-4 text-secondary"></i>
+                    <h4 class="font-bold text-lg text-slate-900 mb-1">Hormat & Empati</h4>
+                    <p class="text-sm text-slate-500 line-clamp-2">Lingkungan inklusif, aman, dan zero bullying.</p>
+                </button>
+            </div>
+
+            <div class="bg-brand-50 rounded-3xl p-8 md:p-12 border border-brand-100 shadow-inner min-h-[250px] flex items-center">
+                <div id="val-disiplin" class="value-content active w-full">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-bold text-brand mb-3">Disiplin Industri</h4>
+                            <p class="text-slate-700 text-lg mb-6">Membiasakan standar kedisiplinan yang sama persis dengan dunia kerja profesional.</p>
+                            <div class="bg-white p-5 rounded-xl border-l-4 border-secondary shadow-sm">
+                                <h5 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i> Penerapan Nyata
+                                </h5>
+                                <p class="text-slate-600">Penggunaan sistem absensi ketat dan batas waktu pengumpulan proyek yang diadaptasi dari metode <strong>Agile Sprint</strong> yang digunakan perusahaan teknologi.</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Disiplin" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="val-integritas" class="value-content w-full">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-bold text-brand mb-3">Integritas Karya</h4>
+                            <p class="text-slate-700 text-lg mb-6">Kejujuran dan orisinalitas adalah pondasi utama dalam setiap tugas maupun praktik kerja.</p>
+                            <div class="bg-white p-5 rounded-xl border-l-4 border-secondary shadow-sm">
+                                <h5 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i> Penerapan Nyata
+                                </h5>
+                                <p class="text-slate-600">Setiap baris kode aplikasi (RPL) atau karya desain (DKV) wajib melewati proses uji plagiasi dan sesi <strong>peer-review</strong> antar kelompok siswa.</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Integritas" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="val-kolaborasi" class="value-content w-full">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-bold text-brand mb-3">Kolaborasi Aktif</h4>
+                            <p class="text-slate-700 text-lg mb-6">Menghilangkan batas ego sektoral antar jurusan melalui kerja sama lintas keahlian.</p>
+                            <div class="bg-white p-5 rounded-xl border-l-4 border-secondary shadow-sm">
+                                <h5 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i> Penerapan Nyata
+                                </h5>
+                                <p class="text-slate-600">Pembuatan <strong>proyek akhir gabungan</strong>, di mana siswa TKJ menyiapkan infrastruktur server, RPL membangun sistem aplikasinya, dan DKV merancang antarmuka visualnya.</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kolaborasi" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="val-hormat" class="value-content w-full">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-bold text-brand mb-3">Rasa Hormat & Empati</h4>
+                            <p class="text-slate-700 text-lg mb-6">Menciptakan lingkungan sekolah yang inklusif, aman, dan berprinsip zero bullying.</p>
+                            <div class="bg-white p-5 rounded-xl border-l-4 border-secondary shadow-sm">
+                                <h5 class="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-green-500"></i> Penerapan Nyata
+                                </h5>
+                                <p class="text-slate-600">Adanya program <strong>mentoring wajib</strong> di mana siswa kelas XII mendampingi siswa kelas X selama masa adaptasi budaya sekolah di bulan pertama.</p>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden shadow-md">
+                            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hormat" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="implementasi" class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-3">Aksi Nyata</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Implementasi Terukur di Sekolah</h3>
+                <p class="text-slate-600 text-lg">
+                    Kami menerjemahkan nilai inti ke dalam program terstruktur. Jelajahi menu di bawah ini untuk melihat deskripsi kegiatan, dampak yang dihasilkan pada siswa, serta data visual metrik kesuksesan program kami.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="lg:w-1/3 flex flex-col gap-3" id="impl-nav">
+                    <button class="impl-btn active text-left px-6 py-4 rounded-xl font-bold border-2 border-brand bg-white text-brand shadow-md" data-target="impl-standup">
+                        <i class="fa-solid fa-comments text-secondary w-6"></i> Stand-up & Briefing
+                    </button>
+                    <button class="impl-btn text-left px-6 py-4 rounded-xl font-bold border-2 border-transparent bg-white text-slate-600 hover:border-slate-200 shadow-sm" data-target="impl-pbl">
+                        <i class="fa-solid fa-laptop-code text-secondary w-6"></i> Project-Based Learning
+                    </button>
+                    <button class="impl-btn text-left px-6 py-4 rounded-xl font-bold border-2 border-transparent bg-white text-slate-600 hover:border-slate-200 shadow-sm" data-target="impl-merit">
+                        <i class="fa-solid fa-medal text-secondary w-6"></i> Sistem Poin Apresiasi
+                    </button>
+                </div>
+
+                <div class="lg:w-2/3 bg-white rounded-2xl p-8 border border-slate-100 shadow-xl">
+                    
+                    <div id="impl-standup" class="implementation-content active flex-col h-full">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center text-brand text-2xl">
+                                <i class="fa-solid fa-bullhorn"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-900">Stand-up Meeting & Morning Briefing</h4>
+                        </div>
+                        <div class="prose max-w-none text-slate-600 mb-8">
+                            <p><strong>Deskripsi Kegiatan:</strong> Pengarahan singkat berdurasi 15 menit setiap pagi sebelum siswa memasuki kelas atau laboratorium praktik.</p>
+                            <div class="bg-green-50 p-4 rounded-lg mt-4 border border-green-100">
+                                <h5 class="text-green-800 font-bold mb-1"><i class="fa-solid fa-chart-line"></i> Dampak / Hasil</h5>
+                                <p class="text-sm text-green-700 m-0">Melatih keberanian <em>public speaking</em> dan membiasakan siswa secara mandiri menyusun <em>to-do list</em> atau target kerja harian mereka secara efisien.</p>
+                            </div>
+                        </div>
+                        <div class="mt-auto rounded-xl overflow-hidden h-48 relative">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Briefing" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                                <span class="text-white text-sm font-medium"><i class="fa-solid fa-camera mr-2"></i> Simulasi Briefing Pagi Jurusan TKJ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="impl-pbl" class="implementation-content flex-col h-full">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center text-brand text-2xl">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-900">Project-Based Learning (PBL) Klien</h4>
+                        </div>
+                        <div class="prose max-w-none text-slate-600 mb-8">
+                            <p><strong>Deskripsi Kegiatan:</strong> Pembelajaran yang menggunakan studi kasus dan penyelesaian masalah nyata dari klien industri atau kebutuhan operasional sekolah.</p>
+                            <div class="bg-green-50 p-4 rounded-lg mt-4 border border-green-100">
+                                <h5 class="text-green-800 font-bold mb-1"><i class="fa-solid fa-chart-line"></i> Dampak / Hasil</h5>
+                                <p class="text-sm text-green-700 m-0">Siswa terlatih menghadapi tekanan tenggat waktu, belajar menerima revisi secara profesional, dan mampu mempresentasikan hasil akhir karyanya dengan meyakinkan kepada klien nyata.</p>
+                            </div>
+                        </div>
+                        <div class="mt-auto grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <span class="block text-3xl font-bold text-brand mb-1">45+</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wide">Proyek Industri Selesai (2023)</span>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                                <span class="block text-3xl font-bold text-brand mb-1">92%</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wide">Tingkat Kepuasan Klien</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="impl-merit" class="implementation-content flex-col h-full">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center text-brand text-2xl">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-slate-900">Sistem Poin Apresiasi (Merit)</h4>
+                        </div>
+                        <div class="prose max-w-none text-slate-600 mb-6">
+                            <p><strong>Deskripsi Kegiatan:</strong> Pencatatan poin untuk setiap inisiatif positif siswa. Mendorong motivasi internal untuk berbuat baik. Poin dapat ditukarkan dengan akses lab prioritas.</p>
+                        </div>
+                        
+                        <div class="chart-container mt-auto">
+                            <canvas id="meritChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-slate-400 mt-2">Grafik: Peningkatan rata-rata poin inisiatif positif siswa per bulan (Semester Ganjil).</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kebiasaan" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute -right-20 top-20 text-brand/5 rotate-12">
+            <i class="fa-solid fa-clipboard-check text-[300px]"></i>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-3">Rutinitas</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Kebiasaan Harian Siswa</h3>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Budaya tidak dibentuk dalam semalam, melainkan melalui rutinitas harian. Berikut adalah tindakan konsisten yang kami jalankan setiap hari. Cobalah berinteraksi dengan daftar periksa di bawah ini untuk melihat pencapaian simulasi harian.
+                    </p>
+                    
+                    <div class="bg-brand text-white p-6 rounded-2xl shadow-xl mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold">Progres Budaya Harian</span>
+                            <span id="progress-text" class="font-bold text-secondary">0%</span>
+                        </div>
+                        <div class="w-full bg-brand-800 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-secondary h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3" id="checklist-container">
+                    <label class="checklist-item flex items-start gap-4 p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-md bg-white">
+                        <div class="pt-1">
+                            <input type="checkbox" class="task-check w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer">
+                        </div>
+                        <div class="checklist-text">
+                            <span class="block font-bold text-slate-900 mb-1">Kehadiran & Persiapan Awal</span>
+                            <span class="text-sm text-slate-500">Hadir di area sekolah dan persiapan di lab 15 menit sebelum bel berbunyi.</span>
+                        </div>
+                    </label>
+
+                    <label class="checklist-item flex items-start gap-4 p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-md bg-white">
+                        <div class="pt-1">
+                            <input type="checkbox" class="task-check w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer">
+                        </div>
+                        <div class="checklist-text">
+                            <span class="block font-bold text-slate-900 mb-1">Budaya Sapa Profesional</span>
+                            <span class="text-sm text-slate-500">Penerapan budaya sapaan kepada guru, tamu, dan sesama siswa tanpa terkecuali.</span>
+                        </div>
+                    </label>
+
+                    <label class="checklist-item flex items-start gap-4 p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-md bg-white">
+                        <div class="pt-1">
+                            <input type="checkbox" class="task-check w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer">
+                        </div>
+                        <div class="checklist-text">
+                            <span class="block font-bold text-slate-900 mb-1">Problem Solving Mandiri</span>
+                            <span class="text-sm text-slate-500">Diskusi penyelesaian masalah dalam kelompok kecil sebelum meminta bantuan guru.</span>
+                        </div>
+                    </label>
+
+                    <label class="checklist-item flex items-start gap-4 p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-md bg-white">
+                        <div class="pt-1">
+                            <input type="checkbox" class="task-check w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer">
+                        </div>
+                        <div class="checklist-text">
+                            <span class="block font-bold text-slate-900 mb-1">Tanggung Jawab Area Kerja</span>
+                            <span class="text-sm text-slate-500">Pembersihan dan inventarisasi alat lab/bengkel secara mandiri 10 menit sebelum pulang.</span>
+                        </div>
+                    </label>
+
+                    <label class="checklist-item flex items-start gap-4 p-4 rounded-xl border border-slate-200 cursor-pointer hover:shadow-md bg-white">
+                        <div class="pt-1">
+                            <input type="checkbox" class="task-check w-5 h-5 rounded border-slate-300 text-brand focus:ring-brand accent-brand cursor-pointer">
+                        </div>
+                        <div class="checklist-text">
+                            <span class="block font-bold text-slate-900 mb-1">Pelaporan Progres</span>
+                            <span class="text-sm text-slate-500">Presentasi dan pelaporan progres tugas mingguan di depan kelas secara rutin.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimoni" class="py-24 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <i class="fa-solid fa-quote-right text-4xl text-brand-700 mb-4"></i>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Kata Mereka Tentang Kami</h2>
+                <p class="text-slate-400 text-lg">
+                    Dengarkan langsung dari alumni, siswa, dan tenaga pendidik tentang bagaimana budaya SMK Nusantara membentuk perjalanan mereka.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-brand transition">
+                    <div class="flex text-secondary text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 mb-6 italic leading-relaxed">
+                        "Budaya peer-review dan stand-up meeting tiap pagi di SMK Nusantara membuat saya sama sekali tidak kaget saat masuk ke industri IT sungguhan. Saya sudah terbiasa dengan ritme profesional."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand rounded-full flex items-center justify-center font-bold text-xl">R</div>
+                        <div>
+                            <h4 class="font-bold text-white">Riko Setiawan</h4>
+                            <p class="text-xs text-brand-200">Alumni RPL 2023, Junior Web Dev</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-brand transition">
+                    <div class="flex text-secondary text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 mb-6 italic leading-relaxed">
+                        "Lingkungan belajarnya sangat suportif. Kalau kita membuat kesalahan dalam proyek, guru dan teman tidak menyudutkan, tapi sama-sama mencari solusi. Ini membuat kita tidak takut berinovasi."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-bold text-xl text-slate-900">N</div>
+                        <div>
+                            <h4 class="font-bold text-white">Nabila Maharani</h4>
+                            <p class="text-xs text-brand-200">Siswi Kelas XI DKV</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-8 rounded-2xl border border-slate-700 hover:border-brand transition">
+                    <div class="flex text-secondary text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-300 mb-6 italic leading-relaxed">
+                        "Kami tidak hanya mencetak teknisi yang mahir, tetapi anak muda yang memiliki empati dan rasa tanggung jawab. Hal itu terlihat jelas dari inisiatif kebiasaan merawat lab secara sukarela."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center font-bold text-xl">H</div>
+                        <div>
+                            <h4 class="font-bold text-white">Bapak Hendra</h4>
+                            <p class="text-xs text-brand-200">Kepala Program Keahlian TKJ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-brand relative overflow-hidden text-center">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Mulai Perjalanan Anda Bersama Kami</h2>
+            <p class="text-brand-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                Budaya positif yang kuat adalah awal dari masa depan yang produktif. Jadilah bagian dari ekosistem pendidikan yang siap mengubah potensimu menjadi kompetensi nyata yang diakui industri.
+            </p>
+            <a href="#" class="inline-flex items-center gap-2 px-10 py-5 bg-white text-brand font-bold rounded-full shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-1 text-lg">
+                Daftar Sekarang <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-white py-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-slate-500 text-sm">&copy; 2024 SMK Nusantara. Menginspirasi melalui Budaya Positif.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+            });
+
+            const valueCards = document.querySelectorAll('.value-card');
+            const valueContents = document.querySelectorAll('.value-content');
+
+            valueCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    valueCards.forEach(c => {
+                        c.classList.remove('active', 'bg-brand', 'text-white');
+                        c.classList.add('bg-slate-50', 'text-slate-900');
+                        c.querySelector('h4').classList.replace('text-white', 'text-slate-900');
+                        c.querySelector('p').classList.replace('text-brand-100', 'text-slate-500');
+                    });
+                    
+                    card.classList.add('active', 'bg-brand', 'text-white');
+                    card.classList.remove('bg-slate-50', 'text-slate-900');
+                    card.querySelector('h4').classList.replace('text-slate-900', 'text-white');
+                    card.querySelector('p').classList.replace('text-slate-500', 'text-brand-100');
+
+                    const targetId = card.getAttribute('data-target');
+                    valueContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            const implBtns = document.querySelectorAll('.impl-btn');
+            const implContents = document.querySelectorAll('.implementation-content');
+            let chartInitialized = false;
+            let meritChartInstance = null;
+
+            implBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    implBtns.forEach(b => {
+                        b.classList.remove('active', 'border-brand', 'text-brand');
+                        b.classList.add('border-transparent', 'text-slate-600');
+                    });
+                    btn.classList.add('active', 'border-brand', 'text-brand');
+                    btn.classList.remove('border-transparent', 'text-slate-600');
+
+                    const targetId = btn.getAttribute('data-target');
+                    implContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(targetId).classList.add('active');
+
+                    if (targetId === 'impl-merit' && !chartInitialized) {
+                        renderChart();
+                        chartInitialized = true;
+                    }
+                });
+            });
+
+            function renderChart() {
+                const ctx = document.getElementById('meritChart').getContext('2d');
+                meritChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
+                        datasets: [{
+                            label: 'Rata-rata Poin Inisiatif per Siswa',
+                            data: [15, 28, 45, 62, 85, 110],
+                            backgroundColor: '#f59e0b',
+                            borderRadius: 6,
+                            borderWidth: 0,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: '#1E5460',
+                                padding: 12,
+                                titleFont: { family: 'Plus Jakarta Sans', size: 13 },
+                                bodyFont: { family: 'Plus Jakarta Sans', size: 14, weight: 'bold' },
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.parsed.y + ' Poin Terkumpul';
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#f1f5f9',
+                                    drawBorder: false,
+                                },
+                                ticks: {
+                                    font: { family: 'Plus Jakarta Sans' },
+                                    color: '#64748b'
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false,
+                                    drawBorder: false,
+                                },
+                                ticks: {
+                                    font: { family: 'Plus Jakarta Sans' },
+                                    color: '#64748b'
+                                }
+                            }
+                        },
+                        animation: {
+                            duration: 1500,
+                            easing: 'easeOutQuart'
+                        }
+                    }
+                });
+            }
+
+            const checkboxes = document.querySelectorAll('.task-check');
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const totalTasks = checkboxes.length;
+
+            checkboxes.forEach(box => {
+                box.addEventListener('change', function() {
+                    const parent = this.closest('.checklist-item');
+                    if(this.checked) {
+                        parent.classList.add('checked');
+                    } else {
+                        parent.classList.remove('checked');
+                    }
+                    updateProgress();
+                });
+            });
+
+            function updateProgress() {
+                const checkedCount = document.querySelectorAll('.task-check:checked').length;
+                const percentage = Math.round((checkedCount / totalTasks) * 100);
+                
+                progressBar.style.width = percentage + '%';
+                progressText.innerText = percentage + '%';
+                
+                if(percentage === 100) {
+                    progressBar.classList.replace('bg-secondary', 'bg-green-500');
+                    progressText.classList.replace('text-secondary', 'text-green-500');
+                } else {
+                    progressBar.classList.replace('bg-green-500', 'bg-secondary');
+                    progressText.classList.replace('text-green-500', 'text-secondary');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

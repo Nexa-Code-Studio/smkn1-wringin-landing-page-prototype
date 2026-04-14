@@ -31,7 +31,7 @@
                     <li><a href="#" class="hover:text-brand-600 transition">Kurikulum</a></li>
                     <li><a href="#" class="hover:text-brand-600 transition">E-Learning</a></li>
                     <li><a href="#" class="hover:text-brand-600 transition">Jadwal Pelajaran</a></li>
-                    <li><a href="#" class="hover:text-brand-600 transition">Ekstrakurikuler</a></li>
+                    <li><a href="{{ route('ekstrakurikuler') }}" class="hover:text-brand-600 transition">Ekstrakurikuler</a></li>
                     <li><a href="#" class="hover:text-brand-600 transition">Info Alumni</a></li>
                 </ul>
             </div>

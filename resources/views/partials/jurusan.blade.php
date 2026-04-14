@@ -20,7 +20,7 @@
                     <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Laboratorium Fiber Optik</li>
                     <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Sertifikasi Mikrotik</li>
                 </ul>
-                <a href="#" class="text-brand-600 font-semibold group-hover:underline flex items-center gap-2 text-sm">
+                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:underline flex items-center gap-2 text-sm">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
@@ -37,9 +37,12 @@
                     <li class="flex items-center text-xs text-brand-100"><i class="fa-solid fa-check text-white mr-2"></i> Lab Coding Modern</li>
                     <li class="flex items-center text-xs text-brand-100"><i class="fa-solid fa-check text-white mr-2"></i> Kemitraan Startup</li>
                 </ul>
-                <a href="#" class="text-white font-semibold hover:underline flex items-center gap-2 text-sm">
+                <a href="{{ route('kurikulum.detail') }}" class="text-white font-semibold hover:underline flex items-center gap-2 text-sm">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
+                <div class="mt-4 flex gap-4">
+                    <a href="{{ route('jurusan.detail') }}" class="text-xs text-brand-100 underline hover:text-white transition">Detail Jurusan</a>
+                </div>
             </div>
 
             {{-- Jurusan 3: DKV / Multimedia --}}
@@ -54,7 +57,7 @@
                     <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Studio Fotografi</li>
                     <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Peralatan Multimedia Lengkap</li>
                 </ul>
-                <a href="#" class="text-brand-600 font-semibold group-hover:underline flex items-center gap-2 text-sm">
+                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:underline flex items-center gap-2 text-sm">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>

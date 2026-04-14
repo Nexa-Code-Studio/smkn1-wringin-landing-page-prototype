@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
+@layer base {
+    html, body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+    }
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -53,6 +62,7 @@
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     /* Brand Colors */
+    --color-brand: #1E5460;
     --color-brand-50: #f0f9fa;
     --color-brand-100: #d0f0f5;
     --color-brand-200: #a1e0eb;
@@ -66,6 +76,7 @@
     --color-brand-950: #0b1d22;
 
     /* Secondary Colors */
+    --color-secondary: #f59e0b;
     --color-secondary-400: #fbbf24;
     --color-secondary-500: #f59e0b;
     --color-secondary-600: #d97706;
@@ -75,6 +86,12 @@
 .hero-pattern {
     background-color: #f8fafc;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e5460' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-grid-pattern {
+    background-image: linear-gradient(to right, #1e54601a 1px, transparent 1px),
+                      linear-gradient(to bottom, #1e54601a 1px, transparent 1px);
+    background-size: 24px 24px;
 }
 
 /* ===== Scroll-Triggered Animations ===== */

@@ -7,6 +7,7 @@
     @include('partials.hero')
     @include('partials.jurusan')
     @include('partials.profil')
+    @include('partials.ekstrakurikuler')
     @include('partials.berita')
     @include('partials.ppdb')
     @include('partials.footer')

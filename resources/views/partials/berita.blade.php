@@ -1,7 +1,7 @@
 {{-- BERITA SECTION --}}
 <section id="berita" class="py-20 bg-white border-t border-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div class="max-w-2xl">
                 <h2 data-animate="fade-up" class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">Kabar Sekolah</h2>
                 <h3 data-animate="fade-up" data-delay="100" class="text-3xl md:text-4xl font-bold text-slate-900">Berita & Agenda Terbaru</h3>
