@@ -3,8 +3,7 @@
   "builds": [
     {
       "src": "api/index.php",
-      "use": "vercel-php@0.7.2",
-      "config": { "maxExecutionTime": 60 }
+      "use": "vercel-php@0.7.2"
     },
     {
       "src": "public/**",
@@ -24,11 +23,8 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "true",
-    "LOG_CHANNEL": "stderr",
     "VIEW_COMPILED_PATH": "/tmp",
-    "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
-    "DB_CONNECTION": "sqlite",
-    "DB_DATABASE": ":memory:"
+    "CACHE_STORE": "array"
   }
 }
