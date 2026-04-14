@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eksplorasi berbagai pilihan ekstrakurikuler di SMKN 1 Wringin. Wadah pengembangan minat, bakat, kepemimpinan, dan kreativitas siswa.">
+    <meta name="keywords" content="ekstrakurikuler, pramuka, PMR, futsal, basket, esport, tari, vokal, smkn 1 wringin">
+    <meta name="author" content="SMKN 1 Wringin">
+        <meta name="csrf-token" content="kvYcZ2Thq832aYm6PVaRGQXjxGOnE4CfTlfnWlEo">
+
+    <title>Ekstrakurikuler - SMKN 1 Wringin</title>
+
+    
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+        <link rel="preload" as="style" href="./build/assets/app-Bn-nOBXG.css" /><link rel="modulepreload" as="script" href="./build/assets/app-udP8yRDi.js" /><link rel="stylesheet" href="./build/assets/app-Bn-nOBXG.css" /><script type="module" src="./build/assets/app-udP8yRDi.js"></script></head>
+<body class="font-sans text-slate-600 antialiased">
+        <nav x-data="{ mobileOpen: false, scrolled: false }"
+    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
+    :class="scrolled ? 'shadow-md bg-white/90' : 'bg-white/95'"
+    class="fixed w-full z-50 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            
+            <div class="flex-shrink-0 flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-xl text-slate-800 leading-none">SMKN 1 <span
+                            class="text-brand-600">Wringin</span></span>
+                    <span class="text-xs text-slate-500 font-medium tracking-wider uppercase">Vocational School</span>
+                </div>
+            </div>
+
+            
+            <div class="hidden lg:flex space-x-6 items-center">
+                
+                <a href="#home" class="text-slate-600 hover:text-brand-600 font-medium transition">Beranda</a>
+
+                
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button class="flex items-center gap-1 text-slate-600 hover:text-brand-600 font-medium transition">
+                        Kurikulum <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
+                        <a href="#profil-jurusan" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Profile Jurusan</a>
+                        <a href="#pembelajaran" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Pembelajaran</a>
+                    </div>
+                </div>
+
+                
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button class="flex items-center gap-1 text-slate-600 hover:text-brand-600 font-medium transition">
+                        Kesiswaan <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
+                        <a href="budaya-positif.html" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Budaya Positif</a>
+                        <a href="ekstrakurikuler.html" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Ekstrakurikuler</a>
+                        <a href="#ppdb" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">PPDB</a>
+                    </div>
+                </div>
+
+                
+                <a href="#sarpras" class="text-slate-600 hover:text-brand-600 font-medium transition">Sarana Prasarana</a>
+
+                
+                <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                    <button class="flex items-center gap-1 text-slate-600 hover:text-brand-600 font-medium transition">
+                        Humas <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" 
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-1"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
+                        <a href="#bkk" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Bursa Kerja Khusus</a>
+                        <a href="#kemitraan" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Kemitraan</a>
+                    </div>
+                </div>
+
+                
+                <a href="#berita" class="text-slate-600 hover:text-brand-600 font-medium transition">Berita</a>
+
+                <a href="#ppdb"
+                    class="ml-4 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-full transition shadow-lg shadow-brand-600/20 flex items-center gap-2">
+                    <i class="fa-solid fa-file-pen"></i> Info PPDB
+                </a>
+            </div>
+
+            
+            <div class="lg:hidden flex items-center">
+                <button @click="mobileOpen = !mobileOpen"
+                    class="text-slate-600 hover:text-brand-600 focus:outline-none p-2" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div x-show="mobileOpen" x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="lg:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl" id="mobile-menu">
+        <div class="px-4 pt-2 pb-6 space-y-1">
+            <a href="#home" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Beranda</a>
+            
+            
+            <div x-data="{ extra: false }">
+                <button @click="extra = !extra" class="w-full flex justify-between items-center px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">
+                    Kurikulum <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="extra ? 'rotate-180' : ''"></i>
+                </button>
+                <div class="grid transition-[grid-template-rows] duration-300 ease-in-out" :class="extra ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+                    <div class="overflow-hidden bg-slate-50 rounded-md">
+                        <a href="#profil-jurusan" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Profile Jurusan</a>
+                        <a href="#pembelajaran" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">Pembelajaran</a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div x-data="{ extra: false }">
+                <button @click="extra = !extra" class="w-full flex justify-between items-center px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">
+                    Kesiswaan <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="extra ? 'rotate-180' : ''"></i>
+                </button>
+                <div class="grid transition-[grid-template-rows] duration-300 ease-in-out" :class="extra ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+                    <div class="overflow-hidden bg-slate-50 rounded-md">
+                        <a href="budaya-positif.html" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Budaya Positif</a>
+                        <a href="ekstrakurikuler.html" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Ekstrakurikuler</a>
+                        <a href="#ppdb" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">PPDB</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#sarpras" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Sarana Prasarana</a>
+
+            
+            <div x-data="{ extra: false }">
+                <button @click="extra = !extra" class="w-full flex justify-between items-center px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">
+                    Humas <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" :class="extra ? 'rotate-180' : ''"></i>
+                </button>
+                <div class="grid transition-[grid-template-rows] duration-300 ease-in-out" :class="extra ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
+                    <div class="overflow-hidden bg-slate-50 rounded-md">
+                        <a href="#bkk" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Bursa Kerja Khusus</a>
+                        <a href="#kemitraan" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">Kemitraan</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#berita" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Berita</a>
+
+            <a href="#ppdb" @click="mobileOpen = false"
+                class="block px-3 py-3 text-brand-600 font-bold bg-brand-50 mt-2 rounded-md text-center">Info PPDB Online</a>
+        </div>
+    </div>
+</nav>
+    <main>
+        
+        <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-50">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-brand/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl"></div>
+            
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
+                <div data-animate="fade-up" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand/10 border border-brand/20 text-brand text-xs font-bold uppercase tracking-wide mb-6">
+                    EKSTRAKURIKULER
+                </div>
+                <h1 data-animate="fade-up" data-delay="100" class="text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                    Lebih dari Kelas: Wujudkan Minat, <span class="text-brand relative inline-block">Temukan Bakatmu<svg class="absolute w-full h-3 -bottom-1 left-0 text-secondary/40" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="transparent"/></svg></span>
+                </h1>
+                <p data-animate="fade-up" data-delay="200" class="text-lg text-slate-600 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+                    Kami percaya masa depan tidak hanya dibangun di laboratorium dan ruang teori. Melalui berbagai pilihan ekstrakurikuler, asah kepemimpinan, kerja sama tim, dan kreativitasmu di lapangan nyata.
+                </p>
+                <div data-animate="fade-up" data-delay="300" class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#kategori" class="px-8 py-4 bg-brand hover:bg-brand-700 text-white font-bold rounded-full shadow-xl shadow-brand/20 transition transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        Mulai Eksplorasi <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="#pentingnya" class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-full border border-slate-200 shadow-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-circle-info text-brand"></i> Mengapa Penting?
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="pentingnya" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2" data-animate="fade-right">
+                        <h2 class="text-brand font-bold tracking-wide uppercase text-sm mb-3">Pentingnya Ekstrakurikuler</h2>
+                        <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Mengapa Harus Bergabung?</h3>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                            Rutinitas belajar teknis perlu diimbangi dengan ruang berekspresi. Di sini, kamu tidak hanya sekadar berkumpul. Kamu berlatih menghadapi dinamika organisasi, mengelola ego dalam tim olahraga, serta memecahkan masalah praktis yang tidak pernah diajarkan di buku teks.
+                        </p>
+                        <p class="text-slate-600 text-lg leading-relaxed font-medium">
+                            Ini adalah simulasi nyata yang membekalimu sebelum terjun ke kehidupan sosial dan profesional.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 grid grid-cols-2 gap-4" data-animate="fade-left">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col items-center text-center transition hover:shadow-md">
+                            <div class="w-12 h-12 bg-brand/10 text-brand rounded-full flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-people-group"></i></div>
+                            <h4 class="font-bold text-slate-900">Kerja Sama Tim</h4>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col items-center text-center transition hover:shadow-md">
+                            <div class="w-12 h-12 bg-secondary/20 text-secondary rounded-full flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-compass"></i></div>
+                            <h4 class="font-bold text-slate-900">Kepemimpinan</h4>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col items-center text-center transition hover:shadow-md">
+                            <div class="w-12 h-12 bg-brand/10 text-brand rounded-full flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-stopwatch"></i></div>
+                            <h4 class="font-bold text-slate-900">Kedisiplinan</h4>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col items-center text-center transition hover:shadow-md">
+                            <div class="w-12 h-12 bg-secondary/20 text-secondary rounded-full flex items-center justify-center text-xl mb-3"><i class="fa-solid fa-lightbulb"></i></div>
+                            <h4 class="font-bold text-slate-900">Kreativitas</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="kategori" class="py-24 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12" data-animate="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Pilihan Kami.</h2>
+                    <p class="text-slate-500 text-lg md:text-xl max-w-2xl">
+                        Daftar ekstrakurikuler terbaik yang diseleksi untuk mengembangkan potensi siswa di berbagai bidang.
+                    </p>
+                </div>
+
+                <!-- Masonry Grid Layout (4 Columns) -->
+                <div class="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6">
+                    
+                    
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[400px]">
+                        <img src="https://images.unsplash.com/photo-1533604101087-43f1146244be?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Pramuka" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-teal-300 uppercase mb-1 block">Organisasi</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Pramuka</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Bertahan Hidup &amp; Tumbuh Tangguh di Alam Bebas</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-teal-400"></i>
+                                    <span>Jumat, Sabtu</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-teal-400"></i>
+                                    <span>15.30 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[350px]">
+                        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Palang Merah Remaja" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-rose-300 uppercase mb-1 block">Sosial &amp; Medis</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Palang Merah Remaja</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Garda Terdepan Penyelamat Nyawa</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-rose-400"></i>
+                                    <span>Rabu, Jumat</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-rose-400"></i>
+                                    <span>16.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Seni Hadrah" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-amber-300 uppercase mb-1 block">Seni &amp; Budaya</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Seni Hadrah</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Harmoni Nada Sakral dan Lantunan Selawat</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-amber-400"></i>
+                                    <span>Selasa, Kamis</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-amber-400"></i>
+                                    <span>15.30 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[380px]">
+                        <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sepak Bola &amp; Futsal" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-blue-300 uppercase mb-1 block">Olahraga</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Sepak Bola &amp; Futsal</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Aksi Lapangan Hijau dan Taktik Juara</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-blue-400"></i>
+                                    <span>Senin, Rabu</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-blue-400"></i>
+                                    <span>15.30 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[420px]">
+                        <img src="https://images.unsplash.com/photo-1519861531473-920026073fdc?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bola Basket" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-orange-300 uppercase mb-1 block">Olahraga</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Bola Basket</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Terbang Tinggi Cetak Tiga Angka Gemilang</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-orange-400"></i>
+                                    <span>Selasa, Kamis</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-orange-400"></i>
+                                    <span>16.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[360px]">
+                        <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Bola Voli" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-cyan-300 uppercase mb-1 block">Olahraga</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Bola Voli</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Lompatan Akurat Menuju Kemenangan Tim</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-cyan-400"></i>
+                                    <span>Senin, Rabu</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-cyan-400"></i>
+                                    <span>16.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[400px]">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="E-Sports Club" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-purple-300 uppercase mb-1 block">E-Sports</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">E-Sports Club</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Adu Strategi Digital di Arena Profesional</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-purple-400"></i>
+                                    <span>Jumat</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-purple-400"></i>
+                                    <span>14.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[480px]">
+                        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Seni Tari &amp; Vokal" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-pink-300 uppercase mb-1 block">Seni &amp; Budaya</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Seni Tari &amp; Vokal</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Ekspresikan Jiwa Lewat Gerak dan Nada</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-pink-400"></i>
+                                    <span>Rabu, Sabtu</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-pink-400"></i>
+                                    <span>15.00 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[380px]">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="VM Media" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-emerald-300 uppercase mb-1 block">Teknologi</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">VM Media</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Rekam Momen &amp; Ciptakan Karya Visual</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-emerald-400"></i>
+                                    <span>Kamis</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-emerald-400"></i>
+                                    <span>15.30 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                        <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid h-[400px]">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=600&amp;q=80" alt="Sains Club" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <!-- Bottom to Top Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                        
+                        <!-- Content Anchored to Bottom -->
+                        <div class="relative h-full flex flex-col justify-end p-6 z-10 transform transition-transform duration-300 group-hover:-translate-y-1">
+                            <span class="text-[10px] font-bold tracking-widest text-indigo-300 uppercase mb-1 block">Akademik</span>
+                            <h3 class="text-2xl font-bold text-white mb-2 leading-tight">Sains Club</h3>
+                            <p class="text-sm text-slate-300 mb-4 line-clamp-2">Menembus Batas Logika &amp; Inovasi Sains</p>
+                            
+                            <!-- Schedule -->
+                            <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-calendar-days text-indigo-400"></i>
+                                    <span>Selasa</span>
+                                </div>
+                                <span class="text-white/30">|</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-clock text-indigo-400"></i>
+                                    <span>15.30 WIB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-slate-900 text-white pt-16 pb-8 border-t-4 border-brand-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-12 mb-12">
+            
+            <div data-animate="fade-up" class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white">
+                        <i class="fa-solid fa-school text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="block font-bold text-xl leading-none">SMKN 1 Wringin</span>
+                        <span class="text-xs text-slate-400">UNGGUL & BERKARAKTER</span>
+                    </div>
+                </div>
+                <p class="text-slate-400 mb-6 max-w-sm text-sm leading-relaxed">
+                    Sekolah Menengah Kejuruan Negeri yang berkomitmen mencetak lulusan siap kerja, cerdas, dan berakhlak mulia untuk menghadapi tantangan global.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-youtube text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-600 transition"><i class="fa-brands fa-tiktok text-sm"></i></a>
+                </div>
+            </div>
+
+            
+            <div data-animate="fade-up" data-delay="100">
+                <h4 class="text-base font-bold mb-6 text-white uppercase tracking-wider">Akademik</h4>
+                <ul class="space-y-3 text-slate-400 text-sm">
+                    <li><a href="#" class="hover:text-brand-600 transition">Kurikulum</a></li>
+                    <li><a href="#" class="hover:text-brand-600 transition">E-Learning</a></li>
+                    <li><a href="#" class="hover:text-brand-600 transition">Jadwal Pelajaran</a></li>
+                    <li><a href="ekstrakurikuler.html" class="hover:text-brand-600 transition">Ekstrakurikuler</a></li>
+                    <li><a href="#" class="hover:text-brand-600 transition">Info Alumni</a></li>
+                </ul>
+            </div>
+
+            
+            <div data-animate="fade-up" data-delay="200">
+                <h4 class="text-base font-bold mb-6 text-white uppercase tracking-wider">Hubungi Kami</h4>
+                <ul class="space-y-4 text-slate-400 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-map-location-dot mt-1 text-brand-600"></i>
+                        <span>Jl. Pendidikan No. 45,<br>Wringin, Bondowoso, Jawa Timur</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-brand-600"></i>
+                        <span>(0332) 555-0199</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-brand-600"></i>
+                        <span>admin@smkn1wringin.sch.id</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-animate="fade-in" class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2026 SMKN 1 Wringin. All rights reserved.</p>
+            <div class="flex gap-6 text-sm text-slate-500">
+                <a href="#" class="hover:text-white">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-white">Peta Situs</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+</html>
