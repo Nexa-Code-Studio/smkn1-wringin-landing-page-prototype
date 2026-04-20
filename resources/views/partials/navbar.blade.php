@@ -51,12 +51,12 @@
                         class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
                         <a href="{{ route('budaya.positif') }}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Budaya Positif</a>
                         <a href="{{ route('ekstrakurikuler') }}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Ekstrakurikuler</a>
-                        <a href="#ppdb" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">PPDB</a>
+                        <a href="{{ route('ppdb') }}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">PPDB</a>
                     </div>
                 </div>
 
                 {{-- Sarana Prasarana --}}
-                <a href="#sarpras" class="text-slate-600 hover:text-brand-600 font-medium transition">Sarana Prasarana</a>
+                <a href="{{ route('sarana.prasarana') }}" class="text-slate-600 hover:text-brand-600 font-medium transition">Sarana Prasarana</a>
 
                 {{-- Humas Dropdown --}}
                 <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
@@ -77,7 +77,7 @@
                 {{-- Berita --}}
                 <a href="#berita" class="text-slate-600 hover:text-brand-600 font-medium transition">Berita</a>
 
-                <a href="#ppdb"
+                <a href="{{ route('ppdb') }}"
                     class="ml-4 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-full transition shadow-lg shadow-brand-600/20 flex items-center gap-2">
                     <i class="fa-solid fa-file-pen"></i> Info PPDB
                 </a>
@@ -124,12 +124,12 @@
                     <div class="overflow-hidden bg-slate-50 rounded-md">
                         <a href="{{ route('budaya.positif') }}" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Budaya Positif</a>
                         <a href="{{ route('ekstrakurikuler') }}" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Ekstrakurikuler</a>
-                        <a href="#ppdb" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">PPDB</a>
+                        <a href="{{ route('ppdb') }}" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">PPDB</a>
                     </div>
                 </div>
             </div>
 
-            <a href="#sarpras" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Sarana Prasarana</a>
+            <a href="{{ route('sarana.prasarana') }}" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Sarana Prasarana</a>
 
             {{-- Humas (Accordion) --}}
             <div x-data="{ extra: false }">
@@ -146,7 +146,7 @@
 
             <a href="#berita" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Berita</a>
 
-            <a href="#ppdb" @click="mobileOpen = false"
+            <a href="{{ route('ppdb') }}" @click="mobileOpen = false"
                 class="block px-3 py-3 text-brand-600 font-bold bg-brand-50 mt-2 rounded-md text-center">Info PPDB Online</a>
         </div>
     </div>

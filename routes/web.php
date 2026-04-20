@@ -8,3 +8,5 @@ Route::get('/jurusan/rpl', [LandingController::class, 'jurusanDetail'])->name('j
 Route::get('/kurikulum', [LandingController::class, 'kurikulumDetail'])->name('kurikulum.detail');
 Route::get('/budaya-positif', [LandingController::class, 'budayaPositif'])->name('budaya.positif');
 Route::get('/ekstrakurikuler', [LandingController::class, 'ekstrakurikuler'])->name('ekstrakurikuler');
+Route::get('/ppdb', [LandingController::class, 'ppdb'])->name('ppdb');
+Route::get('/sarana-prasarana', [LandingController::class, 'saranaPrasarana'])->name('sarana.prasarana');

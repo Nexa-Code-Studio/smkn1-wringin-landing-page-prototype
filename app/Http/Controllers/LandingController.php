@@ -45,4 +45,20 @@ class LandingController extends Controller
     {
         return view('pages.ekstrakurikuler');
     }
+
+    /**
+     * Display the ppdb page.
+     */
+    public function ppdb(): View
+    {
+        return view('pages.ppdb');
+    }
+
+    /**
+     * Display the sarana prasarana page.
+     */
+    public function saranaPrasarana(): View
+    {
+        return view('pages.sarana-prasarana');
+    }
 }
