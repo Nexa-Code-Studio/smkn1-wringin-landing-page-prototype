@@ -61,4 +61,12 @@ class LandingController extends Controller
     {
         return view('pages.sarana-prasarana');
     }
+
+    /**
+     * Display the bursa kerja khusus page.
+     */
+    public function bursaKerjaKhusus(): View
+    {
+        return view('pages.bursa-kerja-khusus');
+    }
 }

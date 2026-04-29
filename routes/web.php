@@ -10,3 +10,4 @@ Route::get('/budaya-positif', [LandingController::class, 'budayaPositif'])->name
 Route::get('/ekstrakurikuler', [LandingController::class, 'ekstrakurikuler'])->name('ekstrakurikuler');
 Route::get('/ppdb', [LandingController::class, 'ppdb'])->name('ppdb');
 Route::get('/sarana-prasarana', [LandingController::class, 'saranaPrasarana'])->name('sarana.prasarana');
+Route::get('/bursa-kerja-khusus', [LandingController::class, 'bursaKerjaKhusus'])->name('bursa.kerja.khusus');

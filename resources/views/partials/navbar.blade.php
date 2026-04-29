@@ -69,7 +69,7 @@
                         x-transition:enter-end="opacity-100 translate-y-0"
                         x-transition:leave="transition ease-in duration-150"
                         class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
-                        <a href="#bkk" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Bursa Kerja Khusus</a>
+                        <a href="{{ route('bursa.kerja.khusus') }}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Bursa Kerja Khusus</a>
                         <a href="#kemitraan" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Kemitraan</a>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                 </button>
                 <div class="grid transition-[grid-template-rows] duration-300 ease-in-out" :class="extra ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
                     <div class="overflow-hidden bg-slate-50 rounded-md">
-                        <a href="#bkk" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Bursa Kerja Khusus</a>
+                        <a href="{{ route('bursa.kerja.khusus') }}" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Bursa Kerja Khusus</a>
                         <a href="#kemitraan" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">Kemitraan</a>
                     </div>
                 </div>
