@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman Kelulusan SMKN 1 Wringin</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -13,9 +16,6 @@
     
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
-    <!-- html2canvas for Download feature -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
@@ -125,22 +125,6 @@
             opacity: 0;
         }
 
-        /* Warning for non-HTTPS */
-        #https-warning {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            right: 10px;
-            background: rgba(185, 28, 28, 0.9);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            z-index: 100;
-            display: none;
-            text-align: center;
-        }
-
         @keyframes sweep {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(200%); }
@@ -155,33 +139,27 @@
     <!-- Particles/Stars Container -->
     <div id="particles" class="absolute inset-0 pointer-events-none z-0"></div>
 
-    <!-- HTTPS Warning -->
-    <div id="https-warning">
-        ⚠️ Sensor Gyro membutuhkan koneksi HTTPS untuk bekerja di perangkat mobile.
-    </div>
-
     <!-- 1. Page Structure -->
     <div class="relative flex flex-col z-10 full-viewport">
         
-        <!-- HEADER SECTION -->
-        <header id="page-header" class="w-full py-4 md:py-8 px-4 flex-shrink-0">
-            <div class="text-center">
-                <div id="logo-anim" class="w-14 h-14 md:w-20 md:h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-3 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    </svg>
-                </div>
-                <h1 id="title-anim" class="text-xl md:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 uppercase">SMKN 1 WRINGIN</h1>
-                <p id="subtitle-anim" class="text-gray-400 text-xs md:text-sm font-light tracking-widest">Pengumuman Kelulusan 2026</p>
-            </div>
-        </header>
-
         <!-- MAIN CONTENT AREA -->
         <main class="flex-grow w-full relative overflow-hidden flex items-center justify-center px-4 pb-12">
             
             <!-- Landing View -->
             <div id="landing-view" class="w-full max-w-md transition-all duration-500">
+                
+                <!-- HEADER SECTION -->
+                <header id="page-header" class="w-full pb-8 flex-shrink-0 text-center">
+                    <div id="logo-anim" class="mx-auto flex items-center justify-center mb-4">
+                        <picture>
+                            <source srcset="{{ asset('images/webp/icon.webp') }}" type="image/webp">
+                            <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="h-20 w-20 md:h-28 md:w-28 object-contain drop-shadow-xl">
+                        </picture>
+                    </div>
+                    <h1 id="title-anim" class="text-xl md:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 uppercase">SMKN 1 WRINGIN</h1>
+                    <p id="subtitle-anim" class="text-gray-400 text-xs md:text-sm font-light tracking-widest">Pengumuman Kelulusan 2026</p>
+                </header>
+
                 <div id="form-container" class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
                     <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
                     <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
@@ -229,10 +207,6 @@
                     <button id="btn-back" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest flex items-center gap-2 transition-colors pointer-events-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         Kembali
-                    </button>
-                    <button id="btn-download" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white text-[10px] uppercase tracking-widest py-2 px-4 rounded-md flex items-center gap-2 transition-colors pointer-events-auto backdrop-blur-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                        Simpan Kartu
                     </button>
                 </div>
 
@@ -319,7 +293,6 @@
             resultCard: document.getElementById('result-card'),
             cardShine: document.getElementById('card-shine'),
             btnBack: document.getElementById('btn-back'),
-            btnDownload: document.getElementById('btn-download'),
             resPhotoRing: document.getElementById('res-photo-ring'),
             resPhoto: document.getElementById('res-photo'),
             resNama: document.getElementById('res-nama'),
@@ -337,10 +310,6 @@
             initStarfield();
             initialEntranceAnimation();
             setupEventListeners();
-
-            if (window.innerWidth < 768 && window.location.protocol !== 'https:' && window.location.hostname !== 'localhost') {
-                document.getElementById('https-warning').style.display = 'block';
-            }
         }
 
         function initStarfield() {
@@ -402,7 +371,6 @@
             DOM.nisnInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleCheckStatus(); });
             DOM.nisnInput.addEventListener('input', () => { gsap.to(DOM.errorMsg, { opacity: 0, y: 5, duration: 0.2 }); });
             DOM.btnBack.addEventListener('click', resetToHome);
-            DOM.btnDownload.addEventListener('click', downloadResult);
             DOM.resultView.addEventListener('mousemove', handleTilt);
             DOM.resultView.addEventListener('mouseleave', resetTilt);
             window.addEventListener('deviceorientation', handleOrientation);
@@ -505,23 +473,6 @@
                 DOM.submitBtn.disabled = false;
                 DOM.submitBtn.querySelector('span').innerHTML = 'Periksa Hasil';
             }});
-        }
-
-        function downloadResult() {
-            const btn = DOM.btnDownload;
-            btn.innerHTML = 'Proses...';
-            btn.disabled = true;
-            gsap.set(DOM.resultCard, { rotationX: 0, rotationY: 0 });
-            setTimeout(() => {
-                html2canvas(DOM.resultCard, { backgroundColor: null, scale: 2, useCORS: true }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = `PENGUMUMAN_${currentStudent.nisn}.png`;
-                    link.href = canvas.toDataURL();
-                    link.click();
-                    btn.innerHTML = 'Simpan Kartu';
-                    btn.disabled = false;
-                });
-            }, 200);
         }
 
         window.onload = init;

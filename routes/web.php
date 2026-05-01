@@ -13,3 +13,4 @@ Route::get('/sarana-prasarana', [LandingController::class, 'saranaPrasarana'])->
 Route::get('/bursa-kerja-khusus', [LandingController::class, 'bursaKerjaKhusus'])->name('bursa.kerja.khusus');
 
 Route::get('/pengumuman-kelulusan', [\App\Http\Controllers\GraduationController::class, 'index'])->name('graduation.index');
+Route::get('/pengumuman-kelulusan/admin', [\App\Http\Controllers\GraduationController::class, 'admin'])->name('graduation.admin');

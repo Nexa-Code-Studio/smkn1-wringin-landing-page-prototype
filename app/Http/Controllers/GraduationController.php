@@ -10,4 +10,9 @@ class GraduationController extends Controller
     {
         return view('graduation.index');
     }
+
+    public function admin()
+    {
+        return view('graduation.admin');
+    }
 }
