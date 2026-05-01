@@ -1,522 +1,660 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMKN 1 Wringin - Siap Kerja, Santun, Mandiri</title>
+    <title>Pengumuman Kelulusan SMKN 1 Wringin</title>
     
-    <!-- Tailwind CSS via CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     
-    <!-- Font Awesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- html2canvas for Download feature -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <!-- Konfigurasi Warna Custom -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            DEFAULT: '#1E5460', // Warna Primary Pilihan User
-                            50: '#f0f9fa',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            600: '#1E5460',
-                            700: '#17424d', // Hover state
-                            800: '#14363f',
-                            900: '#132e35',
-                        },
-                        secondary: {
-                            DEFAULT: '#f59e0b', // Warna aksen oranye/kuning khas semangat siswa
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+
     <style>
-        .hero-pattern {
-            background-color: #f8fafc;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e5460' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* 3D Perspective Container for Tilt Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+
+        /* Subtle Background Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar for hidden elements if needed */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Dynamic Backgrounds */
+        .bg-lulus {
+            background: radial-gradient(circle at center, #1e3a8a 0%, #064e3b 50%, #020617 100%);
+        }
+        
+        .bg-belum-lulus {
+            background: radial-gradient(circle at center, #334155 0%, #0f172a 70%, #020617 100%);
+        }
+
+        /* Result Card Layout Utilities */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .info-label {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+        .info-value {
+            font-weight: 600;
+            text-align: right;
         }
     </style>
 </head>
-<body class="font-sans text-slate-600 antialiased">
+<body class="relative w-full h-screen overflow-hidden">
 
-    <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white shadow-md">
-                        <i class="fa-solid fa-graduation-cap text-xl"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-bold text-xl text-slate-800 leading-none">SMK <span class="text-brand">Nusantara</span></span>
-                        <span class="text-xs text-slate-500 font-medium tracking-wider">VOCATIONAL SCHOOL</span>
-                    </div>
-                </div>
+    <!-- Ambient Background Layer -->
+    <div id="bg-layer" class="absolute inset-0 bg-slate-900 transition-colors duration-1000 ease-in-out"></div>
+    
+    <!-- Particles Container -->
+    <div id="particles" class="absolute inset-0 pointer-events-none z-0"></div>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-slate-600 hover:text-brand font-medium transition">Beranda</a>
-                    <a href="#jurusan" class="text-slate-600 hover:text-brand font-medium transition">Kompetensi Keahlian</a>
-                    <a href="#profil" class="text-slate-600 hover:text-brand font-medium transition">Profil</a>
-                    <a href="#berita" class="text-slate-600 hover:text-brand font-medium transition">Berita</a>
-                    <a href="#ppdb" class="px-6 py-2.5 bg-brand hover:bg-brand-700 text-white font-semibold rounded-full transition shadow-lg shadow-brand/20 flex items-center gap-2">
-                        <i class="fa-solid fa-file-pen"></i> Info PPDB
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand focus:outline-none p-2">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#home" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand rounded-md border-b border-slate-50">Beranda</a>
-                <a href="#jurusan" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand rounded-md border-b border-slate-50">Jurusan</a>
-                <a href="#profil" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand rounded-md border-b border-slate-50">Profil Sekolah</a>
-                <a href="#berita" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand rounded-md border-b border-slate-50">Berita Terkini</a>
-                <a href="#ppdb" class="block px-3 py-3 text-brand font-bold bg-brand-50 mt-2 rounded-md text-center">Info PPDB Online</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden hero-pattern">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                <!-- Text Content -->
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-bold uppercase tracking-wide mb-6">
-                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                        Penerimaan Siswa Baru Tahun 2024 Dibuka!
-                    </div>
-                    <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6">
-                        Mencetak Generasi <span class="text-brand">Cerdas, Terampil</span>, & Berkarakter
-                    </h1>
-                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                        Bergabunglah dengan SMK Nusantara untuk mendapatkan pendidikan vokasi berkualitas dengan fasilitas modern dan kurikulum yang terintegrasi dengan dunia industri.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#ppdb" class="px-8 py-4 bg-brand hover:bg-brand-700 text-white font-semibold rounded-full shadow-xl shadow-brand/30 transition transform hover:-translate-y-1 text-center">
-                            Info PPDB
-                        </a>
-                        <a href="#jurusan" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 hover:border-brand hover:text-brand font-semibold rounded-full shadow-sm transition text-center flex items-center justify-center gap-2 group">
-                            <i class="fa-solid fa-book-open text-brand group-hover:scale-110 transition"></i>
-                            Lihat Jurusan
-                        </a>
-                    </div>
-                    
-                    <!-- Stats -->
-                    <div class="mt-12 grid grid-cols-3 gap-6 border-t border-slate-200 pt-8">
-                        <div>
-                            <p class="text-3xl font-bold text-slate-900">1.2k+</p>
-                            <p class="text-sm text-slate-500 font-medium">Siswa Aktif</p>
-                        </div>
-                        <div>
-                            <p class="text-3xl font-bold text-slate-900">50+</p>
-                            <p class="text-sm text-slate-500 font-medium">Mitra Industri</p>
-                        </div>
-                        <div>
-                            <p class="text-3xl font-bold text-slate-900">95%</p>
-                            <p class="text-sm text-slate-500 font-medium">Terserap Kerja</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Image Content -->
-                <div class="relative lg:ml-10">
-                    <div class="absolute -top-10 -right-10 w-72 h-72 bg-brand/10 rounded-full blur-3xl"></div>
-                    <!-- Decorative dots -->
-                    <div class="absolute -bottom-10 -left-10 text-brand/20">
-                        <svg width="100" height="100" fill="currentColor" viewBox="0 0 100 100"><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2"></circle></pattern><rect width="100" height="100" fill="url(#dots)"></rect></svg>
-                    </div>
-                    
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Siswa SMK Belajar" class="w-full h-auto object-cover transform hover:scale-105 transition duration-700">
-                    </div>
-                    
-                    <!-- Floating Card -->
-                    <div class="absolute top-10 -left-10 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 animate-bounce" style="animation-duration: 4s;">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                            <i class="fa-solid fa-certificate text-xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wide">Terakreditasi</p>
-                            <p class="text-lg font-bold text-slate-900">Grade A Unggul</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MAJORS / JURUSAN SECTION -->
-    <section id="jurusan" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-brand font-semibold tracking-wide uppercase text-sm mb-3">Kompetensi Keahlian</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Pilih Masa Depanmu</h3>
-                <p class="text-slate-600">Kami menyediakan berbagai program keahlian yang relevan dengan kebutuhan industri 4.0 saat ini.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Jurusan 1: TKJ -->
-                <div class="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand/5 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-brand/10"></div>
-                    <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <i class="fa-solid fa-network-wired text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Teknik Komputer & Jaringan</h4>
-                    <p class="text-slate-600 mb-6 text-sm">Mempelajari perakitan komputer, instalasi jaringan, administrasi server, dan keamanan siber.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Laboratorium Fiber Optik</li>
-                        <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Sertifikasi Mikrotik</li>
-                    </ul>
-                    <a href="#" class="text-brand font-semibold group-hover:underline flex items-center gap-2 text-sm">
-                        Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Jurusan 2: RPL (Highlighted) -->
-                <div class="group p-8 rounded-2xl bg-brand text-white shadow-xl shadow-brand/20 transform md:-translate-y-4 relative overflow-hidden">
-                     <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-full -mr-8 -mt-8"></div>
-                    <div class="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center text-white mb-6">
-                        <i class="fa-solid fa-code text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3">Rekayasa Perangkat Lunak</h4>
-                    <p class="text-brand-50 mb-6 text-sm">Fokus pada pengembangan aplikasi web, mobile (Android/iOS), dan sistem informasi basis data.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-xs text-brand-100"><i class="fa-solid fa-check text-white mr-2"></i> Lab Coding Modern</li>
-                        <li class="flex items-center text-xs text-brand-100"><i class="fa-solid fa-check text-white mr-2"></i> Kemitraan Startup</li>
-                    </ul>
-                    <a href="#" class="text-white font-semibold hover:underline flex items-center gap-2 text-sm">
-                        Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Jurusan 3: DKV / Multimedia -->
-                <div class="group p-8 rounded-2xl bg-white border border-slate-100 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 transition duration-300 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand/5 rounded-bl-full -mr-4 -mt-4 transition group-hover:bg-brand/10"></div>
-                    <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500 mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <i class="fa-solid fa-pen-nib text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-3">Desain Komunikasi Visual</h4>
-                    <p class="text-slate-600 mb-6 text-sm">Mengembangkan kreativitas dalam desain grafis, fotografi, videografi, dan animasi 2D/3D.</p>
-                    <ul class="space-y-2 mb-6">
-                        <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Studio Fotografi</li>
-                        <li class="flex items-center text-xs text-slate-500"><i class="fa-solid fa-check text-green-500 mr-2"></i> Peralatan Multimedia Lengkap</li>
-                    </ul>
-                    <a href="#" class="text-brand font-semibold group-hover:underline flex items-center gap-2 text-sm">
-                        Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </a>
-                </div>
-            </div>
+    <!-- 1. Landing View -->
+    <div id="landing-view" class="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
+        <div id="landing-content" class="w-full max-w-md">
             
-            <div class="mt-12 text-center">
-                 <a href="#" class="inline-flex items-center gap-2 text-slate-500 hover:text-brand transition font-medium">
-                    Lihat Jurusan Lainnya (Akuntansi, Perkantoran) <i class="fa-solid fa-angle-right"></i>
-                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROFIL / FASILITAS SECTION -->
-    <section id="profil" class="py-20 bg-slate-50 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1 relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Guru Mengajar" class="rounded-xl shadow-lg w-full h-48 object-cover">
-                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a782?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Praktek SMK" class="rounded-xl shadow-lg w-full h-48 object-cover mt-8">
-                    </div>
-                    <!-- Experience Badge -->
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <div class="bg-white p-4 rounded-full shadow-xl border-4 border-slate-50 flex flex-col items-center justify-center w-32 h-32 pointer-events-auto">
-                            <span class="text-3xl font-bold text-brand">25</span>
-                            <span class="text-xs text-slate-500 font-bold uppercase text-center leading-tight">Tahun<br>Mengabdi</span>
-                        </div>
-                    </div>
+            <div class="text-center mb-8">
+                <div id="logo-anim" class="w-20 h-20 mx-auto bg-white/10 rounded-full flex items-center justify-center mb-4 border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                    <!-- SVG Icon for School/Graduation -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                    </svg>
                 </div>
-                
-                <div class="order-1 lg:order-2">
-                    <div class="mb-6">
-                        <span class="text-brand font-bold uppercase tracking-wider text-sm">Tentang Kami</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">Lingkungan Belajar yang Mendukung Kreativitas</h2>
-                    </div>
-                    <p class="text-slate-600 mb-6 text-lg">
-                        Di SMK Nusantara, kami percaya bahwa pendidikan bukan hanya tentang teori, tetapi juga karakter dan keterampilan nyata.
-                    </p>
+                <h1 id="title-anim" class="text-3xl md:text-4xl font-bold tracking-tight mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">SMKN 1 WRINGIN</h1>
+                <p id="subtitle-anim" class="text-gray-400 font-light tracking-wide">Pengumuman Kelulusan 2026</p>
+            </div>
+
+            <div id="form-container" class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+                <!-- Form Glow effect -->
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+                    <label for="nisn-input" class="block text-xs uppercase tracking-widest text-gray-400 mb-2 font-semibold">Masukkan Nomor Induk (NISN)</label>
+                    <input type="text" id="nisn-input" autocomplete="off" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-3 text-white font-mono text-center text-xl tracking-widest focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all mb-4 placeholder-gray-600" placeholder="0000000000">
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-chalkboard-user"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Guru Tersertifikasi</h4>
-                                <p class="text-sm text-slate-500 mt-1">Pengajar profesional dengan sertifikasi pendidik dan pengalaman industri.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-handshake"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Kerjasama Industri (Link & Match)</h4>
-                                <p class="text-sm text-slate-500 mt-1">Kurikulum diselaraskan dengan kebutuhan dunia kerja (DUDI).</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">
-                                <i class="fa-solid fa-trophy"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-slate-900">Ekstrakurikuler Berprestasi</h4>
-                                <p class="text-sm text-slate-500 mt-1">Wadah pengembangan bakat siswa di bidang olahraga, seni, dan teknologi.</p>
-                            </div>
-                        </div>
+                    <button id="submit-btn" class="w-full relative group overflow-hidden bg-blue-600/80 hover:bg-blue-500 text-white font-semibold py-3.5 rounded-lg transition-all duration-300 border border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            Lihat Hasil
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </span>
+                        <!-- Button hover sweep effect -->
+                        <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1s_ease-in-out_infinite]"></div>
+                    </button>
+
+                    <div id="error-msg" class="h-6 mt-3 text-center">
+                        <p class="text-red-400 text-sm opacity-0 transform translate-y-2 transition-all font-medium">Data tidak ditemukan.</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-6 text-xs text-gray-500 flex flex-col gap-1">
+                <p>Data Simulasi (Mock Data):</p>
+                <p>Lulus: <span class="font-mono text-gray-300 cursor-pointer hover:text-white" onclick="document.getElementById('nisn-input').value='0012345678'">0012345678</span></p>
+                <p>Belum Lulus: <span class="font-mono text-gray-300 cursor-pointer hover:text-white" onclick="document.getElementById('nisn-input').value='0087654321'">0087654321</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Transition View (Cinematic Scan) -->
+    <div id="transition-view" class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none opacity-0 bg-black">
+        
+        <!-- Horizontal Scanning Light -->
+        <div id="scanline" class="absolute top-0 left-0 w-full h-[2px] bg-blue-400 shadow-[0_0_20px_4px_#60a5fa,0_0_40px_8px_#3b82f6] opacity-0 mix-blend-screen"></div>
+        
+        <div class="w-72 relative z-10">
+            <p id="loading-text" class="text-blue-400 text-xs mb-3 text-center tracking-[0.3em] font-mono font-bold animate-pulse">MENCOCOKKAN DATA...</p>
+            <div class="h-1.5 w-full bg-gray-800/50 rounded-full overflow-hidden border border-white/5">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-blue-600 to-cyan-400 w-0 relative">
+                    <div class="absolute top-0 right-0 bottom-0 w-10 bg-white/30 blur-[2px]"></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- BERITA SECTION (NEW) -->
-    <section id="berita" class="py-20 bg-white border-t border-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-                <div class="max-w-2xl">
-                    <h2 class="text-brand font-semibold tracking-wide uppercase text-sm mb-3">Kabar Sekolah</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-slate-900">Berita & Agenda Terbaru</h3>
-                </div>
-                <a href="#" class="hidden md:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-800 transition">
-                    Lihat Semua Berita <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- News Item 1 -->
-                <article class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 border border-slate-100 h-full">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Juara LKS" class="w-full h-full object-cover transform hover:scale-110 transition duration-700">
-                        <span class="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Prestasi</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> 12 Agustus 2024</span>
-                            <span>|</span>
-                            <span><i class="fa-regular fa-user mr-1"></i> Admin</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-3 leading-snug hover:text-brand transition cursor-pointer">
-                            Siswa RPL Sabet Juara 1 LKS Web Tech Tingkat Provinsi
-                        </h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-1">
-                            Tim Rekayasa Perangkat Lunak berhasil mengharumkan nama sekolah dengan aplikasi manajemen sampah berbasis IoT yang dikembangkan selama kompetisi.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-brand font-semibold text-sm hover:underline mt-auto">
-                            Baca Selengkapnya <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 2 -->
-                <article class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 border border-slate-100 h-full">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kunjungan Industri" class="w-full h-full object-cover transform hover:scale-110 transition duration-700">
-                        <span class="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Kunjungan</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> 5 Agustus 2024</span>
-                            <span>|</span>
-                            <span><i class="fa-regular fa-user mr-1"></i> Humas</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-3 leading-snug hover:text-brand transition cursor-pointer">
-                            Kunjungan Industri ke PT. Teknologi Maju Jaya Jakarta
-                        </h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-1">
-                            Sebanyak 100 siswa kelas XI TKJ melakukan studi lapangan untuk melihat langsung infrastruktur server dan data center skala enterprise.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-brand font-semibold text-sm hover:underline mt-auto">
-                            Baca Selengkapnya <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- News Item 3 -->
-                <article class="flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 border border-slate-100 h-full">
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pensi Sekolah" class="w-full h-full object-cover transform hover:scale-110 transition duration-700">
-                        <span class="absolute top-4 left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Agenda</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex items-center gap-3 text-xs text-slate-400 mb-3">
-                            <span><i class="fa-regular fa-calendar mr-1"></i> 1 September 2024</span>
-                            <span>|</span>
-                            <span><i class="fa-regular fa-user mr-1"></i> OSIS</span>
-                        </div>
-                        <h4 class="text-xl font-bold text-slate-900 mb-3 leading-snug hover:text-brand transition cursor-pointer">
-                            Saksikan Pentas Seni "Nusantara Berkarya 2024"
-                        </h4>
-                        <p class="text-slate-600 text-sm mb-4 line-clamp-3 flex-1">
-                            Jangan lewatkan penampilan bakat terbaik siswa-siswi SMK Nusantara dalam acara tahunan Pensi yang akan dimeriahkan oleh bintang tamu spesial.
-                        </p>
-                        <a href="#" class="inline-flex items-center text-brand font-semibold text-sm hover:underline mt-auto">
-                            Lihat Jadwal <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-
-            <div class="mt-8 text-center md:hidden">
-                <a href="#" class="inline-block px-6 py-3 rounded-full border border-slate-200 text-slate-600 font-semibold hover:border-brand hover:text-brand transition">
-                    Lihat Semua Berita
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CALL TO ACTION PPDB -->
-    <section id="ppdb" class="py-20 relative bg-brand overflow-hidden">
-        <!-- Abstract shapes background -->
-        <div class="absolute inset-0 opacity-10">
-             <svg class="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                 <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
-             </svg>
+    <!-- 3. Result View -->
+    <div id="result-view" class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none opacity-0 px-4 perspective-1000 hidden">
+        
+        <!-- Actions above card -->
+        <div id="result-actions" class="w-full max-w-md flex justify-between items-center mb-4 opacity-0">
+            <button id="btn-back" class="text-gray-400 hover:text-white text-sm flex items-center gap-2 transition-colors pointer-events-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                Kembali
+            </button>
+            <button id="btn-download" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white text-sm py-1.5 px-3 rounded-md flex items-center gap-2 transition-colors pointer-events-auto backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                Simpan
+            </button>
         </div>
 
-        <div class="max-w-4xl mx-auto px-4 relative text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Siap Menjadi Bagian dari Keluarga Besar Kami?</h2>
-            <p class="text-brand-100 text-lg mb-10 max-w-2xl mx-auto">
-                Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2024/2025 telah dibuka. Segera daftarkan diri Anda sebelum kuota terpenuhi.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#" class="px-8 py-4 bg-white text-brand font-bold rounded-full shadow-lg hover:bg-slate-100 transition transform hover:-translate-y-1">
-                    Daftar Online Sekarang
-                </a>
-                <a href="#" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition">
-                    <i class="fa-brands fa-whatsapp mr-2"></i> Chat Panitia
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="contact" class="bg-slate-900 text-white pt-16 pb-8 border-t-4 border-brand">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <!-- School Info -->
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 bg-brand rounded-lg flex items-center justify-center text-white">
-                             <i class="fa-solid fa-school text-xl"></i>
+        <!-- The Card -->
+        <div id="result-card-container" class="w-full max-w-md transform-style-3d pointer-events-auto">
+            <div id="result-card" class="bg-white/10 backdrop-blur-xl border border-white/20 p-1 rounded-2xl shadow-2xl relative overflow-hidden">
+                
+                <!-- Inner padding wrapper to prevent border bleed -->
+                <div class="bg-slate-900/60 rounded-[14px] p-6 relative z-10 h-full flex flex-col">
+                    
+                    <!-- Header: Photo & Name -->
+                    <div class="flex flex-col items-center mb-6">
+                        <div class="relative mb-4">
+                            <div id="res-photo-ring" class="absolute inset-[-4px] rounded-full border-2 border-dashed border-gray-500 animate-[spin_10s_linear_infinite]"></div>
+                            <img id="res-photo" src="" alt="Student Photo" class="w-24 h-24 rounded-full object-cover border-2 border-white/20 bg-gray-800 shadow-lg relative z-10">
                         </div>
-                        <div>
-                            <span class="block font-bold text-xl leading-none">SMK Nusantara</span>
-                            <span class="text-xs text-slate-400">UNGGUL & BERKARAKTER</span>
+                        <h2 id="res-nama" class="text-xl font-bold text-center text-white mb-1 uppercase tracking-wide">Nama Siswa</h2>
+                        <p id="res-nisn" class="text-gray-400 font-mono text-sm">NISN: 0000000000</p>
+                    </div>
+
+                    <!-- Data Details -->
+                    <div class="flex-grow space-y-3 mb-8 bg-black/20 p-4 rounded-xl border border-white/5">
+                        <div class="info-row">
+                            <span class="info-label">Program Keahlian</span>
+                            <span id="res-jurusan" class="info-value">Jurusan</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Kelas</span>
+                            <span id="res-kelas" class="info-value">XII</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Tempat, Tgl Lahir</span>
+                            <span id="res-ttl" class="info-value text-right">Tempat, Tanggal</span>
                         </div>
                     </div>
-                    <p class="text-slate-400 mb-6 max-w-sm text-sm leading-relaxed">
-                        Sekolah Menengah Kejuruan yang berkomitmen mencetak lulusan siap kerja, cerdas, dan berakhlak mulia untuk menghadapi tantangan global.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand transition"><i class="fa-brands fa-instagram text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand transition"><i class="fa-brands fa-youtube text-sm"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand transition"><i class="fa-brands fa-tiktok text-sm"></i></a>
+
+                    <!-- Status Badge -->
+                    <div class="mt-auto flex flex-col items-center">
+                        <p class="text-xs text-gray-400 mb-2 uppercase tracking-widest font-semibold">Status Kelulusan</p>
+                        <div id="res-status-badge" class="w-full py-3 rounded-lg text-center font-bold text-xl tracking-widest border shadow-lg transition-all">
+                            STATUS
+                        </div>
+                        <p class="text-[10px] text-gray-500 mt-4 font-mono text-center opacity-50">SK BSKAP KEMDIKBUDRISTEK No. 004/H/EP/2023</p>
                     </div>
                 </div>
 
-                <!-- Links -->
-                <div>
-                    <h4 class="text-base font-bold mb-6 text-white uppercase tracking-wider">Akademik</h4>
-                    <ul class="space-y-3 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-brand transition">Kurikulum</a></li>
-                        <li><a href="#" class="hover:text-brand transition">E-Learning</a></li>
-                        <li><a href="#" class="hover:text-brand transition">Jadwal Pelajaran</a></li>
-                        <li><a href="#" class="hover:text-brand transition">Ekstrakurikuler</a></li>
-                        <li><a href="#" class="hover:text-brand transition">Info Alumni</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-base font-bold mb-6 text-white uppercase tracking-wider">Hubungi Kami</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-map-location-dot mt-1 text-brand"></i>
-                            <span>Jl. Pendidikan No. 45,<br>Kota Harapan, Indonesia 12345</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-brand"></i>
-                            <span>(021) 555-0199</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-brand"></i>
-                            <span>admin@smknusantara.sch.id</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm text-center md:text-left">&copy; 2024 SMK Nusantara. All rights reserved.</p>
-                <div class="flex gap-6 text-sm text-slate-500">
-                    <a href="#" class="hover:text-white">Kebijakan Privasi</a>
-                    <a href="#" class="hover:text-white">Peta Situs</a>
-                </div>
+                <!-- Card Shine Overlay for 3D effect -->
+                <div id="card-shine" class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 pointer-events-none rounded-2xl" style="transform: translateZ(1px);"></div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- JavaScript Sederhana -->
+    <!-- Custom CSS Animation injected -->
+    <style>
+        @keyframes sweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+    </style>
+
     <script>
-        // Toggle Mobile Menu
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                navbar.classList.add('shadow-md');
-                navbar.classList.replace('bg-white/95', 'bg-white/90');
-            } else {
-                navbar.classList.remove('shadow-md');
-                navbar.classList.replace('bg-white/90', 'bg-white/95');
+        /**
+         * Mock Data - Simulating Database
+         */
+        const studentData = {
+            "0012345678": {
+                nama: "Ahmad Budi Santoso",
+                nisn: "0012345678",
+                jurusan: "Rekayasa Perangkat Lunak",
+                kelas: "XII RPL 1",
+                ttl: "Bondowoso, 15 Mei 2008",
+                status: "LULUS",
+                photo: "https://ui-avatars.com/api/?name=Ahmad+Budi&background=0D8ABC&color=fff&size=200&font-size=0.33"
+            },
+            "0087654321": {
+                nama: "Siti Aminah Wijaya",
+                nisn: "0087654321",
+                jurusan: "Teknik Komputer & Jaringan",
+                kelas: "XII TKJ 2",
+                ttl: "Wringin, 10 Agustus 2007",
+                status: "BELUM LULUS",
+                photo: "https://ui-avatars.com/api/?name=Siti+Aminah&background=b91c1c&color=fff&size=200&font-size=0.33"
             }
-        });
+        };
+
+        let currentStudent = null;
+
+        // DOM Elements
+        const DOM = {
+            bgLayer: document.getElementById('bg-layer'),
+            particles: document.getElementById('particles'),
+            
+            landingView: document.getElementById('landing-view'),
+            landingContent: document.getElementById('landing-content'),
+            logoAnim: document.getElementById('logo-anim'),
+            titleAnim: document.getElementById('title-anim'),
+            subtitleAnim: document.getElementById('subtitle-anim'),
+            formContainer: document.getElementById('form-container'),
+            nisnInput: document.getElementById('nisn-input'),
+            submitBtn: document.getElementById('submit-btn'),
+            errorMsg: document.querySelector('#error-msg p'),
+            
+            transitionView: document.getElementById('transition-view'),
+            scanline: document.getElementById('scanline'),
+            progressBar: document.getElementById('progress-bar'),
+            loadingText: document.getElementById('loading-text'),
+            
+            resultView: document.getElementById('result-view'),
+            resultActions: document.getElementById('result-actions'),
+            resultCardContainer: document.getElementById('result-card-container'),
+            resultCard: document.getElementById('result-card'),
+            cardShine: document.getElementById('card-shine'),
+            btnBack: document.getElementById('btn-back'),
+            btnDownload: document.getElementById('btn-download'),
+            
+            resPhotoRing: document.getElementById('res-photo-ring'),
+            resPhoto: document.getElementById('res-photo'),
+            resNama: document.getElementById('res-nama'),
+            resNisn: document.getElementById('res-nisn'),
+            resJurusan: document.getElementById('res-jurusan'),
+            resKelas: document.getElementById('res-kelas'),
+            resTtl: document.getElementById('res-ttl'),
+            resStatusBadge: document.getElementById('res-status-badge'),
+        };
+
+        /**
+         * Initialization & Setup
+         */
+        function init() {
+            createParticles();
+            initialEntranceAnimation();
+            setupEventListeners();
+        }
+
+        function createParticles() {
+            const count = 30;
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Randomize properties
+                const size = Math.random() * 4 + 1;
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                DOM.particles.appendChild(particle);
+
+                // Gentle floating animation
+                gsap.to(particle, {
+                    y: `-=${Math.random() * 100 + 50}`,
+                    x: `+=${Math.random() * 50 - 25}`,
+                    opacity: 0,
+                    duration: duration,
+                    delay: delay,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        }
+
+        function initialEntranceAnimation() {
+            const tl = gsap.timeline();
+            tl.from(DOM.logoAnim, { y: -30, opacity: 0, duration: 0.8, ease: "back.out(1.5)" })
+              .from(DOM.titleAnim, { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" }, "-=0.4")
+              .from(DOM.subtitleAnim, { y: 10, opacity: 0, duration: 0.6, ease: "power2.out" }, "-=0.4")
+              .from(DOM.formContainer, { scale: 0.9, y: 30, opacity: 0, duration: 0.8, ease: "expo.out" }, "-=0.2");
+        }
+
+        function setupEventListeners() {
+            DOM.submitBtn.addEventListener('click', handleCheckStatus);
+            DOM.nisnInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleCheckStatus();
+            });
+            
+            // Clear error on input
+            DOM.nisnInput.addEventListener('input', () => {
+                gsap.to(DOM.errorMsg, { opacity: 0, y: 5, duration: 0.2 });
+            });
+
+            DOM.btnBack.addEventListener('click', resetToHome);
+            DOM.btnDownload.addEventListener('click', downloadResult);
+
+            // 3D Tilt Effect on Card
+            DOM.resultView.addEventListener('mousemove', handleTilt);
+            DOM.resultView.addEventListener('mouseleave', resetTilt);
+        }
+
+        function showError(message) {
+            DOM.errorMsg.textContent = message;
+            gsap.to(DOM.errorMsg, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" });
+            
+            // Shake form slightly
+            gsap.to(DOM.formContainer, {
+                x: [-5, 5, -5, 5, 0],
+                duration: 0.4,
+                ease: "power2.inOut"
+            });
+        }
+
+        /**
+         * Main Interaction Logic
+         */
+        function handleCheckStatus() {
+            const nisn = DOM.nisnInput.value.trim();
+            
+            if (!nisn) {
+                showError("NISN tidak boleh kosong.");
+                return;
+            }
+
+            // Simulate slight delay for validation
+            DOM.submitBtn.disabled = true;
+            DOM.submitBtn.querySelector('span').innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Memeriksa...';
+
+            setTimeout(() => {
+                if (studentData[nisn]) {
+                    currentStudent = studentData[nisn];
+                    DOM.errorMsg.style.opacity = 0;
+                    startTransition();
+                } else {
+                    showError("NISN tidak terdaftar dalam sistem.");
+                    DOM.submitBtn.disabled = false;
+                    DOM.submitBtn.querySelector('span').innerHTML = 'Lihat Hasil <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>';
+                }
+            }, 600);
+        }
+
+        /**
+         * GSAP Transition Timeline
+         */
+        function startTransition() {
+            const tl = gsap.timeline({
+                onComplete: showResult
+            });
+
+            // 1. Shrink and fade out landing view
+            tl.to(DOM.landingContent, {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.6,
+                ease: "power2.inOut"
+            })
+            .set(DOM.landingView, { display: 'none' })
+            
+            // 2. Show transition view (Black screen)
+            .set(DOM.transitionView, { opacity: 1 })
+            .to(DOM.bgLayer, { backgroundColor: '#000000', duration: 0.3 }, "<")
+            
+            // 3. Cinematic Loading (Progress bar & Scanline)
+            .to(DOM.scanline, { opacity: 1, duration: 0.2 })
+            .fromTo(DOM.scanline, 
+                { top: "0%" }, 
+                { top: "100%", duration: 1.5, ease: "linear" }
+            )
+            .to(DOM.progressBar, {
+                width: "100%",
+                duration: 1.5,
+                ease: "power1.inOut",
+                onUpdate: function() {
+                    const progress = Math.round(this.progress() * 100);
+                    if(progress < 30) DOM.loadingText.innerText = "MENCOCOKKAN DATA...";
+                    else if(progress < 70) DOM.loadingText.innerText = "MENGAMBIL DOKUMEN...";
+                    else DOM.loadingText.innerText = "MENYIAPKAN HASIL...";
+                }
+            }, "<")
+            
+            // 4. Fade out transition view
+            .to([DOM.scanline, DOM.progressBar, DOM.loadingText], {
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in"
+            });
+        }
+
+        /**
+         * Show Result Logic & Conditional UI
+         */
+        function showResult() {
+            // Populate Data
+            DOM.resPhoto.src = currentStudent.photo;
+            DOM.resNama.textContent = currentStudent.nama;
+            DOM.resNisn.textContent = `NISN: ${currentStudent.nisn}`;
+            DOM.resJurusan.textContent = currentStudent.jurusan;
+            DOM.resKelas.textContent = currentStudent.kelas;
+            DOM.resTtl.textContent = currentStudent.ttl;
+
+            const isLulus = currentStudent.status === "LULUS";
+
+            // Prepare Conditional Styles
+            if (isLulus) {
+                DOM.bgLayer.className = "absolute inset-0 bg-lulus transition-colors duration-1000 ease-in-out";
+                
+                DOM.resStatusBadge.textContent = "LULUS";
+                DOM.resStatusBadge.className = "w-full py-3 rounded-lg text-center font-bold text-2xl tracking-widest border shadow-[0_0_20px_rgba(34,197,94,0.3)] bg-gradient-to-r from-emerald-600 to-green-500 border-green-400 text-white";
+                DOM.resPhotoRing.className = "absolute inset-[-4px] rounded-full border-2 border-dashed border-green-400 animate-[spin_10s_linear_infinite]";
+                
+                // Trigger Confetti after a slight delay
+                setTimeout(fireConfetti, 500);
+            } else {
+                DOM.bgLayer.className = "absolute inset-0 bg-belum-lulus transition-colors duration-1000 ease-in-out";
+                
+                DOM.resStatusBadge.textContent = "BELUM LULUS";
+                DOM.resStatusBadge.className = "w-full py-3 rounded-lg text-center font-bold text-xl tracking-widest border shadow-lg bg-gray-800 border-gray-600 text-gray-300";
+                DOM.resPhotoRing.className = "absolute inset-[-4px] rounded-full border-2 border-dashed border-red-500 animate-[spin_10s_linear_infinite]";
+            }
+
+            // Hide transition, show result container
+            DOM.transitionView.style.opacity = 0;
+            DOM.resultView.classList.remove('hidden');
+            
+            // Entry Animation for Result View
+            const tl = gsap.timeline();
+            
+            tl.set(DOM.resultView, { opacity: 1 })
+              .fromTo(DOM.resultCardContainer, 
+                  { scale: isLulus ? 0.8 : 0.95, opacity: 0, y: 50, rotationX: 10 },
+                  { scale: 1, opacity: 1, y: 0, rotationX: 0, duration: 1, ease: isLulus ? "elastic.out(1, 0.75)" : "expo.out" }
+              )
+              .to(DOM.resultActions, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.5");
+        }
+
+        function fireConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount,
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                }));
+                confetti(Object.assign({}, defaults, { particleCount,
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                }));
+            }, 250);
+        }
+
+        function resetToHome() {
+            // Revert background
+            DOM.bgLayer.className = "absolute inset-0 bg-slate-900 transition-colors duration-1000 ease-in-out";
+            
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    DOM.resultView.classList.add('hidden');
+                    DOM.landingView.style.display = 'flex';
+                    DOM.nisnInput.value = '';
+                    DOM.submitBtn.disabled = false;
+                    DOM.submitBtn.querySelector('span').innerHTML = 'Lihat Hasil <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>';
+                    currentStudent = null;
+                    
+                    // Animate landing back in
+                    gsap.to(DOM.landingContent, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.6,
+                        ease: "power2.out"
+                    });
+                }
+            });
+
+            // Animate card out
+            tl.to(DOM.resultActions, { opacity: 0, duration: 0.2 })
+              .to(DOM.resultCardContainer, {
+                  scale: 0.8,
+                  opacity: 0,
+                  y: -30,
+                  duration: 0.4,
+                  ease: "power2.in"
+              });
+        }
+
+        /**
+         * 3D Tilt Effect Logic (Vanilla JS)
+         */
+        function handleTilt(e) {
+            // Only tilt on desktop screens
+            if (window.innerWidth < 768) return;
+
+            const rect = DOM.resultCard.getBoundingClientRect();
+            
+            // Calculate mouse position relative to center of card
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Multiplier for tilt intensity
+            const intensity = 15;
+            
+            const xRotate = (-y / rect.height) * intensity;
+            const yRotate = (x / rect.width) * intensity;
+            
+            // Calculate shine overlay gradient position
+            const mouseXPercent = ((e.clientX - rect.left) / rect.width) * 100;
+            const mouseYPercent = ((e.clientY - rect.top) / rect.height) * 100;
+
+            gsap.to(DOM.resultCard, {
+                rotationX: xRotate,
+                rotationY: yRotate,
+                duration: 0.4,
+                ease: 'power1.out',
+                transformPerspective: 1000
+            });
+
+            gsap.to(DOM.cardShine, {
+                opacity: 0.6,
+                background: `radial-gradient(circle at ${mouseXPercent}% ${mouseYPercent}%, rgba(255,255,255,0.2) 0%, transparent 60%)`,
+                duration: 0.1
+            });
+        }
+
+        function resetTilt() {
+            gsap.to(DOM.resultCard, {
+                rotationX: 0,
+                rotationY: 0,
+                duration: 0.8,
+                ease: 'elastic.out(1, 0.5)'
+            });
+            gsap.to(DOM.cardShine, {
+                opacity: 0,
+                duration: 0.5
+            });
+        }
+
+        /**
+         * Download/Screenshot Logic
+         */
+        function downloadResult() {
+            const btn = DOM.btnDownload;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Menyimpan...';
+            btn.disabled = true;
+
+            // 1. Reset tilt temporarily
+            gsap.set(DOM.resultCard, { rotationX: 0, rotationY: 0 });
+            gsap.set(DOM.cardShine, { opacity: 0 });
+
+            // 2. Wait a tick for styles to apply, then capture
+            setTimeout(() => {
+                html2canvas(DOM.resultCard, {
+                    backgroundColor: null, // Keep border radius transparency
+                    scale: 2, // Higher resolution
+                    logging: false,
+                    useCORS: true // To handle UI Avatars images
+                }).then(canvas => {
+                    // Create download link
+                    const link = document.createElement('a');
+                    link.download = `SKL_${currentStudent.nisn}_${currentStudent.nama.replace(/\s+/g, '_')}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+
+                    // Reset button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }).catch(err => {
+                    console.error("Screenshot failed:", err);
+                    alert("Gagal mengunduh gambar. Silakan coba lagi.");
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+            }, 100);
+        }
+
+        // Boot
+        window.onload = init;
+
     </script>
 </body>
 </html>
