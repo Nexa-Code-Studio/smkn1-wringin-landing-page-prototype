@@ -1,0 +1,16 @@
+[Unit]
+Description=SMKN 1 Wringin Laravel Queue Worker
+After=network.target
+
+[Service]
+User=mashupsoat
+Group=mashupsoat
+Restart=always
+RestartSec=5
+WorkingDirectory=/home/mashupsoat/Project/smkn1-wringin-landing-page-prototype
+ExecStart=/usr/bin/php artisan queue:work redis --queue=imports,default --tries=3 --timeout=1200 --backoff=30
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

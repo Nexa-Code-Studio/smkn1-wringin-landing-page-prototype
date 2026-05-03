@@ -1,5 +1,10 @@
 <?php
 
+// Meningkatkan limit untuk upload file besar
+@ini_set('post_max_size', '64M');
+@ini_set('upload_max_filesize', '64M');
+@ini_set('memory_limit', '256M');
+
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 

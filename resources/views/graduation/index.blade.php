@@ -1,481 +1,388 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pengumuman Kelulusan SMKN 1 Wringin</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/icon.png') }}">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- GSAP for Animations -->
+@extends('layouts.app')
+
+@section('title', 'Pengumuman Kelulusan - SMKN 1 Wringin')
+
+@push('styles')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
-    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
-
     <style>
-        html, body {
+        .result-formal-bg {
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .data-card {
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 1.25rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0; /* slate-200 */
+            transition: all 0.2s ease;
+        }
+        .dashed-separator {
+            position: relative;
+            height: 1px;
             width: 100%;
-            height: 100%;
-            height: 100svh;
-            height: 100dvh;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            position: fixed;
-            overscroll-behavior: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #020617; /* Deep Space Black */
-            color: #f8fafc;
-        }
-
-        .font-mono {
-            font-family: 'Space Mono', monospace;
-        }
-
-        /* Fallback for layout if Tailwind fails */
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-        .w-full { width: 100%; }
-        .h-screen { height: 100vh; }
-
-        .full-viewport {
-            width: 100vw;
-            height: 100vh;
-            height: 100svh;
-            height: 100dvh;
-        }
-
-        /* 3D Perspective Container for Tilt Effect */
-        .perspective-1000 {
-            perspective: 1000px;
+            border-bottom: 2px dashed #cbd5e1; /* slate-300 */
+            margin: 2rem 0;
         }
         
-        .transform-style-3d {
-            transform-style: preserve-3d;
-        }
-
-        /* Custom Scrollbar for hidden elements */
-        ::-webkit-scrollbar { width: 0px; background: transparent; }
-
-        /* Result Card Layout Utilities */
-        .info-row {
+        .status-badge {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
             display: flex;
-            justify-content: space-between;
-            padding-bottom: 0.5rem;
-            margin-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
         }
-        .info-row:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .status-lulus {
+            background-color: #f0fdf4; /* green-50 */
+            color: #15803d; /* green-700 */
+            border-color: #bcf0da; /* green-200 */
         }
-        .info-label {
-            color: #94a3b8;
-            font-size: 0.75rem;
+        .status-tidak {
+            background-color: #fef2f2; /* red-50 */
+            color: #b91c1c; /* red-700 */
+            border-color: #fecaca; /* red-200 */
         }
-        .info-value {
-            font-weight: 600;
-            text-align: right;
-            font-size: 0.75rem;
+        .res-photo-container {
+            position: relative;
+            margin-bottom: 1.5rem;
         }
-
-        /* Space Elements */
-        .star {
+        .medal-badge {
             position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 2rem;
+            height: 2rem;
             background: white;
             border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .nebula {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .shooting-star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: linear-gradient(90deg, white, transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 5;
-            opacity: 0;
-        }
-
-        @keyframes sweep {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 20;
+            border: 2px solid #f8fafc;
         }
     </style>
-</head>
-<body class="relative overflow-hidden full-viewport">
+@endpush
 
-    <!-- Ambient Background Layer -->
-    <div id="bg-layer" class="absolute inset-0 bg-slate-950 transition-colors duration-1000 ease-in-out"></div>
+@section('content')
+    <main class="min-h-screen py-12 flex items-center justify-center px-4 bg-slate-50 relative overflow-hidden">
+        <!-- Landing View -->
+        <div id="landing-view" class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-100 p-8 transition-all duration-500 relative z-10">
+            <header class="text-center mb-8">
+                <div class="mx-auto flex items-center justify-center mb-4">
+                    <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="h-20 w-20 object-contain drop-shadow-sm">
+                </div>
+                <h1 class="text-2xl font-bold text-slate-800 uppercase tracking-tight">SMKN 1 WRINGIN</h1>
+                <p class="text-slate-500 text-sm mt-1">Pengumuman Kelulusan {{ $graduationSetting->lulusan ?? '2026' }}</p>
+            </header>
+
+            <div class="relative">
+                <label for="nisn-input" class="block text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide">Masukkan NISN</label>
+                <input type="text" id="nisn-input" autocomplete="off" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 text-slate-800 text-center text-xl tracking-widest focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition-all mb-4 placeholder-slate-300 font-mono" placeholder="0000000000">
+                
+                <button id="submit-btn" class="w-full relative overflow-hidden bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-lg transition-all duration-300 shadow-md">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        Periksa Hasil
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+                </button>
+
+                <div id="error-msg" class="h-6 mt-3 text-center">
+                    <p class="text-red-500 text-sm opacity-0 transform translate-y-2 transition-all font-medium">Data tidak ditemukan.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4 text-xs text-slate-500 font-mono">
+                Contoh NISN: <span class="cursor-pointer hover:text-brand-600 font-medium transition" onclick="document.getElementById('nisn-input').value='0012345678'; document.getElementById('error-msg').querySelector('p').style.opacity = 0;">0012345678</span>
+            </div>
+        </div>
+
+        <!-- Transition View -->
+        <div id="transition-view" class="absolute inset-0 z-20 flex flex-col items-center justify-center opacity-0 bg-slate-50/90 backdrop-blur-sm hidden">
+            <div class="w-64">
+                <p class="text-brand-600 text-sm mb-3 text-center font-semibold animate-pulse tracking-wide uppercase">Memeriksa Data...</p>
+                <div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-brand-500 w-0 transition-all duration-150 ease-out"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result View -->
+        <div id="result-view" class="absolute inset-0 z-30 flex flex-col items-center justify-center opacity-0 px-4 hidden py-12 result-formal-bg">
+            <div id="result-actions" class="w-full max-w-md flex justify-start mb-4 opacity-0 relative z-40">
+                <button id="btn-back" class="text-slate-600 hover:text-brand-600 text-sm font-semibold flex items-center gap-2 transition-colors bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-200 hover:border-brand-300">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali
+                </button>
+            </div>
     
-    <!-- Particles/Stars Container -->
-    <div id="particles" class="absolute inset-0 pointer-events-none z-0"></div>
-
-    <!-- 1. Page Structure -->
-    <div class="relative flex flex-col z-10 full-viewport">
-        
-        <!-- MAIN CONTENT AREA -->
-        <main class="flex-grow w-full relative overflow-hidden flex items-center justify-center px-4 pb-12">
-            
-            <!-- Landing View -->
-            <div id="landing-view" class="w-full max-w-md transition-all duration-500">
-                
-                <!-- HEADER SECTION -->
-                <header id="page-header" class="w-full pb-8 flex-shrink-0 text-center">
-                    <div id="logo-anim" class="mx-auto flex items-center justify-center mb-4">
-                        <picture>
-                            <source srcset="{{ asset('images/webp/icon.webp') }}" type="image/webp">
-                            <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="h-20 w-20 md:h-28 md:w-28 object-contain drop-shadow-xl">
-                        </picture>
-                    </div>
-                    <h1 id="title-anim" class="text-xl md:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 uppercase">SMKN 1 WRINGIN</h1>
-                    <p id="subtitle-anim" class="text-gray-400 text-xs md:text-sm font-light tracking-widest">Pengumuman Kelulusan 2026</p>
-                </header>
-
-                <div id="form-container" class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
-                    <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
-
-                    <div class="relative z-10">
-                        <label for="nisn-input" class="block text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-3 font-semibold text-center">Masukkan NISN Peserta Didik</label>
-                        <input type="text" id="nisn-input" autocomplete="off" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-3 text-white font-mono text-center text-xl tracking-widest focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-all mb-4 placeholder-gray-700" placeholder="0000000000">
+            <div id="result-card-container" class="w-full max-w-md relative z-30">
+                <div id="result-card" class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+                    <div class="p-6 md:p-10 flex flex-col items-center">
+                        <!-- Profile Section -->
+                        <div class="res-photo-container">
+                            <div class="relative">
+                                <img id="res-photo" src="" alt="Student Photo" class="w-28 h-28 rounded-full object-cover border-4 border-slate-50 shadow-sm relative z-10">
+                                <div id="medal-container" class="medal-badge">
+                                    <div class="w-6 h-6 rounded-full bg-green-600 flex items-center justify-center text-white text-[10px]">
+                                        <i class="fa-solid fa-medal"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
-                        <button id="submit-btn" class="w-full relative group overflow-hidden bg-blue-600/80 hover:bg-blue-500 text-white font-bold py-4 rounded-lg transition-all duration-300 border border-blue-400/50">
-                            <span class="relative z-10 flex items-center justify-center gap-2 tracking-widest text-sm uppercase">
-                                Periksa Hasil
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </span>
-                            <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1s_ease-in-out_infinite]"></div>
-                        </button>
-
-                        <div id="error-msg" class="h-6 mt-3 text-center">
-                            <p class="text-red-400 text-xs opacity-0 transform translate-y-2 transition-all font-medium">Data tidak ditemukan.</p>
+                        <div class="text-center mb-8">
+                            <h2 id="res-nama" class="text-2xl font-bold text-slate-800 mb-1 uppercase tracking-tight">NAMA SISWA</h2>
+                            <p class="text-slate-500 font-medium text-xs">Siswa Angkatan {{ $graduationSetting->angkatan ?? '2026' }}</p>
+                        </div>
+    
+                        <!-- Info Grid -->
+                        <div class="grid grid-cols-2 gap-4 w-full">
+                            <div class="data-card">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 mb-2">
+                                    <i class="fa-solid fa-id-card"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">NISN</span>
+                                <span id="res-nisn" class="text-slate-700 font-bold text-sm">0000000000</span>
+                            </div>
+                            
+                            <div class="data-card">
+                                <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 mb-2">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">KELAS</span>
+                                <span id="res-kelas" class="text-slate-700 font-bold text-sm uppercase">XII</span>
+                            </div>
+                        </div>
+    
+                        <div class="dashed-separator"></div>
+    
+                        <!-- Status Section -->
+                        <div class="w-full">
+                            <div id="res-status-badge" class="status-badge uppercase">
+                                STATUS
+                            </div>
+                            <div class="mt-4 text-center">
+                                <p id="res-message" class="text-slate-500 text-sm font-medium leading-relaxed"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="text-center mt-6 text-[9px] text-gray-500 font-mono tracking-tighter">
-                    MOCK: <span class="cursor-pointer hover:text-white" onclick="document.getElementById('nisn-input').value='0012345678'">0012345678 (LULUS)</span> | <span class="cursor-pointer hover:text-white" onclick="document.getElementById('nisn-input').value='0087654321'">0087654321 (TIDAK)</span>
-                </div>
             </div>
+        </div>
+    </main>
 
-            <!-- Transition View (Cinematic Scan) -->
-            <div id="transition-view" class="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none opacity-0 bg-black/40 backdrop-blur-sm hidden">
-                <div id="scanline" class="absolute top-0 left-0 w-full h-[2px] bg-blue-400 shadow-[0_0_20px_4px_#60a5fa] opacity-0"></div>
-                <div class="w-64">
-                    <p id="loading-text" class="text-blue-400 text-[10px] mb-3 text-center tracking-[0.4em] font-mono font-bold animate-pulse uppercase">Otentikasi Data...</p>
-                    <div class="h-1 w-full bg-gray-800 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="h-full bg-blue-500 w-0"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Result View -->
-            <div id="result-view" class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none opacity-0 px-4 perspective-1000 hidden">
-                
-                <div id="result-actions" class="w-full max-w-md flex justify-between items-center mb-4 opacity-0">
-                    <button id="btn-back" class="text-gray-400 hover:text-white text-[10px] uppercase tracking-widest flex items-center gap-2 transition-colors pointer-events-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-                        Kembali
-                    </button>
-                </div>
-
-                <div id="result-card-container" class="w-full max-w-sm transform-style-3d pointer-events-auto">
-                    <div id="result-card" class="bg-white/10 backdrop-blur-xl border border-white/20 p-1 rounded-2xl shadow-2xl relative overflow-hidden">
-                        <div class="bg-slate-950/80 rounded-[14px] p-6 relative z-10 h-full flex flex-col">
-                            <div class="flex flex-col items-center mb-5">
-                                <div class="relative mb-3">
-                                    <div id="res-photo-ring" class="absolute inset-[-4px] rounded-full border-2 border-dashed border-cyan-400 animate-[spin_10s_linear_infinite]"></div>
-                                    <img id="res-photo" src="" alt="Student Photo" class="w-20 h-20 rounded-full object-cover border-2 border-white/20 bg-gray-900 shadow-lg relative z-10">
-                                </div>
-                                <h2 id="res-nama" class="text-base font-bold text-center text-white mb-0.5 uppercase tracking-wide">Nama Siswa</h2>
-                                <p id="res-nisn" class="text-gray-400 font-mono text-[10px]">NISN: 0000000000</p>
-                            </div>
-
-                            <div class="flex-grow space-y-2 mb-6 bg-black/30 p-4 rounded-xl border border-white/5">
-                                <div class="info-row">
-                                    <span class="info-label">Program Keahlian</span>
-                                    <span id="res-jurusan" class="info-value">Jurusan</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Kelas</span>
-                                    <span id="res-kelas" class="info-value">XII</span>
-                                </div>
-                                <div class="info-row">
-                                    <span class="info-label">Tempat, Tgl Lahir</span>
-                                    <span id="res-ttl" class="info-value">Tempat, Tanggal</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-auto flex flex-col items-center">
-                                <p class="text-[9px] text-gray-500 mb-2 uppercase tracking-[0.3em] font-semibold">Status Kelulusan</p>
-                                <div id="res-status-badge" class="w-full py-3 rounded-lg text-center font-bold text-base tracking-[0.4em] border shadow-lg transition-all uppercase">
-                                    STATUS
-                                </div>
-                            </div>
-                        </div>
-                        <div id="card-shine" class="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 pointer-events-none rounded-2xl"></div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
+    @push('scripts')
     <script>
-        const studentData = {
-            "0012345678": {
-                nama: "Ahmad Budi Santoso",
-                nisn: "0012345678",
-                jurusan: "Rekayasa Perangkat Lunak",
-                kelas: "XII RPL 1",
-                ttl: "Bondowoso, 15 Mei 2008",
-                status: "LULUS",
-                photo: "https://ui-avatars.com/api/?name=Ahmad+Budi&background=0D8ABC&color=fff&size=200&font-size=0.33"
-            },
-            "0087654321": {
-                nama: "Siti Aminah Wijaya",
-                nisn: "0087654321",
-                jurusan: "Teknik Komputer & Jaringan",
-                kelas: "XII TKJ 2",
-                ttl: "Wringin, 10 Agustus 2007",
-                status: "BELUM LULUS",
-                photo: "https://ui-avatars.com/api/?name=Siti+Aminah&background=b91c1c&color=fff&size=200&font-size=0.33"
-            }
-        };
+        const checkUrl = @json(route('graduation.check'));
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
         let currentStudent = null;
 
         const DOM = {
-            bgLayer: document.getElementById('bg-layer'),
-            particles: document.getElementById('particles'),
             landingView: document.getElementById('landing-view'),
-            formContainer: document.getElementById('form-container'),
             nisnInput: document.getElementById('nisn-input'),
             submitBtn: document.getElementById('submit-btn'),
             errorMsg: document.querySelector('#error-msg p'),
             transitionView: document.getElementById('transition-view'),
-            scanline: document.getElementById('scanline'),
             progressBar: document.getElementById('progress-bar'),
-            loadingText: document.getElementById('loading-text'),
             resultView: document.getElementById('result-view'),
             resultActions: document.getElementById('result-actions'),
             resultCardContainer: document.getElementById('result-card-container'),
-            resultCard: document.getElementById('result-card'),
-            cardShine: document.getElementById('card-shine'),
             btnBack: document.getElementById('btn-back'),
-            resPhotoRing: document.getElementById('res-photo-ring'),
             resPhoto: document.getElementById('res-photo'),
             resNama: document.getElementById('res-nama'),
             resNisn: document.getElementById('res-nisn'),
-            resJurusan: document.getElementById('res-jurusan'),
             resKelas: document.getElementById('res-kelas'),
-            resTtl: document.getElementById('res-ttl'),
             resStatusBadge: document.getElementById('res-status-badge'),
-            logoAnim: document.getElementById('logo-anim'),
-            titleAnim: document.getElementById('title-anim'),
-            subtitleAnim: document.getElementById('subtitle-anim'),
+            resMessage: document.getElementById('res-message'),
+            medalContainer: document.getElementById('medal-container'),
         };
 
         function init() {
-            initStarfield();
-            initialEntranceAnimation();
             setupEventListeners();
-        }
-
-        function initStarfield() {
-            const container = DOM.particles;
-            const starCount = 150;
-            const colors = ['#4f46e5', '#7c3aed', '#2563eb'];
-            
-            for (let i = 0; i < 3; i++) {
-                const nebula = document.createElement('div');
-                nebula.className = 'nebula';
-                const size = randomInRange(300, 600);
-                gsap.set(nebula, {
-                    width: size, height: size,
-                    x: randomInRange(0, window.innerWidth - size),
-                    y: randomInRange(0, window.innerHeight - size),
-                    backgroundColor: colors[i % colors.length]
-                });
-                container.appendChild(nebula);
-                gsap.to(nebula, { x: "+=" + randomInRange(-50, 50), y: "+=" + randomInRange(-50, 50), duration: randomInRange(20, 40), repeat: -1, yoyo: true, ease: "sine.inOut" });
-            }
-
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 2 + 0.5;
-                gsap.set(star, { width: size, height: size, x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, opacity: randomInRange(0.1, 0.8) });
-                container.appendChild(star);
-                gsap.to(star, { opacity: randomInRange(0.1, 1), duration: randomInRange(1, 4), repeat: -1, yoyo: true, ease: "sine.inOut", delay: Math.random() * 5 });
-            }
-            setInterval(spawnShootingStar, 4000);
-        }
-
-        function spawnShootingStar() {
-            const container = DOM.particles;
-            const star = document.createElement('div');
-            star.className = 'shooting-star';
-            const x = Math.random() * window.innerWidth;
-            const y = Math.random() * (window.innerHeight / 2);
-            gsap.set(star, { x: x, y: y, width: randomInRange(80, 150), rotation: 20, opacity: 0 });
-            container.appendChild(star);
-            gsap.timeline({ onComplete: () => star.remove() })
-                .to(star, { opacity: 0.8, duration: 0.1 })
-                .to(star, { x: x + 400, y: y + 200, opacity: 0, duration: 0.8, ease: "power2.out" });
-        }
-
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        function initialEntranceAnimation() {
-            const tl = gsap.timeline();
-            tl.from(DOM.logoAnim, { y: -20, opacity: 0, duration: 0.8, ease: "back.out(1.5)" })
-              .from([DOM.titleAnim, DOM.subtitleAnim], { y: 10, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.4")
-              .from(DOM.formContainer, { scale: 0.95, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.2");
+            gsap.from(DOM.landingView, { y: 20, opacity: 0, duration: 0.6, ease: "power2.out" });
         }
 
         function setupEventListeners() {
             DOM.submitBtn.addEventListener('click', handleCheckStatus);
             DOM.nisnInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleCheckStatus(); });
-            DOM.nisnInput.addEventListener('input', () => { gsap.to(DOM.errorMsg, { opacity: 0, y: 5, duration: 0.2 }); });
+            DOM.nisnInput.addEventListener('input', () => {
+                DOM.nisnInput.value = DOM.nisnInput.value.replace(/\D/g, '').slice(0, 10);
+                gsap.to(DOM.errorMsg, { opacity: 0, y: 5, duration: 0.2 });
+            });
             DOM.btnBack.addEventListener('click', resetToHome);
-            DOM.resultView.addEventListener('mousemove', handleTilt);
-            DOM.resultView.addEventListener('mouseleave', resetTilt);
-            window.addEventListener('deviceorientation', handleOrientation);
         }
 
-        function handleTilt(e) {
-            if (window.innerWidth < 768) return;
-            const rect = DOM.resultCard.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            gsap.to(DOM.resultCard, { rotationX: (-y / rect.height) * 15, rotationY: (x / rect.width) * 15, duration: 0.4, ease: 'power1.out', transformPerspective: 1000 });
-            const mouseXPercent = ((e.clientX - rect.left) / rect.width) * 100;
-            const mouseYPercent = ((e.clientY - rect.top) / rect.height) * 100;
-            gsap.to(DOM.cardShine, { opacity: 0.6, background: `radial-gradient(circle at ${mouseXPercent}% ${mouseYPercent}%, rgba(255,255,255,0.2) 0%, transparent 60%)`, duration: 0.1 });
+        function setSubmitLoading(isLoading) {
+            DOM.submitBtn.disabled = isLoading;
+            DOM.submitBtn.innerHTML = isLoading
+                ? '<span class="relative z-10 flex items-center justify-center gap-2"><i class="fa-solid fa-circle-notch fa-spin"></i> Memeriksa...</span>'
+                : '<span class="relative z-10 flex items-center justify-center gap-2">Periksa Hasil <i class="fa-solid fa-arrow-right"></i></span>';
         }
 
-        function resetTilt() {
-            gsap.to(DOM.resultCard, { rotationX: 0, rotationY: 0, duration: 0.8, ease: 'elastic.out(1, 0.5)' });
-            gsap.to(DOM.cardShine, { opacity: 0, duration: 0.5 });
-        }
+        function handleApiError(statusCode, result) {
+            if (statusCode === 429) {
+                showError(result.message || 'Terlalu banyak percobaan. Coba lagi dalam 1 menit.');
+                return;
+            }
 
-        function handleOrientation(e) {
-            if (window.innerWidth >= 768) return;
-            let beta = e.beta; let gamma = e.gamma;
-            if (beta === null || gamma === null) return;
-            let xRotate = Math.max(-15, Math.min(15, (beta - 45) * 0.4));
-            let yRotate = Math.max(-15, Math.min(15, gamma * 0.4));
-            gsap.to(DOM.resultCard, { rotationX: xRotate, rotationY: yRotate, duration: 0.8, ease: 'power1.out', transformPerspective: 1000 });
-            gsap.to(DOM.cardShine, { opacity: 0.5, background: `radial-gradient(circle at ${50 + (gamma / 45) * 50}% ${50 + ((beta - 45) / 45) * 50}%, rgba(255,255,255,0.15) 0%, transparent 60%)`, duration: 0.5 });
+            if (statusCode === 422) {
+                const firstError = result?.errors?.nisn?.[0] || result.message || 'Input tidak valid.';
+                showError(firstError);
+                return;
+            }
+
+            if (statusCode === 404) {
+                showError('Data tidak ditemukan.');
+                return;
+            }
+
+            showError(result.message || 'Terjadi kesalahan pada server.');
         }
 
         async function handleCheckStatus() {
-            const nisn = DOM.nisnInput.value.trim();
-            if (!nisn) { showError("NISN tidak boleh kosong."); return; }
-            if (window.innerWidth < 768 && typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-                try { await DeviceOrientationEvent.requestPermission(); } catch (e) {}
+            const nisn = DOM.nisnInput.value.replace(/\D/g, '').trim();
+            DOM.nisnInput.value = nisn;
+
+            if (!/^\d{10}$/.test(nisn)) {
+                showError('NISN harus terdiri dari 10 digit angka.');
+                return;
             }
-            DOM.submitBtn.disabled = true;
-            DOM.submitBtn.querySelector('span').innerHTML = 'Memeriksa...';
-            setTimeout(() => {
-                if (studentData[nisn]) { currentStudent = studentData[nisn]; startTransition(); }
-                else { showError("Data tidak ditemukan."); DOM.submitBtn.disabled = false; DOM.submitBtn.querySelector('span').innerHTML = 'Periksa Hasil'; }
-            }, 800);
+
+            setSubmitLoading(true);
+
+            try {
+                const response = await fetch(checkUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    body: JSON.stringify({ nisn }),
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok || !result.success) {
+                    handleApiError(response.status, result);
+                    setSubmitLoading(false);
+                    return;
+                }
+
+                currentStudent = result.data;
+                startTransition();
+            } catch (error) {
+                showError('Gagal terhubung ke server. Silakan coba lagi.');
+                setSubmitLoading(false);
+            }
+        }
+
+        function showError(msg) {
+            DOM.errorMsg.textContent = msg;
+            gsap.to(DOM.errorMsg, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" });
         }
 
         function startTransition() {
             const tl = gsap.timeline({ onComplete: showResult });
-            tl.to(DOM.landingView, { scale: 0.9, opacity: 0, duration: 0.4, ease: "power2.inOut" })
+            tl.to(DOM.landingView, { scale: 0.95, opacity: 0, duration: 0.3, ease: "power2.inOut" })
               .set(DOM.landingView, { display: 'none' })
               .set(DOM.transitionView, { display: 'flex' })
               .to(DOM.transitionView, { opacity: 1, duration: 0.2 })
-              .to(DOM.scanline, { opacity: 1, top: "100%", duration: 1.5, ease: "linear" })
-              .to(DOM.progressBar, { width: "100%", duration: 1.5, ease: "power1.inOut" }, "<")
+              .to(DOM.progressBar, { width: "100%", duration: 1.0, ease: "power1.inOut" })
               .to(DOM.transitionView, { opacity: 0, duration: 0.3 });
         }
 
         function showResult() {
             DOM.resPhoto.src = currentStudent.photo;
             DOM.resNama.textContent = currentStudent.nama;
-            DOM.resNisn.textContent = `NISN: ${currentStudent.nisn}`;
-            DOM.resJurusan.textContent = currentStudent.jurusan;
+            DOM.resNisn.textContent = currentStudent.nisn;
             DOM.resKelas.textContent = currentStudent.kelas;
-            DOM.resTtl.textContent = currentStudent.ttl;
-
-            const isLulus = currentStudent.status === "LULUS";
-            if (isLulus) {
-                DOM.resStatusBadge.textContent = "LULUS";
-                DOM.resStatusBadge.className = "w-full py-3 rounded-lg text-center font-bold text-base tracking-[0.4em] border shadow-[0_0_20px_rgba(59,130,246,0.4)] bg-gradient-to-r from-blue-700 to-indigo-600 border-blue-400 text-white";
-                DOM.resPhotoRing.className = "absolute inset-[-4px] rounded-full border-2 border-dashed border-cyan-400 animate-[spin_10s_linear_infinite]";
-                setTimeout(fireConfetti, 500);
+            
+            const status = String(currentStudent.status || '').toUpperCase();
+            if (status === 'LULUS') {
+                DOM.resStatusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> <span>LULUS</span>';
+                DOM.resStatusBadge.className = "status-badge status-lulus";
+                DOM.resMessage.textContent = "Selamat! Anda dinyatakan LULUS. Teruslah berprestasi dan jadilah kebanggaan sekolah serta keluarga.";
+                DOM.medalContainer.style.display = 'flex';
+                setTimeout(fireConfetti, 300);
+            } else if (status === 'TIDAK LULUS') {
+                DOM.resStatusBadge.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> <span>TIDAK LULUS</span>';
+                DOM.resStatusBadge.className = "status-badge status-tidak";
+                DOM.resMessage.textContent = "Jangan berkecil hati. Tetap semangat dan jangan menyerah untuk masa depanmu.";
+                DOM.medalContainer.style.display = 'none';
             } else {
-                DOM.resStatusBadge.textContent = "BELUM LULUS";
-                DOM.resStatusBadge.className = "w-full py-3 rounded-lg text-center font-bold text-base tracking-[0.2em] border shadow-lg bg-gray-900 border-gray-700 text-gray-500";
-                DOM.resPhotoRing.className = "absolute inset-[-4px] rounded-full border-2 border-dashed border-red-900 animate-[spin_10s_linear_infinite]";
+                DOM.resStatusBadge.innerHTML = '<i class="fa-solid fa-circle-info"></i> <span>BELUM ADA</span>';
+                DOM.resStatusBadge.className = "status-badge bg-slate-50 text-slate-600 border-slate-200";
+                DOM.resMessage.textContent = "Status kelulusan Anda belum tersedia. Silakan hubungi pihak sekolah.";
+                DOM.medalContainer.style.display = 'none';
             }
 
             DOM.transitionView.style.display = 'none';
+            DOM.progressBar.style.width = '0%';
             DOM.resultView.classList.remove('hidden');
+            
             gsap.timeline()
                 .set(DOM.resultView, { opacity: 1 })
-                .fromTo(DOM.resultCardContainer, { scale: 0.8, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.2)" })
-                .to(DOM.resultActions, { opacity: 1, duration: 0.4 }, "-=0.4");
+                .fromTo(DOM.resultCardContainer, { scale: 0.9, opacity: 0, y: 20 }, { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.2)" })
+                .to(DOM.resultActions, { opacity: 1, duration: 0.3 }, "-=0.2");
         }
 
         function fireConfetti() {
-            const duration = 6 * 1000;
+            const duration = 3 * 1000;
             const end = Date.now() + duration;
-            const interval = setInterval(() => {
-                if (Date.now() > end) return clearInterval(interval);
-                confetti({ particleCount: 10, startVelocity: 30, spread: 360, ticks: 200, origin: { x: Math.random(), y: -0.2 }, zIndex: 9999 });
-            }, 100);
+            // Palette warna-warni yang lebih lengkap dan ceria
+            const colors = [
+                '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', // Basic vibrant
+                '#f43f5e', '#fb923c', '#facc15', '#4ade80', '#2dd4bf', '#38bdf8', '#818cf8', '#a78bfa', '#fb7185' // Tailwind-style
+            ];
+
+            (function frame() {
+                confetti({
+                    particleCount: 2, // Dikurangi agar tidak terlalu padat
+                    startVelocity: 15, // Ditambah agar dorongan awal ke bawah lebih cepat
+                    angle: 270, 
+                    ticks: 1000, 
+                    origin: { 
+                        x: Math.random(), 
+                        y: Math.random() * 0.2 - 0.2 
+                    },
+                    colors: colors,
+                    gravity: Math.random() * 0.5 + 1.2, // Gravitasi ditambah agar jatuh lebih cepat
+                    scalar: Math.random() * 0.5 + 0.7, 
+                    drift: Math.random() * 1.5 - 0.75, // Dikurangi sedikit agar lebih lurus jatuhnya
+                    zIndex: 9999
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
         }
 
         function resetToHome() {
             gsap.to(DOM.resultView, { opacity: 0, duration: 0.3, onComplete: () => {
                 DOM.resultView.classList.add('hidden');
                 DOM.landingView.style.display = 'block';
-                gsap.to(DOM.landingView, { opacity: 1, scale: 1, duration: 0.4 });
+                gsap.fromTo(DOM.landingView, { scale: 0.95, opacity: 0 }, { opacity: 1, scale: 1, duration: 0.4 });
                 DOM.nisnInput.value = '';
-                DOM.submitBtn.disabled = false;
-                DOM.submitBtn.querySelector('span').innerHTML = 'Periksa Hasil';
+                setSubmitLoading(false);
+                currentStudent = null;
             }});
         }
 
-        window.onload = init;
+        window.addEventListener('load', init);
     </script>
-</body>
-</html>
+    @endpush
+@endsection
