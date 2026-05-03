@@ -12,16 +12,15 @@
                     <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="w-11 h-11 object-contain">
                 </picture>
                 <div class="flex flex-col">
-                    <span class="font-bold text-xl text-slate-800 leading-none">SMKN 1 <span
-                            class="text-brand-600">Wringin</span></span>
-                    <span class="text-xs text-slate-500 font-medium tracking-wider uppercase">Vocational School</span>
+                    <span class="font-black text-xl text-slate-800 leading-none tracking-tight">SMKN 1 <span class="text-brand-600">WRINGIN</span></span>
+                    <span class="text-[10px] sm:text-xs text-slate-500 font-bold tracking-wider">Creativepreneurs <span class="font-latin text-brand-600 text-[11px] sm:text-sm ml-1">Start Here</span></span>
                 </div>
             </div>
 
             {{-- Desktop Menu --}}
             <div class="hidden lg:flex space-x-6 items-center">
                 {{-- Beranda --}}
-                <a href="#home" class="text-slate-600 hover:text-brand-600 font-medium transition">Beranda</a>
+                <a href="{{ route('landing') }}" class="text-slate-600 hover:text-brand-600 font-medium transition">Beranda</a>
 
                 {{-- Kurikulum Dropdown --}}
                 <div class="relative group" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
@@ -34,7 +33,7 @@
                         x-transition:enter-end="opacity-100 translate-y-0"
                         x-transition:leave="transition ease-in duration-150"
                         class="absolute top-full left-0 w-48 bg-white rounded-lg shadow-xl py-2 mt-0 border border-slate-100">
-                        <a href="#profil-jurusan" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Profile Jurusan</a>
+                        <a href="{{ route('landing') }}#jurusan" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Profile Jurusan</a>
                         <a href="#pembelajaran" class="block px-4 py-2 text-sm text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition">Pembelajaran</a>
                     </div>
                 </div>
@@ -101,7 +100,7 @@
         x-transition:leave-end="opacity-0 -translate-y-2"
         class="lg:hidden bg-white border-t border-slate-100 absolute w-full shadow-xl" id="mobile-menu">
         <div class="px-4 pt-2 pb-6 space-y-1">
-            <a href="#home" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Beranda</a>
+            <a href="{{ route('landing') }}" @click="mobileOpen = false" class="block px-3 py-3 text-slate-600 font-medium hover:bg-slate-50 hover:text-brand-600 rounded-md border-b border-slate-50">Beranda</a>
             
             {{-- Kurikulum (Accordion) --}}
             <div x-data="{ extra: false }">
@@ -110,7 +109,7 @@
                 </button>
                 <div class="grid transition-[grid-template-rows] duration-300 ease-in-out" :class="extra ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'">
                     <div class="overflow-hidden bg-slate-50 rounded-md">
-                        <a href="#profil-jurusan" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Profile Jurusan</a>
+                        <a href="{{ route('landing') }}#jurusan" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition border-b border-white/50">Profile Jurusan</a>
                         <a href="#pembelajaran" @click="mobileOpen = false" class="block px-8 py-2.5 text-sm text-slate-600 hover:text-brand-600 transition">Pembelajaran</a>
                     </div>
                 </div>

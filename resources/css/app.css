@@ -82,6 +82,10 @@
     --color-secondary-600: #d97706;
 }
 
+.font-latin {
+    font-family: 'Dancing Script', cursive;
+}
+
 /* ===== Custom Utility Classes ===== */
 .hero-pattern {
     background-color: #f8fafc;

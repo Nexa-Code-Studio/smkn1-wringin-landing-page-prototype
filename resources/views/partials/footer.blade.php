@@ -10,8 +10,8 @@
                         <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="w-11 h-11 object-contain">
                     </picture>
                     <div>
-                        <span class="block font-bold text-xl leading-none">SMKN 1 Wringin</span>
-                        <span class="text-xs text-slate-400">UNGGUL & BERKARAKTER</span>
+                        <span class="block font-black text-xl leading-none tracking-tight">SMKN 1 <span class="text-brand-500">WRINGIN</span></span>
+                        <span class="text-xs text-slate-400 font-bold tracking-wider">Creativepreneurs <span class="font-latin text-brand-500 text-sm ml-0.5">Start Here</span></span>
                     </div>
                 </div>
                 <p class="text-slate-400 mb-6 max-w-sm text-sm leading-relaxed">

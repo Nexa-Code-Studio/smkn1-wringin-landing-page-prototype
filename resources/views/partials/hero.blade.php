@@ -13,11 +13,10 @@
                 </div>
                 <h1 data-animate="fade-up" data-delay="100"
                     class="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 leading-tight mb-4">
-                    Mencetak Generasi <span class="text-brand-600">Cerdas, Terampil</span>, & Berkarakter
+                    SmakinOne Tempat <span class="text-brand-600">Bertumbuhnya Creativepreneur </span>Berkarakter
                 </h1>
                 <p data-animate="fade-up" data-delay="200" class="text-base lg:text-lg text-slate-600 mb-6 leading-relaxed">
-                    Bergabunglah dengan SMKN 1 Wringin untuk mendapatkan pendidikan vokasi berkualitas dengan fasilitas
-                    modern dan kurikulum yang terintegrasi dengan dunia industri.
+                    Pusat pendidikan vokasi dengan fasilitas lengkap, GTK berdedikasi, serta budaya positif, yang siap menghasilkan generasi Creativepreneur berkarakter sesuai 8 Dimensi Profil Lulusan.
                 </p>
 
                 <div class="flex flex-col">
@@ -39,16 +38,16 @@
                     <div
                         class="order-2 grid grid-cols-3 gap-4 border-t border-slate-200 pt-6">
                         <div data-animate="fade-up" data-delay="100">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">1.2k+</p>
-                            <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Siswa Aktif</p>
-                        </div>
-                        <div data-animate="fade-up" data-delay="200">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">50+</p>
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">25+</p>
                             <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Mitra Industri</p>
                         </div>
+                        <div data-animate="fade-up" data-delay="200">
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">32%</p>
+                            <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Melanjutkan Kuliah</p>
+                        </div>
                         <div data-animate="fade-up" data-delay="300">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">95%</p>
-                            <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Terserap Kerja</p>
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">68%</p>
+                            <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Bekerja/Berwirausaha</p>
                         </div>
                     </div>
                 </div>
@@ -69,7 +68,7 @@
                 </div>
 
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] xl:aspect-video max-h-[450px] xl:max-h-[550px] w-full">
-                    <img src="{{ asset('images/hero-siswa.jpg') }}" alt="Siswa SMKN 1 Wringin Belajar"
+                    <img src="{{ asset('images/foto-sekolah.jpg') }}" alt="Sekolah SMKN 1 Wringin"
                         class="w-full h-full object-cover transform hover:scale-105 transition duration-1000">
                 </div>
 

@@ -5,6 +5,7 @@
 @section('content')
     @include('partials.navbar')
     @include('partials.hero')
+    @include('partials.sambutan')
     @include('partials.jurusan')
     @include('partials.profil')
     @include('partials.ekstrakurikuler')
