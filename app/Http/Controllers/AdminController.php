@@ -96,6 +96,8 @@ class AdminController extends Controller
             $graduationSetting = new GraduationSetting([
                 'angkatan' => '2026',
                 'lulusan' => '2026',
+                'tanggal_pengumuman' => '2026-05-06',
+                'jam_pengumuman' => '10:00',
             ]);
         }
 
@@ -107,6 +109,8 @@ class AdminController extends Controller
         $validated = $request->validate([
             'angkatan' => ['required', 'string', 'max:255'],
             'lulusan' => ['required', 'string', 'max:255'],
+            'tanggal_pengumuman' => ['required', 'date'],
+            'jam_pengumuman' => ['required', 'date_format:H:i'],
         ]);
 
         GraduationSetting::query()->updateOrCreate(
@@ -114,10 +118,12 @@ class AdminController extends Controller
             [
                 'angkatan' => trim($validated['angkatan']),
                 'lulusan' => trim($validated['lulusan']),
+                'tanggal_pengumuman' => $validated['tanggal_pengumuman'],
+                'jam_pengumuman' => $validated['jam_pengumuman'],
             ]
         );
 
-        return back()->with('success', 'Pengaturan angkatan dan lulusan berhasil diperbarui.');
+        return back()->with('success', 'Pengaturan pengumuman kelulusan berhasil diperbarui.');
     }
 
     public function apiShowSiswa($id)

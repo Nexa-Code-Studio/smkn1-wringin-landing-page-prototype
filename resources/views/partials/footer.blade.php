@@ -5,9 +5,10 @@
             {{-- School Info --}}
             <div data-animate="fade-up" class="col-span-1 md:col-span-2">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white">
-                        <i class="fa-solid fa-school text-xl"></i>
-                    </div>
+                    <picture class="block">
+                        <source srcset="{{ asset('images/webp/icon.webp') }}" type="image/webp">
+                        <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="w-11 h-11 object-contain">
+                    </picture>
                     <div>
                         <span class="block font-bold text-xl leading-none">SMKN 1 Wringin</span>
                         <span class="text-xs text-slate-400">UNGGUL & BERKARAKTER</span>

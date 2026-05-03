@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GraduationSetting;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,14 +18,30 @@ class GraduationController extends Controller
             $graduationSetting = new GraduationSetting([
                 'angkatan' => '2026',
                 'lulusan' => '2026',
+                'tanggal_pengumuman' => '2026-05-06',
+                'jam_pengumuman' => '10:00',
             ]);
         }
 
-        return view('graduation.index', compact('graduationSetting'));
+        $announcementAt = $this->announcementDateTime($graduationSetting);
+        $countdownTarget = $announcementAt->toIso8601String();
+
+        return view('graduation.index', compact('graduationSetting', 'countdownTarget'));
     }
 
     public function checkStatus(Request $request)
     {
+        $graduationSetting = GraduationSetting::latest()->first();
+        $announcementAt = $this->announcementDateTime($graduationSetting);
+
+        if (now('Asia/Jakarta')->lt($announcementAt)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pengumuman kelulusan belum dibuka.',
+                'opens_at' => $announcementAt->toIso8601String(),
+            ], 403);
+        }
+
         $validator = Validator::make($request->all(), [
             'nisn' => ['required', 'regex:/^[0-9]{10}$/'],
         ], [
@@ -78,5 +95,13 @@ class GraduationController extends Controller
                 'photo' => $foto,
             ],
         ]);
+    }
+
+    private function announcementDateTime(?GraduationSetting $setting): Carbon
+    {
+        $date = $setting?->tanggal_pengumuman?->format('Y-m-d') ?? '2026-05-06';
+        $time = $setting?->jam_pengumuman ? substr($setting->jam_pengumuman, 0, 5) : '10:00';
+
+        return Carbon::createFromFormat('Y-m-d H:i', $date . ' ' . $time, 'Asia/Jakarta');
     }
 }

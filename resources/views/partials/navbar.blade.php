@@ -7,9 +7,10 @@
         <div class="flex justify-between items-center h-20">
             {{-- Logo --}}
             <div class="flex-shrink-0 flex items-center gap-3">
-                <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white shadow-md">
-                    <i class="fa-solid fa-graduation-cap text-xl"></i>
-                </div>
+                <picture class="block">
+                    <source srcset="{{ asset('images/webp/icon.webp') }}" type="image/webp">
+                    <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo SMKN 1 Wringin" class="w-11 h-11 object-contain">
+                </picture>
                 <div class="flex flex-col">
                     <span class="font-bold text-xl text-slate-800 leading-none">SMKN 1 <span
                             class="text-brand-600">Wringin</span></span>

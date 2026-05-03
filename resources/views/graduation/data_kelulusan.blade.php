@@ -296,7 +296,7 @@
                         <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
                             <div class="absolute -right-10 -top-10 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl"></div>
                             <h3 class="text-base font-bold text-slate-800 mb-2 relative z-10">Variabel Pengumuman</h3>
-                            <p class="text-xs text-slate-500 mb-5 relative z-10 font-medium">Atur data angkatan dan lulusan yang akan ditampilkan di halaman pengumuman kelulusan.</p>
+                            <p class="text-xs text-slate-500 mb-5 relative z-10 font-medium">Atur data angkatan, lulusan, dan waktu pembukaan halaman cek kelulusan.</p>
 
                             <form action="{{ route('admin.graduation-setting.update') }}" method="POST" class="space-y-4 relative z-10">
                                 @csrf
@@ -324,6 +324,32 @@
                                         placeholder="Contoh: 2026"
                                         required
                                     >
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div>
+                                        <label for="tanggal_pengumuman" class="block text-[11px] font-bold uppercase tracking-wide text-slate-500 mb-1">Tanggal</label>
+                                        <input
+                                            type="date"
+                                            id="tanggal_pengumuman"
+                                            name="tanggal_pengumuman"
+                                            value="{{ old('tanggal_pengumuman', optional($graduationSetting->tanggal_pengumuman)->format('Y-m-d') ?? '2026-05-06') }}"
+                                            class="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div>
+                                        <label for="jam_pengumuman" class="block text-[11px] font-bold uppercase tracking-wide text-slate-500 mb-1">Jam</label>
+                                        <input
+                                            type="time"
+                                            id="jam_pengumuman"
+                                            name="jam_pengumuman"
+                                            value="{{ old('jam_pengumuman', $graduationSetting->jam_pengumuman ? substr($graduationSetting->jam_pengumuman, 0, 5) : '10:00') }}"
+                                            class="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500"
+                                            required
+                                        >
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold rounded-xl transition-colors shadow-sm shadow-brand-600/20">

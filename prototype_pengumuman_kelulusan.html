@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Kelulusan | SMKN 1 Wringin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Konfigurasi Tailwind & Kustom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9fa',
+                            100: '#e0f2f4',
+                            500: '#2a7482',
+                            600: '#1E5460',
+                            700: '#18434d',
+                            800: '#14363d',
+                            900: '#0f282e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pattern yang sama dengan Hero di Landing Page */
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 0.8px, transparent 0.8px);
+            background-size: 24px 24px;
+        }
+
+        /* Animasi fade in */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glassmorphism yang lebih formal dan bersih */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="hero-pattern text-slate-700 antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- ==============================================
+         HEADER / NAVBAR
+         ============================================== -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-3">
+                <img src="https://smkn1wringin.sch.id/wp-content/uploads/2023/10/logo-smkn1wringin.png" alt="Logo" class="h-10 w-10 object-contain">
+                <div>
+                    <span class="block font-heading font-bold text-slate-900 tracking-tight text-lg leading-none">SMKN 1 Wringin</span>
+                    <span class="text-[10px] text-brand-600 font-bold uppercase tracking-widest">Bondowoso</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="https://smkn1wringin.sch.id/" class="hover:text-brand-600 transition-colors">Beranda</a>
+                <a href="#informasi" class="hover:text-brand-600 transition-colors">Informasi</a>
+                <a href="#bantuan" class="hover:text-brand-600 transition-colors">Bantuan</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div>
+                <a href="https://smkn1wringin.sch.id/" class="text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 px-6 py-2.5 rounded-full transition-all shadow-md shadow-brand-600/20">
+                    Website Utama
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==============================================
+         MAIN CONTENT
+         ============================================== -->
+    <main class="flex-grow pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        
+        <!-- Pesan Fallback jika JavaScript dimatikan -->
+        <noscript>
+            <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-8 rounded-md">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i data-lucide="alert-triangle" class="h-5 w-5 text-red-400"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-700">
+                            JavaScript pada browser Anda tidak aktif. Hitung mundur tidak dapat berjalan. Silakan muat ulang halaman atau hubungi admin sekolah.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </noscript>
+
+        <!-- Hero Section -->
+        <section class="text-center max-w-3xl mx-auto fade-in">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs sm:text-sm font-medium mb-6">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
+                Tahun Pelajaran 2025/2026
+            </div>
+            
+            <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+                Menuju Pengumuman <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-800">Kelulusan</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-gray-600 mb-10 leading-relaxed">
+                Tetap tenang, siapkan data diri, dan akses hasil kelulusan Anda pada waktu yang telah ditentukan. Hasil ini bersifat pribadi dan rahasia.
+            </p>
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="max-w-4xl mx-auto mb-20 fade-in delay-100">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-gray-100 relative overflow-hidden">
+                <!-- Aksen visual -->
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-50 rounded-full blur-3xl opacity-60"></div>
+                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+
+                <div class="relative z-10 text-center">
+                    <p id="countdown-status" class="text-gray-500 font-medium mb-8 text-sm uppercase tracking-wider">Pengumuman akan dibuka dalam:</p>
+                    
+                    <!-- Timer Cards -->
+                    <div id="countdown-timer" class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-8">
+                        <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+                            <span id="days" class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-1">00</span>
+                            <span class="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-widest">Hari</span>
+                        </div>
+                        <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+                            <span id="hours" class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-1">00</span>
+                            <span class="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-widest">Jam</span>
+                        </div>
+                        <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+                            <span id="minutes" class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-1">00</span>
+                            <span class="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-widest">Menit</span>
+                        </div>
+                        <div class="glass-card rounded-2xl p-4 sm:p-6 flex flex-col items-center justify-center transition-transform hover:scale-105 duration-300">
+                            <span id="seconds" class="font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-brand-600 mb-1">00</span>
+                            <span class="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-widest">Detik</span>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Aksi (Awalnya tersembunyi) -->
+                    <div id="action-container" class="hidden animate-[fadeIn_0.5s_ease-out]">
+                        <a id="btn-cek-kelulusan" href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-700 hover:to-brand-800 rounded-xl shadow-lg shadow-brand-500/30 transition-all hover:-translate-y-1 w-full sm:w-auto">
+                            <i data-lucide="file-check-2" class="w-5 h-5"></i>
+                            Cek Kelulusan Sekarang
+                        </a>
+                        <p class="mt-4 text-sm text-gray-500">Pastikan Anda memiliki koneksi internet yang stabil.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Cards -->
+        <section id="informasi" class="grid sm:grid-cols-3 gap-6 mb-20 fade-in delay-200">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-start hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="id-card" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">Siapkan Data Diri</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Pastikan NISN/NIS dan tanggal lahir sudah disiapkan dengan benar sebelum melakukan pengecekan di sistem.
+                </p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-start hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="clock" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">Akses Sesuai Jadwal</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Halaman cek kelulusan hanya dapat diakses setelah waktu pengumuman resmi dibuka. Tidak ada jalur pengecekan lebih awal.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-start hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">Tetap Bijak</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Apapun hasilnya, tetap bersyukur, hindari konvoi yang merugikan, dan jaga nama baik almamater SMKN 1 Wringin.
+                </p>
+            </div>
+        </section>
+
+        <!-- Message Section -->
+        <section class="bg-brand-50 rounded-3xl p-8 sm:p-12 text-center border border-brand-100 max-w-4xl mx-auto mb-20 fade-in delay-300">
+            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Untuk Siswa-Siswi SMKN 1 Wringin</h2>
+            <div class="max-w-2xl mx-auto">
+                <p class="text-gray-700 text-base sm:text-lg italic leading-relaxed mb-8">
+                    "Kelulusan adalah awal dari perjalanan baru menuju dunia nyata. Teruslah menjadi generasi yang cerdas, terampil, santun, mandiri, dan berkarakter. Semoga ilmu dan pengalaman selama menempuh pendidikan di SMKN 1 Wringin menjadi bekal terbaik untuk meraih kesuksesan di masa depan."
+                </p>
+                <div class="flex flex-col items-center justify-center gap-2">
+                    <div class="w-16 h-1 bg-brand-300 rounded-full mb-2"></div>
+                    <p class="font-semibold text-gray-900">Keluarga Besar</p>
+                    <p class="text-brand-700 font-medium">SMKN 1 Wringin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section id="bantuan" class="text-center bg-white border border-gray-100 p-8 rounded-3xl shadow-sm max-w-2xl mx-auto fade-in delay-300">
+            <h3 class="font-heading font-semibold text-lg text-gray-900 mb-2">Mengalami kendala saat membuka pengumuman?</h3>
+            <p class="text-gray-500 text-sm mb-6">Jika sistem mengalami gangguan atau data Anda tidak ditemukan, silakan hubungi tim IT/Admin sekolah.</p>
+            
+            <!-- Ganti link href di bawah dengan link WhatsApp/Kontak Admin -->
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-gray-700 bg-white border-2 border-gray-200 hover:border-brand-300 hover:text-brand-700 rounded-xl transition-all">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                Hubungi Admin Sekolah
+            </a>
+        </section>
+
+    </main>
+
+    <!-- ==============================================
+         FOOTER
+         ============================================== -->
+    <footer class="bg-white border-t border-gray-100 py-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="flex items-center gap-2 mb-4">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-gray-400"></i>
+                <span class="font-heading font-semibold text-gray-700">SMKN 1 Wringin</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-2">Siap Kerja, Santun, Mandiri — Unggul & Berkarakter</p>
+            <p class="text-xs text-gray-400">
+                &copy; 2026 SMKN 1 Wringin. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==============================================
+         JAVASCRIPT
+         ============================================== -->
+    <script>
+        // Inisialisasi ikon
+        lucide.createIcons();
+
+        // ==========================================
+        // PENGATURAN KUSTOMISASI
+        // ==========================================
+        
+        // 1. Target Waktu Countdown
+        // Format: YYYY-MM-DDTHH:mm:ss+07:00 (Zona Waktu WIB / GMT+7)
+        // Contoh: 6 Mei 2026 pukul 10.00 WIB
+        const TARGET_DATE = "2026-05-06T10:00:00+07:00"; 
+        
+        // 2. Link Halaman Cek Kelulusan
+        const LINK_CEK_KELULUSAN = "http://127.0.0.1:8000/pengumuman-kelulusan"; // Sesuaikan dengan route Laravel Anda
+
+        // ==========================================
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnCek = document.getElementById("btn-cek-kelulusan");
+            btnCek.href = LINK_CEK_KELULUSAN;
+
+            // Element DOM untuk Countdown
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minsEl = document.getElementById('minutes');
+            const secsEl = document.getElementById('seconds');
+            
+            const countdownTimerEl = document.getElementById('countdown-timer');
+            const actionContainerEl = document.getElementById('action-container');
+            const statusEl = document.getElementById('countdown-status');
+
+            // Set waktu target ke objek Date
+            const countDownDate = new Date(TARGET_DATE).getTime();
+
+            // Fungsi untuk memformat angka < 10 dengan angka 0 di depan (misal: 09)
+            const formatNumber = (num) => num < 10 ? `0${num}` : num;
+
+            // Update hitung mundur setiap 1 detik
+            const interval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                // Jika waktu sudah tiba atau terlewati
+                if (distance <= 0) {
+                    clearInterval(interval);
+                    
+                    // Sembunyikan timer, ubah teks status, tampilkan tombol aksi
+                    countdownTimerEl.style.display = "none";
+                    statusEl.innerText = "Pengumuman kelulusan telah dibuka.";
+                    statusEl.className = "text-brand-600 font-bold mb-4 text-base uppercase tracking-widest";
+                    actionContainerEl.classList.remove('hidden');
+                    
+                    return;
+                }
+
+                // Kalkulasi hari, jam, menit, detik
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Tampilkan hasil di HTML
+                daysEl.innerText = formatNumber(days);
+                hoursEl.innerText = formatNumber(hours);
+                minsEl.innerText = formatNumber(minutes);
+                secsEl.innerText = formatNumber(seconds);
+
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
