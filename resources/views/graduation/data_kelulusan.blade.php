@@ -32,68 +32,88 @@
         }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden bg-slate-50 text-slate-800 font-sans antialiased">
+<body class="h-screen overflow-hidden bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <div class="relative flex h-screen overflow-hidden">
+        <div id="adminSidebarBackdrop" class="fixed inset-0 z-30 hidden bg-slate-900/50 backdrop-blur-sm lg:hidden"></div>
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-slate-200 h-full flex flex-col flex-shrink-0 relative z-20">
+    <aside id="adminSidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-64 -translate-x-full flex-col border-r border-slate-200 bg-white transition-transform duration-300 lg:static lg:z-20 lg:translate-x-0">
         <!-- Logo -->
-        <div class="h-20 flex items-center px-6 border-b border-slate-100">
-            <div class="w-10 h-10 bg-white border border-slate-100 rounded-xl flex items-center justify-center mr-3 shadow-sm transition-transform duration-300 hover:scale-105">
+        <div class="flex h-20 items-center justify-between border-b border-slate-100 px-6">
+            <div class="flex items-center">
+                <div class="mr-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-100 bg-white shadow-sm transition-transform duration-300 hover:scale-105">
                 <picture>
                     <source srcset="{{ asset('images/webp/icon.webp') }}" type="image/webp">
                     <img src="{{ asset('images/alternative/icon.png') }}" alt="Logo" class="w-7 h-7 object-contain">
                 </picture>
+                </div>
+                <span class="text-base font-bold leading-tight tracking-tight text-slate-800">Admin <br><span class="text-brand-600">SMKN 1 Wringin</span></span>
             </div>
-            <span class="font-bold text-base text-slate-800 tracking-tight leading-tight">Admin <br><span class="text-brand-600">SMKN 1 Wringin</span></span>
+            <button type="button" id="adminSidebarClose" class="inline-flex h-10 w-10 items-center justify-center rounded-xl text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 lg:hidden">
+                <i data-feather="x" class="h-5 w-5"></i>
+            </button>
         </div>
         
         <!-- Navigation -->
         <div class="flex-1 overflow-y-auto custom-scrollbar py-6 px-4 space-y-2">
             <p class="text-[10px] uppercase tracking-widest text-slate-400 mb-4 px-2 font-bold">Menu Utama</p>
             
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-brand-700 hover:bg-brand-50 transition-all">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all {{ request()->routeIs('admin.dashboard') ? 'border border-brand-100 bg-brand-50 text-brand-600 shadow-sm' : 'text-slate-500 hover:bg-brand-50 hover:text-brand-700' }}">
                 <i data-feather="grid" class="w-5 h-5"></i>
-                <span class="font-medium text-sm">Dashboard</span>
+                <span class="text-sm {{ request()->routeIs('admin.dashboard') ? 'font-bold' : 'font-medium' }}">Dashboard</span>
+            </a>
+
+            <a href="{{ route('admin.gallery') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all {{ request()->routeIs('admin.gallery') ? 'border border-brand-100 bg-brand-50 text-brand-600 shadow-sm' : 'text-slate-500 hover:bg-brand-50 hover:text-brand-700' }}">
+                <i data-feather="image" class="w-5 h-5"></i>
+                <span class="text-sm {{ request()->routeIs('admin.gallery') ? 'font-bold' : 'font-medium' }}">Kelola Page</span>
             </a>
             
-            <a href="{{ route('admin.graduation') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-brand-50 text-brand-600 border border-brand-100 shadow-sm transition-all">
+            <a href="{{ route('admin.graduation') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all {{ request()->routeIs('admin.graduation') ? 'border border-brand-100 bg-brand-50 text-brand-600 shadow-sm' : 'text-slate-500 hover:bg-brand-50 hover:text-brand-700' }}">
                 <i data-feather="users" class="w-5 h-5"></i>
-                <span class="font-bold text-sm">Data Kelulusan</span>
+                <span class="text-sm {{ request()->routeIs('admin.graduation') ? 'font-bold' : 'font-medium' }}">Data Kelulusan</span>
             </a>
-            
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-brand-700 hover:bg-brand-50 transition-all">
+
+            <a href="{{ route('admin.ppdb-builder') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all {{ request()->routeIs('admin.ppdb-builder*') ? 'border border-brand-100 bg-brand-50 text-brand-600 shadow-sm' : 'text-slate-500 hover:bg-brand-50 hover:text-brand-700' }}">
                 <i data-feather="file-text" class="w-5 h-5"></i>
-                <span class="font-medium text-sm">Laporan</span>
+                <span class="text-sm {{ request()->routeIs('admin.ppdb-builder*') ? 'font-bold' : 'font-medium' }}">PPDB</span>
             </a>
-            
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-brand-700 hover:bg-brand-50 transition-all">
-                <i data-feather="settings" class="w-5 h-5"></i>
-                <span class="font-medium text-sm">Pengaturan</span>
+
+            <a href="{{ route('admin.berita.index') }}" class="flex items-center gap-3 rounded-xl px-4 py-3 transition-all {{ request()->routeIs('admin.berita.*') ? 'border border-brand-100 bg-brand-50 text-brand-600 shadow-sm' : 'text-slate-500 hover:bg-brand-50 hover:text-brand-700' }}">
+                <i data-feather="book-open" class="w-5 h-5"></i>
+                <span class="text-sm {{ request()->routeIs('admin.berita.*') ? 'font-bold' : 'font-medium' }}">Berita</span>
             </a>
         </div>
-        
+
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 flex flex-col h-full relative overflow-hidden bg-slate-50">
+    <main class="flex h-screen min-h-0 w-full flex-1 flex-col overflow-hidden bg-slate-50">
         
         <!-- Top Navbar -->
-        <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-8 relative z-[80] overflow-visible">
-            <div class="flex items-center gap-4">
-                <h1 class="text-xl font-bold text-slate-800 tracking-tight">Manajemen Kelulusan</h1>
-                <span class="px-3 py-1 bg-brand-50 text-brand-600 border border-brand-100 text-xs rounded-full font-bold">Tahun 2026</span>
+        <header class="relative z-[80] flex min-h-20 items-center justify-between overflow-visible border-b border-slate-200 bg-white px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <button type="button" id="adminSidebarOpen" class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:border-brand-200 hover:text-brand-600 lg:hidden">
+                    <i data-feather="menu" class="h-5 w-5"></i>
+                </button>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+                        <h1 class="text-lg font-bold tracking-tight text-slate-800 sm:text-xl">Manajemen Kelulusan</h1>
+                        <span class="rounded-full border border-brand-100 bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-600 sm:text-xs">Tahun 2026</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-3 sm:gap-6">
                 <!-- Search -->
-                <div class="relative hidden md:block">
+                <div class="relative hidden xl:block">
                     <i data-feather="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
                     <input type="text" placeholder="Cari siswa atau NISN..." class="w-64 bg-slate-50 border border-slate-200 rounded-full py-2 pl-10 pr-4 text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all font-medium">
                 </div>
                 
                 <div class="flex items-center gap-3">
-                    <div class="relative" id="profileMenuWrapper">
-                        <button type="button" onclick="toggleProfileMenu(event)" class="flex items-center gap-3 cursor-pointer group rounded-2xl px-2 py-1.5 hover:bg-slate-50 transition-colors">
+                    <div class="relative" id="adminProfileMenuWrapper">
+                        <button type="button" id="adminProfileToggle" class="flex cursor-pointer items-center gap-3 rounded-2xl px-2 py-1.5 transition-colors hover:bg-slate-50 group">
                             <div class="w-9 h-9 rounded-full bg-slate-100 p-[2px] border border-slate-200">
                                 <img src="https://ui-avatars.com/api/?name=Admin+User&background=1E5460&color=fff" alt="Admin" class="w-full h-full rounded-full">
                             </div>
@@ -104,7 +124,7 @@
                             <i data-feather="chevron-down" class="w-4 h-4 text-slate-400 group-hover:text-brand-600"></i>
                         </button>
 
-                        <div id="profileDropdown" class="hidden absolute right-0 top-full mt-3 w-52 rounded-2xl border border-slate-200 bg-white shadow-xl z-[120] overflow-hidden">
+                        <div id="adminProfileDropdown" class="hidden absolute right-0 top-full mt-3 w-52 rounded-2xl border border-slate-200 bg-white shadow-xl z-[120] overflow-hidden">
                             <div class="px-4 py-3 border-b border-slate-100 bg-slate-50/60">
                                 <p class="text-sm font-bold text-slate-700">Admin Wringin</p>
                                 <p class="text-[10px] font-medium text-slate-500">Sesi administrator aktif</p>
@@ -123,7 +143,7 @@
         </header>
 
         <!-- Content Scroll Area -->
-        <div class="flex-1 overflow-y-auto custom-scrollbar p-8 relative z-10 hero-pattern">
+        <div class="relative z-10 min-h-0 flex-1 overflow-y-auto custom-scrollbar hero-pattern p-4 sm:p-6 lg:p-8">
             
             @if(session('success'))
             <div class="mb-8 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-2xl flex items-center gap-3 animate-fade-in-down shadow-sm">
@@ -232,7 +252,12 @@
                                             <img src="{{ $siswa->photoUrl() ?: 'https://ui-avatars.com/api/?name='.urlencode($siswa->nama).'&background=1E5460&color=fff' }}" class="w-8 h-8 rounded-full object-cover">
                                             <div>
                                                 <p class="font-bold text-slate-700 group-hover:text-brand-600 transition-colors">{{ $siswa->nama }}</p>
-                                                <p class="text-[10px] text-slate-500 font-mono">{{ $siswa->username }}</p>
+                                                <div class="mt-1 flex flex-wrap items-center gap-2">
+                                                    <p class="text-[10px] text-slate-500 font-mono">{{ $siswa->username }}</p>
+                                                    @if($siswa->can_submit_news)
+                                                        <span class="inline-flex items-center rounded-full border border-brand-100 bg-brand-50 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-brand-600">Kontributor Berita</span>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -446,6 +471,7 @@
             
         </div>
     </main>
+    </div>
 
     <script>
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
@@ -454,6 +480,40 @@
         const initialPhotoImportJobUuid = @json(session('import_job_uuid') ?? ($latestPhotoImportJob->uuid ?? null));
         let siswaDeleteTargetId = null;
         let photoImportPollTimer = null;
+        const adminSidebar = document.getElementById('adminSidebar');
+        const adminSidebarBackdrop = document.getElementById('adminSidebarBackdrop');
+        const adminSidebarOpenBtn = document.getElementById('adminSidebarOpen');
+        const adminSidebarCloseBtn = document.getElementById('adminSidebarClose');
+        const adminProfileWrapper = document.getElementById('adminProfileMenuWrapper');
+        const adminProfileToggle = document.getElementById('adminProfileToggle');
+        const adminProfileDropdown = document.getElementById('adminProfileDropdown');
+
+        function openAdminSidebar() {
+            adminSidebar?.classList.remove('-translate-x-full');
+            adminSidebarBackdrop?.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeAdminSidebar() {
+            adminSidebar?.classList.add('-translate-x-full');
+            adminSidebarBackdrop?.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function closeAdminProfileMenu() {
+            adminProfileDropdown?.classList.add('hidden');
+        }
+
+        function toggleAdminProfileMenu() {
+            if (!adminProfileDropdown) return;
+
+            const isOpen = !adminProfileDropdown.classList.contains('hidden');
+            closeAdminProfileMenu();
+
+            if (!isOpen) {
+                adminProfileDropdown.classList.remove('hidden');
+            }
+        }
 
         function confirmImport(type) {
             const modal = document.getElementById('confirmModal');
@@ -534,21 +594,6 @@
             document.querySelectorAll('[data-menu-dropdown]').forEach((dropdown) => {
                 dropdown.classList.add('hidden');
             });
-        }
-
-        function toggleProfileMenu(event) {
-            event.stopPropagation();
-            closeAllActionMenus();
-
-            const dropdown = document.getElementById('profileDropdown');
-            dropdown.classList.toggle('hidden');
-        }
-
-        function closeProfileMenu() {
-            const dropdown = document.getElementById('profileDropdown');
-            if (dropdown) {
-                dropdown.classList.add('hidden');
-            }
         }
 
         function toggleActionMenu(button) {
@@ -691,6 +736,7 @@
             form.elements.nama.value = siswa.nama || '';
             form.elements.nisn.value = siswa.nisn || '';
             form.elements.kelas.value = siswa.kelas || '';
+            form.elements.can_submit_news.value = siswa.can_submit_news ? '1' : '0';
             form.elements.tempat_lahir.value = siswa.tempat_lahir || '';
             form.elements.tanggal_lahir.value = siswa.tanggal_lahir || '';
             form.elements.status_kelulusan.value = normalizeStatusKelulusan(siswa.status_kelulusan);
@@ -750,6 +796,7 @@
                 nama: form.elements.nama.value.trim(),
                 nisn: form.elements.nisn.value.trim(),
                 kelas: form.elements.kelas.value.trim(),
+                can_submit_news: form.elements.can_submit_news.value === '1',
                 tempat_lahir: form.elements.tempat_lahir.value.trim(),
                 tanggal_lahir: form.elements.tanggal_lahir.value,
                 status_kelulusan: form.elements.status_kelulusan.value,
@@ -980,6 +1027,13 @@
         document.addEventListener('click', (event) => {
             const menuButton = event.target.closest('[data-menu-button]');
             const menuAction = event.target.closest('[data-action]');
+            const profileToggle = event.target.closest('#adminProfileToggle');
+
+            if (profileToggle) {
+                closeAllActionMenus();
+                toggleAdminProfileMenu();
+                return;
+            }
 
             if (menuButton) {
                 toggleActionMenu(menuButton);
@@ -999,12 +1053,24 @@
                 closeAllActionMenus();
             }
 
-            if (!event.target.closest('#profileMenuWrapper')) {
-                closeProfileMenu();
+            if (!event.target.closest('#adminProfileMenuWrapper')) {
+                closeAdminProfileMenu();
             }
         });
 
         window.addEventListener('DOMContentLoaded', () => {
+            adminSidebarOpenBtn?.addEventListener('click', openAdminSidebar);
+            adminSidebarCloseBtn?.addEventListener('click', closeAdminSidebar);
+            adminSidebarBackdrop?.addEventListener('click', closeAdminSidebar);
+
+            adminSidebar?.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1024) {
+                        closeAdminSidebar();
+                    }
+                });
+            });
+
             const editForm = document.getElementById('editSiswaForm');
             if (editForm) {
                 editForm.addEventListener('submit', submitEditSiswa);
@@ -1023,7 +1089,8 @@
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 closeAllActionMenus();
-                closeProfileMenu();
+                closeAdminProfileMenu();
+                closeAdminSidebar();
                 closeDetailModal();
                 closeEditModal();
                 closeDeleteModal();
@@ -1199,6 +1266,14 @@
                         <option value="">Belum Ada</option>
                         <option value="Lulus">Lulus</option>
                         <option value="Tidak Lulus">Tidak Lulus</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Izin Kirim Berita</label>
+                    <select name="can_submit_news" class="w-full border border-slate-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500">
+                        <option value="0">Tidak Diizinkan</option>
+                        <option value="1">Diizinkan</option>
                     </select>
                 </div>
 

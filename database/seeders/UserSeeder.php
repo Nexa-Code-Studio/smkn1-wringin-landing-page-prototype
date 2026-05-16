@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             ['username' => 'admin'],
             [
                 'name' => 'admin',
+                'role' => 'admin',
                 'password' => Hash::make('123'),
             ]
         );

@@ -96,10 +96,15 @@
 @section('content')
     @include('partials.navbar')
 
+    @php
+        $defaultWebpImage = asset('images/webp/default_picture.webp');
+        $defaultJpegImage = asset('images/alternative/default_picture.jpeg');
+    @endphp
+
     {{-- HERO SECTION --}}
     <section id="home" class="relative min-h-screen flex items-center pt-20 lg:pt-16 overflow-hidden hero-bg">
         <div class="absolute inset-0 bg-black/20"></div>
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center mix-blend-overlay opacity-40"></div>
+        <div class="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-40" style="background-image: image-set(url('{{ $defaultWebpImage }}') type('image/webp'), url('{{ $defaultJpegImage }}') type('image/jpeg'));"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="max-w-3xl mx-auto text-center">
@@ -166,7 +171,7 @@
                             </div>
                         </div>
                         <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Disiplin" class="w-full h-full object-cover">
+                            <img src="{{ $defaultWebpImage }}" alt="Disiplin" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                         </div>
                     </div>
                 </div>
@@ -184,7 +189,7 @@
                             </div>
                         </div>
                         <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Integritas" class="w-full h-full object-cover">
+                            <img src="{{ $defaultWebpImage }}" alt="Integritas" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                         </div>
                     </div>
                 </div>
@@ -202,7 +207,7 @@
                             </div>
                         </div>
                         <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kolaborasi" class="w-full h-full object-cover">
+                            <img src="{{ $defaultWebpImage }}" alt="Kolaborasi" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                         </div>
                     </div>
                 </div>
@@ -220,7 +225,7 @@
                             </div>
                         </div>
                         <div class="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden shadow-md">
-                            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hormat" class="w-full h-full object-cover">
+                            <img src="{{ $defaultWebpImage }}" alt="Hormat" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                         </div>
                     </div>
                 </div>
@@ -276,7 +281,7 @@
                             </div>
                         </div>
                         <div class="mt-auto rounded-xl overflow-hidden h-48 relative">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Briefing" class="w-full h-full object-cover">
+                            <img src="{{ $defaultWebpImage }}" alt="Briefing" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                                 <span class="text-white text-sm font-medium"><i class="fa-solid fa-camera mr-2"></i> Simulasi Briefing Pagi Jurusan TKJ</span>
                             </div>

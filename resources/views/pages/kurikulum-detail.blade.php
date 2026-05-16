@@ -5,6 +5,11 @@
 @section('content')
     @include('partials.navbar')
 
+    @php
+        $defaultWebpImage = asset('images/webp/default_picture.webp');
+        $defaultJpegImage = asset('images/alternative/default_picture.jpeg');
+    @endphp
+
     {{-- HEADER / HERO DETAIL JURUSAN --}}
     <section class="min-h-screen pt-32 pb-20 lg:pt-48 lg:pb-32 bg-brand-600 relative overflow-hidden text-white flex items-center">
         {{-- Background Elements --}}
@@ -26,7 +31,7 @@
             <div data-animate="fade-left" data-delay="400" class="w-2/3 max-w-[280px] mx-auto lg:mx-0 lg:max-w-none lg:w-1/3 relative">
                 <div class="aspect-square rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-4 shadow-2xl relative overflow-hidden flex items-center justify-center group">
                     <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/20 to-transparent"></div>
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coding" class="w-full h-full object-cover rounded-2xl shadow-inner z-10 transform group-hover:scale-105 transition duration-700">
+                    <img src="{{ $defaultWebpImage }}" alt="Coding" class="w-full h-full object-cover rounded-2xl shadow-inner z-10 transform group-hover:scale-105 transition duration-700" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     
                     {{-- Decorative elements over image --}}
                     <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary-500 rounded-full blur-2xl opacity-50"></div>
@@ -174,35 +179,35 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 {{-- Foto 1 (Besar) --}}
                 <div data-animate="zoom-in" class="col-span-2 md:col-span-2 row-span-2 relative group overflow-hidden rounded-2xl h-64 md:h-full shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Siswa berdiskusi proyek" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <img src="{{ $defaultWebpImage }}" alt="Siswa berdiskusi proyek" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
                         <span class="text-white font-semibold text-lg">Diskusi Proyek Tim (Scrum)</span>
                     </div>
                 </div>
 
                 <div data-animate="zoom-in" data-delay="100" class="relative group overflow-hidden rounded-2xl h-48 md:h-64 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Menulis Kode" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <img src="{{ $defaultWebpImage }}" alt="Menulis Kode" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                         <span class="text-white font-medium text-sm">Praktik Koding</span>
                     </div>
                 </div>
 
                 <div data-animate="zoom-in" data-delay="200" class="relative group overflow-hidden rounded-2xl h-48 md:h-64 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Lab Komputer" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <img src="{{ $defaultWebpImage }}" alt="Lab Komputer" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                         <span class="text-white font-medium text-sm">Lab Komputer Modern</span>
                     </div>
                 </div>
 
                 <div data-animate="zoom-in" data-delay="300" class="relative group overflow-hidden rounded-2xl h-48 md:h-64 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Jaringan Server" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <img src="{{ $defaultWebpImage }}" alt="Jaringan Server" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                         <span class="text-white font-medium text-sm">Manajemen Server</span>
                     </div>
                 </div>
 
                 <div data-animate="zoom-in" data-delay="400" class="relative group overflow-hidden rounded-2xl h-48 md:h-64 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kunjungan Industri" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                    <img src="{{ $defaultWebpImage }}" alt="Kunjungan Industri" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                         <span class="text-white font-medium text-sm">Kunjungan Industri Tech</span>
                     </div>

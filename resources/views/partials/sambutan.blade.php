@@ -1,3 +1,10 @@
+@php
+    $sambutanImage = $landingImages['sambutan_kepala_sekolah'] ?? [
+        'webp_url' => null,
+        'jpeg_url' => asset('images/kepala-sekolah.png'),
+        'alt_text' => 'SITI ANY MAYA SHULHAH, S.Sn., M.Pd., M.Sc.',
+    ];
+@endphp
 <section id="sambutan" class="py-20 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -11,7 +18,12 @@
                             <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,163,179,0.25),transparent_70%)]"></div>
                             <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
                             
-                            <img src="{{ asset('images/kepala-sekolah.png') }}" alt="SITI ANY MAYA SHULHAH, S.Sn., M.Pd., M.Sc." class="relative z-10 w-full h-full object-contain object-bottom scale-105 transition-transform duration-700 hover:scale-110">
+                            <picture>
+                                @if(! empty($sambutanImage['webp_url']))
+                                    <source srcset="{{ $sambutanImage['webp_url'] }}" type="image/webp">
+                                @endif
+                                <img src="{{ $sambutanImage['jpeg_url'] }}" alt="{{ $sambutanImage['alt_text'] }}" class="relative z-10 w-full h-full object-contain object-bottom scale-105 transition-transform duration-700 hover:scale-110" decoding="async" loading="lazy">
+                            </picture>
                         </div>
                     </div>
                     

@@ -85,114 +85,14 @@
                 <!-- Masonry Grid Layout (4 Columns) -->
                 <div class="columns-1 sm:columns-2 lg:columns-4 gap-6 space-y-6">
                     
-                    @php
-                        $extras = [
-                            [
-                                'name' => 'Pramuka',
-                                'category' => 'Organisasi',
-                                'desc' => 'Bertahan Hidup & Tumbuh Tangguh di Alam Bebas',
-                                'img' => 'https://images.unsplash.com/photo-1533604101087-43f1146244be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[400px]',
-                                'days' => 'Jumat, Sabtu',
-                                'time' => '15.30 WIB',
-                                'color' => 'teal'
-                            ],
-                            [
-                                'name' => 'Palang Merah Remaja',
-                                'category' => 'Sosial & Medis',
-                                'desc' => 'Garda Terdepan Penyelamat Nyawa',
-                                'img' => 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[350px]',
-                                'days' => 'Rabu, Jumat',
-                                'time' => '16.00 WIB',
-                                'color' => 'rose'
-                            ],
-                            [
-                                'name' => 'Seni Hadrah',
-                                'category' => 'Seni & Budaya',
-                                'desc' => 'Harmoni Nada Sakral dan Lantunan Selawat',
-                                'img' => 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[450px]',
-                                'days' => 'Selasa, Kamis',
-                                'time' => '15.30 WIB',
-                                'color' => 'amber'
-                            ],
-                            [
-                                'name' => 'Sepak Bola & Futsal',
-                                'category' => 'Olahraga',
-                                'desc' => 'Aksi Lapangan Hijau dan Taktik Juara',
-                                'img' => 'https://images.unsplash.com/photo-1511886929837-354d827aae26?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[380px]',
-                                'days' => 'Senin, Rabu',
-                                'time' => '15.30 WIB',
-                                'color' => 'blue'
-                            ],
-                            [
-                                'name' => 'Bola Basket',
-                                'category' => 'Olahraga',
-                                'desc' => 'Terbang Tinggi Cetak Tiga Angka Gemilang',
-                                'img' => 'https://images.unsplash.com/photo-1519861531473-920026073fdc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[420px]',
-                                'days' => 'Selasa, Kamis',
-                                'time' => '16.00 WIB',
-                                'color' => 'orange'
-                            ],
-                            [
-                                'name' => 'Bola Voli',
-                                'category' => 'Olahraga',
-                                'desc' => 'Lompatan Akurat Menuju Kemenangan Tim',
-                                'img' => 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[360px]',
-                                'days' => 'Senin, Rabu',
-                                'time' => '16.00 WIB',
-                                'color' => 'cyan'
-                            ],
-                            [
-                                'name' => 'E-Sports Club',
-                                'category' => 'E-Sports',
-                                'desc' => 'Adu Strategi Digital di Arena Profesional',
-                                'img' => 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[400px]',
-                                'days' => 'Jumat',
-                                'time' => '14.00 WIB',
-                                'color' => 'purple'
-                            ],
-                            [
-                                'name' => 'Seni Tari & Vokal',
-                                'category' => 'Seni & Budaya',
-                                'desc' => 'Ekspresikan Jiwa Lewat Gerak dan Nada',
-                                'img' => 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[480px]',
-                                'days' => 'Rabu, Sabtu',
-                                'time' => '15.00 WIB',
-                                'color' => 'pink'
-                            ],
-                            [
-                                'name' => 'VM Media',
-                                'category' => 'Teknologi',
-                                'desc' => 'Rekam Momen & Ciptakan Karya Visual',
-                                'img' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[380px]',
-                                'days' => 'Kamis',
-                                'time' => '15.30 WIB',
-                                'color' => 'emerald'
-                            ],
-                            [
-                                'name' => 'Sains Club',
-                                'category' => 'Akademik',
-                                'desc' => 'Menembus Batas Logika & Inovasi Sains',
-                                'img' => 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-                                'height' => 'h-[400px]',
-                                'days' => 'Selasa',
-                                'time' => '15.30 WIB',
-                                'color' => 'indigo'
-                            ],
-                        ];
-                    @endphp
-
                     @foreach($extras as $extra)
-                    <div data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid {{ $extra['height'] }}">
-                        <img src="{{ $extra['img'] }}" alt="{{ $extra['name'] }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <a href="{{ route('ekstrakurikuler.detail', ['slug' => $extra['slug']]) }}" data-animate="zoom-in" class="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid {{ $extra['height'] }} block">
+                        <picture>
+                            @if(! empty($extra['image_webp']))
+                                <source srcset="{{ $extra['image_webp'] }}" type="image/webp">
+                            @endif
+                            <img src="{{ $extra['image'] }}" alt="{{ $extra['image_alt'] ?? $extra['name'] }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                        </picture>
                         
                         <!-- Bottom to Top Gradient -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
@@ -202,6 +102,9 @@
                             <span class="text-[10px] font-bold tracking-widest text-{{ $extra['color'] }}-300 uppercase mb-1 block">{{ $extra['category'] }}</span>
                             <h3 class="text-2xl font-bold text-white mb-2 leading-tight">{{ $extra['name'] }}</h3>
                             <p class="text-sm text-slate-300 mb-4 line-clamp-2">{{ $extra['desc'] }}</p>
+                            <span class="inline-flex items-center gap-2 text-xs font-semibold text-white/90 mb-4">
+                                Lihat Detail <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                            </span>
                             
                             <!-- Schedule -->
                             <div class="flex items-center gap-3 text-xs font-medium text-slate-200 border-t border-white/20 pt-4">
@@ -216,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
 
                 </div>

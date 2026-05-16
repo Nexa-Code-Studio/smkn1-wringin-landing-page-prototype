@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
     'nama',
     'nisn',
     'kelas',
+    'can_submit_news',
     'tempat_lahir',
     'tanggal_lahir',
     'status_kelulusan',
@@ -48,8 +49,14 @@ class Siswa extends Authenticatable
     protected function casts(): array
     {
         return [
+            'can_submit_news' => 'boolean',
             'password' => 'hashed',
             'tanggal_lahir' => 'date',
         ];
+    }
+
+    public function roleLabel(): string
+    {
+        return 'Siswa';
     }
 }

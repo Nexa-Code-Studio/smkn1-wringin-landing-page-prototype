@@ -1,4 +1,11 @@
 {{-- HERO SECTION --}}
+@php
+    $heroImage = $landingImages['hero_main'] ?? [
+        'webp_url' => null,
+        'jpeg_url' => asset('images/foto-sekolah.jpg'),
+        'alt_text' => 'Sekolah SMKN 1 Wringin',
+    ];
+@endphp
 <section id="home"
     class="relative h-screen lg:h-screen min-h-[600px] lg:min-h-0 overflow-hidden hero-pattern flex items-center pt-20">
     {{-- Background elements stay the same --}}
@@ -6,11 +13,13 @@
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {{-- Text Content --}}
             <div class="max-w-xl">
-                <div data-animate="fade-up"
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-[10px] font-bold uppercase tracking-wide mb-4">
-                    <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                    Penerimaan Siswa Baru Tahun 2025
-                </div>
+                @if($homeContent['is_badge_visible'] ?? true)
+                    <div data-animate="fade-up"
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-[10px] font-bold uppercase tracking-wide mb-4">
+                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                        {{ $homeContent['hero_badge_text'] ?? 'Penerimaan Siswa Baru Tahun 2025' }}
+                    </div>
+                @endif
                 <h1 data-animate="fade-up" data-delay="100"
                     class="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 leading-tight mb-4">
                     SmakinOne Tempat <span class="text-brand-600">Bertumbuhnya Creativepreneur </span>Berkarakter
@@ -27,7 +36,7 @@
                             class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-full shadow-lg shadow-brand-600/30 transition transform hover:-translate-y-1 text-center text-sm">
                             Info PPDB
                         </a>
-                        <a href="#jurusan"
+                        <a href="#konsentrasi-keahlian"
                             class="px-6 py-3 bg-white border border-slate-200 text-slate-700 hover:border-brand-600 hover:text-brand-600 font-semibold rounded-full shadow-sm transition text-center text-sm flex items-center justify-center gap-2 group">
                             <i class="fa-solid fa-book-open text-brand-600 group-hover:scale-110 transition"></i>
                             Lihat Jurusan
@@ -38,15 +47,15 @@
                     <div
                         class="order-2 grid grid-cols-3 gap-4 border-t border-slate-200 pt-6">
                         <div data-animate="fade-up" data-delay="100">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">25+</p>
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">{{ $homeContent['mitra_industri'] ?? '25+' }}</p>
                             <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Mitra Industri</p>
                         </div>
                         <div data-animate="fade-up" data-delay="200">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">32%</p>
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">{{ $homeContent['persen_melanjutkan_kuliah'] ?? 32 }}%</p>
                             <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Melanjutkan Kuliah</p>
                         </div>
                         <div data-animate="fade-up" data-delay="300">
-                            <p class="text-xl lg:text-2xl font-bold text-slate-900">68%</p>
+                            <p class="text-xl lg:text-2xl font-bold text-slate-900">{{ $homeContent['persen_bekerja_berwirausaha'] ?? 68 }}%</p>
                             <p class="text-[10px] lg:text-xs text-slate-500 font-medium whitespace-nowrap uppercase tracking-wider">Bekerja/Berwirausaha</p>
                         </div>
                     </div>
@@ -68,8 +77,14 @@
                 </div>
 
                 <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] xl:aspect-video max-h-[450px] xl:max-h-[550px] w-full">
-                    <img src="{{ asset('images/foto-sekolah.jpg') }}" alt="Sekolah SMKN 1 Wringin"
-                        class="w-full h-full object-cover transform hover:scale-105 transition duration-1000">
+                    <picture>
+                        @if(! empty($heroImage['webp_url']))
+                            <source srcset="{{ $heroImage['webp_url'] }}" type="image/webp">
+                        @endif
+                        <img src="{{ $heroImage['jpeg_url'] }}" alt="{{ $heroImage['alt_text'] }}"
+                            class="w-full h-full object-cover transform hover:scale-105 transition duration-1000"
+                            fetchpriority="high" decoding="async">
+                    </picture>
                 </div>
 
                 {{-- Floating Card --}}

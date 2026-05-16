@@ -1,4 +1,9 @@
 {{-- FOOTER --}}
+@php
+    $footerAddress = trim((string) ($homeContent['alamat'] ?? '')) ?: 'Jl. Pendidikan No. 45, Wringin, Bondowoso, Jawa Timur';
+    $footerPhone = trim((string) ($homeContent['nomor_telepon'] ?? '')) ?: '(0332) 555-0199';
+    $footerEmail = trim((string) ($homeContent['email'] ?? '')) ?: 'admin@smkn1wringin.sch.id';
+@endphp
 <footer id="contact" class="bg-slate-900 text-white pt-16 pb-8 border-t-4 border-brand-600">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-4 gap-12 mb-12">
@@ -43,15 +48,15 @@
                 <ul class="space-y-4 text-slate-400 text-sm">
                     <li class="flex items-start gap-3">
                         <i class="fa-solid fa-map-location-dot mt-1 text-brand-600"></i>
-                        <span>Jl. Pendidikan No. 45,<br>Wringin, Bondowoso, Jawa Timur</span>
+                        <span>{{ $footerAddress }}</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-phone text-brand-600"></i>
-                        <span>(0332) 555-0199</span>
+                        <span>{{ $footerPhone }}</span>
                     </li>
                     <li class="flex items-center gap-3">
                         <i class="fa-solid fa-envelope text-brand-600"></i>
-                        <span>admin@smkn1wringin.sch.id</span>
+                        <span>{{ $footerEmail }}</span>
                     </li>
                 </ul>
             </div>

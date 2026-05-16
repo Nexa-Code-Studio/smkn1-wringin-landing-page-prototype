@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita & Artikel | SMKN 1 Wringin</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Konfigurasi Tailwind & Kustom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9fa',
+                            100: '#e0f2f4',
+                            500: '#2a7482',
+                            600: '#1E5460',
+                            700: '#18434d',
+                            800: '#14363d',
+                            900: '#0f282e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pattern Hero */
+        .hero-pattern {
+            background-color: #fafafa;
+            background-image: radial-gradient(#e2e8f0 0.8px, transparent 0.8px);
+            background-size: 24px 24px;
+        }
+
+        /* Animasi fade in */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Line Clamp untuk memotong teks panjang */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="hero-pattern text-slate-700 antialiased min-h-screen flex flex-col font-sans">
+
+    <!-- ==============================================
+         HEADER / NAVBAR (Dari Template Asli)
+         ============================================== -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-slate-100 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://smkn1wringin.sch.id/wp-content/uploads/2023/10/logo-smkn1wringin.png" alt="Logo" class="h-10 w-10 object-contain">
+                <div>
+                    <span class="block font-heading font-bold text-slate-900 tracking-tight text-lg leading-none">SMKN 1 Wringin</span>
+                    <span class="text-[10px] text-brand-600 font-bold uppercase tracking-widest">Bondowoso</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="#" class="hover:text-brand-600 transition-colors">Beranda</a>
+                <a href="#" class="text-brand-600 transition-colors">Berita</a>
+                <a href="#" class="hover:text-brand-600 transition-colors">Program Keahlian</a>
+                <a href="#" class="hover:text-brand-600 transition-colors">Fasilitas</a>
+            </nav>
+
+            <div>
+                <a href="#" class="text-sm font-bold text-brand-600 bg-brand-50 hover:bg-brand-100 border border-brand-200 px-6 py-2.5 rounded-full transition-all">
+                    Daftar Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==============================================
+         MAIN CONTENT: HALAMAN BERITA
+         ============================================== -->
+    <main class="flex-grow pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        
+        <!-- Section: Featured Articles (Layout Atas) -->
+        <section class="mb-20 fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Main Featured Post (Kiri - Besar) -->
+                <article class="lg:col-span-8 relative rounded-3xl overflow-hidden group cursor-pointer h-[400px] sm:h-[500px]">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Inovasi Energi Terbarukan" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    
+                    <!-- Overlay Gradasi Gelap -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+                    
+                    <!-- Konten Teks -->
+                    <div class="absolute bottom-0 left-0 p-8 sm:p-10 w-full">
+                        <div class="flex items-center gap-2 text-brand-100 mb-3 text-sm font-medium">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>11 Desember 2023</time>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white mb-4 leading-tight group-hover:text-brand-100 transition-colors">
+                            Eksplorasi Inovasi Teknologi Energi Terbarukan oleh Siswa Teknik
+                        </h1>
+                        <p class="text-gray-300 text-sm sm:text-base line-clamp-2 max-w-3xl">
+                            Mari selami dunia inovasi bersama kami, bagikan wawasan, dan jelajahi kekuatan transformatif dari karya siswa-siswi berprestasi kita di kancah nasional.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Side Featured Posts (Kanan - List Kecil) -->
+                <div class="lg:col-span-4 flex flex-col gap-5 justify-between">
+                    
+                    <!-- Item 1 -->
+                    <article class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all h-full">
+                        <div class="w-32 h-28 shrink-0 overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=300&q=80" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex-grow flex flex-col justify-center">
+                            <h3 class="font-heading font-semibold text-gray-900 text-sm sm:text-base leading-snug mb-2 group-hover:text-brand-600 line-clamp-2">
+                                Dari Ide Menjadi Dampak: Perjalanan Startup Digital Siswa RPL
+                            </h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-xs mb-3">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <time>20 November 2023</time>
+                            </div>
+                            <span class="text-xs font-semibold text-brand-600 flex items-center gap-1">
+                                Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Item 2 -->
+                    <article class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all h-full">
+                        <div class="w-32 h-28 shrink-0 overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=300&q=80" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex-grow flex flex-col justify-center">
+                            <h3 class="font-heading font-semibold text-gray-900 text-sm sm:text-base leading-snug mb-2 group-hover:text-brand-600 line-clamp-2">
+                                Navigasi Lanskap Teknologi Melalui Kunjungan Industri TKJ
+                            </h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-xs mb-3">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <time>18 November 2023</time>
+                            </div>
+                            <span class="text-xs font-semibold text-brand-600 flex items-center gap-1">
+                                Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Item 3 -->
+                    <article class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 flex gap-4 items-center group cursor-pointer hover:shadow-md transition-all h-full">
+                        <div class="w-32 h-28 shrink-0 overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=300&q=80" alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex-grow flex flex-col justify-center">
+                            <h3 class="font-heading font-semibold text-gray-900 text-sm sm:text-base leading-snug mb-2 group-hover:text-brand-600 line-clamp-2">
+                                Di Balik Layar Praktek Kerja Lapangan Jurusan Otomotif
+                            </h3>
+                            <div class="flex items-center gap-2 text-gray-500 text-xs mb-3">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                <time>15 November 2023</time>
+                            </div>
+                            <span class="text-xs font-semibold text-brand-600 flex items-center gap-1">
+                                Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Latest Articles (Grid Bawah) -->
+        <section class="fade-in delay-100">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+                    Jelajahi <span class="relative inline-block pb-2">Berita Terbaru
+                        <!-- Garis bawah melingkar/hijau khas desain -->
+                        <span class="absolute bottom-0 left-0 w-full h-1.5 bg-brand-500 rounded-full"></span>
+                    </span>
+                </h2>
+                <p class="text-gray-500 text-sm max-w-sm md:text-right leading-relaxed">
+                    Ikuti terus perkembangan, kegiatan sekolah, dan berbagai pencapaian luar biasa dari siswa-siswi kami.
+                </p>
+            </div>
+
+            <!-- Grid 6 Artikel -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Mengungkap Kesuksesan Entrepreneur Muda Sekolah Kami
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>21 November 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Bertumbuh di Lanskap Startup Digital yang Dinamis
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>8 Desember 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Strategi Mendorong Usaha Rintisan Teknologi Menuju Sukses
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>8 Desember 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Merintis Masa Depan Melalui Pameran Produk Inovatif
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>8 Desember 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Dampak Kecerdasan Buatan Pada Industri Manufaktur Modern
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>11 Desember 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=600&q=80" alt="News Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 sm:p-8 flex flex-col flex-grow">
+                        <h3 class="font-heading font-semibold text-xl text-gray-900 mb-4 line-clamp-2 group-hover:text-brand-600 transition-colors">
+                            Kebiasaan Hidup Sehat untuk Gaya Belajar yang Sibuk
+                        </h3>
+                        <div class="flex items-center gap-2 text-gray-500 text-xs font-medium mb-6 mt-auto">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <time>11 Desember 2023</time>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                            Baca Selengkapnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Komponen Paginasi -->
+            <div class="mt-16 flex justify-center items-center">
+                <nav class="inline-flex flex-wrap items-center gap-2" aria-label="Pagination">
+                    
+                    <!-- Tombol Sebelumnya -->
+                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-brand-600 rounded-xl transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        Sebelumnya
+                    </button>
+                    
+                    <!-- Halaman -->
+                    <div class="flex items-center gap-1">
+                        <button class="w-10 h-10 flex items-center justify-center bg-brand-600 text-white font-semibold rounded-xl shadow-sm transition-colors">
+                            1
+                        </button>
+                        <button class="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 font-semibold rounded-xl transition-colors">
+                            2
+                        </button>
+                        <button class="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 font-semibold rounded-xl transition-colors">
+                            3
+                        </button>
+                        <span class="w-10 h-10 flex items-center justify-center text-gray-400 font-semibold">
+                            ...
+                        </span>
+                        <button class="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 text-gray-600 hover:bg-brand-50 hover:text-brand-600 hover:border-brand-200 font-semibold rounded-xl transition-colors">
+                            12
+                        </button>
+                    </div>
+
+                    <!-- Tombol Berikutnya -->
+                    <button class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-brand-600 rounded-xl transition-colors font-medium text-sm">
+                        Berikutnya
+                        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                    
+                </nav>
+            </div>
+            
+        </section>
+
+    </main>
+
+    <!-- ==============================================
+         FOOTER (Dari Template Asli)
+         ============================================== -->
+    <footer class="bg-white border-t border-gray-100 py-8 text-center mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+            <div class="flex items-center gap-2 mb-4">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-gray-400"></i>
+                <span class="font-heading font-semibold text-gray-700">SMKN 1 Wringin</span>
+            </div>
+            <p class="text-sm text-gray-500 font-medium mb-2">Siap Kerja, Santun, Mandiri — Unggul & Berkarakter</p>
+            <p class="text-xs text-gray-400">
+                &copy; 2026 SMKN 1 Wringin. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ==============================================
+         JAVASCRIPT
+         ============================================== -->
+    <script>
+        // Inisialisasi ikon Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>

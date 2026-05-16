@@ -1,16 +1,39 @@
 {{-- PROFIL / FASILITAS SECTION --}}
+@php
+    $profilGuruImage = $landingImages['profil_guru'] ?? [
+        'webp_url' => null,
+        'jpeg_url' => asset('images/profil-guru.jpg'),
+        'alt_text' => 'Guru Mengajar',
+    ];
+    $profilPraktekImage = $landingImages['profil_praktek'] ?? [
+        'webp_url' => null,
+        'jpeg_url' => asset('images/profil-praktek.jpg'),
+        'alt_text' => 'Praktek SMK',
+    ];
+    $tahunMengabdi = $homeContent['tahun_mengabdi'] ?? 25;
+@endphp
 <section id="profil" class="py-20 bg-slate-50 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="order-2 lg:order-1 relative">
                 <div class="grid grid-cols-2 gap-4">
-                    <img data-animate="fade-right" src="{{ asset('images/profil-guru.jpg') }}" alt="Guru Mengajar" class="rounded-xl shadow-lg w-full h-48 object-cover">
-                    <img data-animate="fade-left" data-delay="200" src="{{ asset('images/profil-praktek.jpg') }}" alt="Praktek SMK" class="rounded-xl shadow-lg w-full h-48 object-cover mt-8">
+                    <picture data-animate="fade-right">
+                        @if(! empty($profilGuruImage['webp_url']))
+                            <source srcset="{{ $profilGuruImage['webp_url'] }}" type="image/webp">
+                        @endif
+                        <img src="{{ $profilGuruImage['jpeg_url'] }}" alt="{{ $profilGuruImage['alt_text'] }}" class="rounded-xl shadow-lg w-full h-48 object-cover" decoding="async" loading="lazy">
+                    </picture>
+                    <picture data-animate="fade-left" data-delay="200">
+                        @if(! empty($profilPraktekImage['webp_url']))
+                            <source srcset="{{ $profilPraktekImage['webp_url'] }}" type="image/webp">
+                        @endif
+                        <img src="{{ $profilPraktekImage['jpeg_url'] }}" alt="{{ $profilPraktekImage['alt_text'] }}" class="rounded-xl shadow-lg w-full h-48 object-cover mt-8" decoding="async" loading="lazy">
+                    </picture>
                 </div>
                 {{-- Experience Badge --}}
                 <div data-animate="zoom-in" data-delay="300" class="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div class="bg-white p-4 rounded-full shadow-xl border-4 border-slate-50 flex flex-col items-center justify-center w-32 h-32 pointer-events-auto">
-                        <span class="text-3xl font-bold text-brand-600">25</span>
+                        <span class="text-3xl font-bold text-brand-600">{{ $tahunMengabdi }}</span>
                         <span class="text-xs text-slate-500 font-bold uppercase text-center leading-tight">Tahun<br>Mengabdi</span>
                     </div>
                 </div>

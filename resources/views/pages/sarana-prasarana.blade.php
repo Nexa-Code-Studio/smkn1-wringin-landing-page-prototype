@@ -5,11 +5,16 @@
 @section('content')
     @include('partials.navbar')
 
+    @php
+        $defaultWebpImage = asset('images/webp/default_picture.webp');
+        $defaultJpegImage = asset('images/alternative/default_picture.jpeg');
+    @endphp
+
     <!-- 1. HERO SECTION (CINEMATIC IMMERSIVE) -->
     <section id="home" class="relative pt-20 overflow-hidden flex items-center justify-center h-screen">
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Fasilitas SMK" class="w-full h-full object-cover" style="object-position: center 30%;">
+            <img src="{{ $defaultWebpImage }}" alt="Fasilitas SMK" class="w-full h-full object-cover" style="object-position: center 30%;" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
             <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-brand/30 to-slate-50"></div>
         </div>
 
@@ -54,7 +59,7 @@
                 
                 <!-- 1. Lab RPL / Coding (Tall) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 lg:row-span-2 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Laboratorium Komputer" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Laboratorium Komputer" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -65,7 +70,7 @@
 
                 <!-- 2. Bengkel Otomotif (Tall) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-1 lg:col-span-1 row-span-1 md:row-span-2 lg:row-span-2 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1619642751034-765edc748c46?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bengkel Otomotif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Bengkel Otomotif" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -76,7 +81,7 @@
 
                 <!-- 3. Studio Broadcasting (Wide) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Studio Broadcasting" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Studio Broadcasting" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -87,7 +92,7 @@
 
                 <!-- 4. Teaching Factory (Wide) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-2 lg:col-span-2 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Teaching Factory" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Teaching Factory" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -98,7 +103,7 @@
 
                 <!-- 5. Smart Classroom (Square) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-1 lg:col-span-1 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1627556592933-ffe99c1c9cd0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Smart Classroom" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Smart Classroom" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -109,7 +114,7 @@
 
                 <!-- 6. Perpus/Coworking (Wide) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-1 lg:col-span-2 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Perpustakaan Digital" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Perpustakaan Digital" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -120,7 +125,7 @@
 
                 <!-- 7. Kantin Modern (Square) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-2 lg:col-span-1 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kantin Modern" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105">
+                    <img src="{{ $defaultWebpImage }}" alt="Kantin Modern" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">
@@ -131,7 +136,7 @@
 
                 <!-- 8. Sport Center (Ultra Wide Bottom Banner) -->
                 <div tabindex="0" class="group relative focus:outline-none rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl focus:shadow-xl active:shadow-xl transition-all duration-500 cursor-pointer col-span-1 md:col-span-2 lg:col-span-4 row-span-1 bg-slate-800">
-                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Sport Center" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" style="object-position: center 30%;">
+                    <img src="{{ $defaultWebpImage }}" alt="Sport Center" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus:scale-105 group-active:scale-105" style="object-position: center 30%;" onerror="this.onerror=null;this.src='{{ $defaultJpegImage }}';">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500"></div>
                     
                     <div class="absolute bottom-0 left-0 p-6 lg:p-8 z-10 opacity-0 translate-y-6 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0 transition-all duration-500 ease-out">

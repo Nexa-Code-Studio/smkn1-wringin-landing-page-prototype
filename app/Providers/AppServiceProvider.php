@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\HomePageContentService;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -31,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
                         'message' => 'Terlalu banyak percobaan. Silakan coba lagi dalam 1 menit.',
                     ], 429);
                 });
+        });
+
+        view()->composer('partials.footer', function ($view) {
+            $view->with('homeContent', app(HomePageContentService::class)->getPayload());
         });
     }
 }

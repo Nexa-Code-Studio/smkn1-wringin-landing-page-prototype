@@ -1,5 +1,5 @@
 {{-- MAJORS / JURUSAN SECTION --}}
-<section id="jurusan" class="py-20 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden">
+<section id="konsentrasi-keahlian" class="scroll-mt-24 py-20 bg-gradient-to-b from-white via-slate-50/70 to-white relative overflow-hidden">
     <div class="absolute -top-24 -right-24 w-72 h-72 bg-brand-600/5 rounded-full blur-3xl"></div>
     <div class="absolute bottom-10 -left-24 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -23,7 +23,7 @@
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Praktik Elektronika</li>
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Servis Audio Visual</li>
                 </ul>
-                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
+                <a href="{{ route('jurusan.detail', ['slug' => 'tav']) }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1 group-focus-within:translate-x-1"></i>
                 </a>
             </div>
@@ -42,7 +42,7 @@
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Studio Fotografi</li>
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Produksi Multimedia</li>
                 </ul>
-                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
+                <a href="{{ route('jurusan.detail', ['slug' => 'dkv']) }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1 group-focus-within:translate-x-1"></i>
                 </a>
             </div>
@@ -60,7 +60,7 @@
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Laboratorium Jaringan</li>
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Administrasi Server</li>
                 </ul>
-                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
+                <a href="{{ route('jurusan.detail', ['slug' => 'tkj']) }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1 group-focus-within:translate-x-1"></i>
                 </a>
             </div>
@@ -78,7 +78,7 @@
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Bengkel Otomotif</li>
                     <li class="flex items-center text-xs text-slate-500 group-hover:text-brand-100 group-focus-within:text-brand-100 transition"><i class="fa-solid fa-check text-green-500 group-hover:text-white group-focus-within:text-white mr-2"></i> Diagnosa Kendaraan</li>
                 </ul>
-                <a href="{{ route('kurikulum.detail') }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
+                <a href="{{ route('jurusan.detail', ['slug' => 'tkro']) }}" class="text-brand-600 font-semibold group-hover:text-white group-hover:underline group-focus-within:text-white flex items-center gap-2 text-sm transition">
                     Lihat Kurikulum <i class="fa-solid fa-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1 group-focus-within:translate-x-1"></i>
                 </a>
             </div>
