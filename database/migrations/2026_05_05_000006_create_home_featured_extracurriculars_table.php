@@ -19,8 +19,8 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 
-            $table->unique(['home_page_setting_id', 'sort_order']);
-            $table->index(['home_page_setting_id', 'is_active']);
+            $table->unique(['home_page_setting_id', 'sort_order'], 'hfe_home_setting_sort_unique');
+            $table->index(['home_page_setting_id', 'is_active'], 'hfe_home_setting_active_idx');
         });
     }
 
