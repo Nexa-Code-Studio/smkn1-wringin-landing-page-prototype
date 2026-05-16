@@ -130,6 +130,7 @@ class AdminController extends Controller
                 'persen_melanjutkan_kuliah' => 32,
                 'persen_bekerja_berwirausaha' => 68,
                 'tahun_mengabdi' => 25,
+                'tahun_ppdb' => (int) date('Y'),
                 'featured_ekskul' => ['Pramuka', 'E-Sports Club', 'Bola Basket'],
             ];
 
@@ -185,6 +186,7 @@ class AdminController extends Controller
                     ['key' => 'persen_melanjutkan_kuliah', 'label' => 'Melanjutkan Kuliah (%)', 'type' => 'number', 'value' => (string) ($homeContent['persen_melanjutkan_kuliah'] ?? 32)],
                     ['key' => 'persen_bekerja_berwirausaha', 'label' => 'Bekerja/Berwirausaha (%)', 'type' => 'number', 'value' => (string) ($homeContent['persen_bekerja_berwirausaha'] ?? 68)],
                     ['key' => 'tahun_mengabdi', 'label' => 'Tahun Mengabdi', 'type' => 'number', 'value' => (string) ($homeContent['tahun_mengabdi'] ?? 25)],
+                    ['key' => 'tahun_ppdb', 'label' => 'Tahun PPDB Pertama', 'type' => 'number', 'value' => (string) ($homeContent['tahun_ppdb'] ?? date('Y'))],
                 ],
                 'images' => [
                     ['id' => 1, 'key' => 'hero_main', 'title' => 'Hero Utama', 'section' => 'Hero', 'ratio' => '4/3', 'ratio_val' => 1.333],
@@ -601,6 +603,7 @@ class AdminController extends Controller
             'persen_melanjutkan_kuliah' => ['required', 'integer', 'min:0', 'max:100'],
             'persen_bekerja_berwirausaha' => ['required', 'integer', 'min:0', 'max:100'],
             'tahun_mengabdi' => ['required', 'integer', 'min:0', 'max:120'],
+            'tahun_ppdb' => ['required', 'integer', 'min:2000', 'max:2100'],
             'featured_ekskul' => ['required', 'array', 'size:3'],
             'featured_ekskul.*' => ['required', 'string', Rule::in($allowedEkskul)],
         ]);
@@ -621,6 +624,7 @@ class AdminController extends Controller
                     'persen_melanjutkan_kuliah' => (int) $validated['persen_melanjutkan_kuliah'],
                     'persen_bekerja_berwirausaha' => (int) $validated['persen_bekerja_berwirausaha'],
                     'tahun_mengabdi' => (int) $validated['tahun_mengabdi'],
+                    'tahun_ppdb' => (int) $validated['tahun_ppdb'],
                     'updated_by' => Auth::id(),
                 ]
             );

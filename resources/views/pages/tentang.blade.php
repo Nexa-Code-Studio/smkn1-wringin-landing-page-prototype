@@ -15,7 +15,7 @@
             'sejarah_title' => 'Sejarah Berdirinya SmakinOne',
             'sejarah_body' => "SMK Negeri 1 Wringin berdiri pada 01 September 2004 berdasarkan SK Ijin Pendirian dan Operasional Nomor: 4215/2074.a/430.520/2004. Kehadirannya berangkat dari upaya meningkatkan angka partisipasi sekolah tamatan SMP yang cukup rendah, melalui program SMK Kecil di SMP di bawah naungan Pemerintah Kabupaten Bondowoso. Program ini menjadi strategi pemerataan akses pendidikan, sehingga hampir setiap kecamatan memiliki SMK dengan karakteristik keahlian sesuai potensi wilayah.\n\nPada awalnya, SMKN 1 Wringin menjalankan kegiatan pembelajaran bersama SMPN 1 Wringin dengan berbagi lahan, membuka dua konsentrasi keahlian: Teknik Audio Video dan Teknik Bangunan. Seiring meningkatnya minat dan kebutuhan masyarakat, sekolah terus beradaptasi dengan membuka Teknik Komputer dan Jaringan pada tahun 2006, serta Desain Komunikasi Visual pada tahun 2011.\n\nDan sejak tahun 2015, pengelolaan pendidikan menengah berada di bawah Dinas Pendidikan Provinsi Jawa Timur, namun komitmen untuk mencetak putra-putri daerah tetap menjadi ruh utama. Kini, SMKN 1 Wringin atau SmakinOne berkembang dengan empat konsentrasi keahlian: TAV, TKJ, DKV, dan Teknik Kendaraan Ringan Otomotif (TKRO). SmakinOne semakin dikenal sebagai SMK Pusat Keunggulan bidang Ekonomi Kreatif yang sukses mengembangkan pembelajaran Teaching Factory sebagai jembatan menuju dunia usaha dan industri.",
             'keunggulan_intro' => 'Lingkungan belajar yang holistik untuk mencetak talenta-talenta siap kerja dan siap berkarya.',
-            'keunggulan_items' => "Lingkungan belajar yang representatif dan kondusif\nFasilitas serta sarana-prasarana pembelajaran berorientasi lingkungan serta berbasis teknologi\nProgram Link and Match\nPengelolaan kegiatan pembelajaran yang kontekstual melalui kemitraan dengan industri dan masyarakat\nTenaga Guru dan Kependidikan yang Profesional\nGTK dengan sertifikasi pendidik dan pengalaman industri\nPengembangan Potensi\nProgram pengembangan bakat dan",
+            'keunggulan_items' => "Lingkungan belajar yang representatif dan kondusif\nFasilitas serta sarana-prasarana pembelajaran berorientasi lingkungan serta berbasis teknologi\nProgram Link and Match\nPengelolaan kegiatan pembelajaran yang kontekstual melalui kemitraan dengan industri dan masyarakat\nTenaga Guru dan Kependidikan yang Profesional\nGTK dengan sertifikasi pendidik dan pengalaman industri\nPengembangan Potensi\nProgram pengembangan bakat dan minat",
             'visi_title' => 'Terwujudnya Lulusan SMAKIN KEREN',
             'visi_body' => 'Lulusan SMKN 1 Wringin sebagai Creativepreneur Berkarakter',
             'misi_items' => "Membina keimanan dan ketaqwaan kepada Tuhan Yang Maha Esa serta akhlak mulia\nMenyelenggarakan pendidikan vokasi untuk mencapai 8 dimensi profil lulusan\nMeningkatkan profesionalisme Guru dan Tenaga Kependidikan\nMeningkatkan mutu layanan pendidikan melalui pemenuhan sarana-prasarana berbasis teknologi\nMeningkatkan kerjasama dan kolaborasi dengan seluruh pemangku kepentingan",
@@ -25,6 +25,7 @@
         ], $profilContent['meta'] ?? []);
         $sejarahParagraphs = collect(preg_split('/\R{2,}/', trim((string) ($profilMeta['sejarah_body'] ?? ''))) ?: [])->map(fn (string $item) => trim($item))->filter()->values();
         $keunggulanItems = collect(preg_split('/\R+/', trim((string) ($profilMeta['keunggulan_items'] ?? ''))) ?: [])->map(fn (string $item) => trim($item))->filter()->values();
+        $keunggulanCards = $keunggulanItems->chunk(2);
         $misiItems = collect(preg_split('/\R+/', trim((string) ($profilMeta['misi_items'] ?? ''))) ?: [])->map(fn (string $item) => trim($item))->filter()->values();
         $keunggulanIcons = ['fa-tree', 'fa-laptop-code', 'fa-handshake', 'fa-industry', 'fa-chalkboard-user', 'fa-seedling', 'fa-lightbulb', 'fa-users'];
         $misiIcons = ['fa-star', 'fa-graduation-cap', 'fa-chalkboard-user', 'fa-microchip', 'fa-handshake-angle'];
@@ -97,14 +98,20 @@
                 <p class="text-slate-500 text-lg">{{ $profilMeta['keunggulan_intro'] }}</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach ($keunggulanItems as $index => $item)
-                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-brand-100 transition-all duration-300 group">
-                        <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid {{ $keunggulanIcons[$index % count($keunggulanIcons)] }}"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                @foreach ($keunggulanCards as $index => $chunk)
+                    @php $chunk = $chunk->values(); @endphp
+                    @if ($chunk->count() >= 2)
+                        <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-brand-200 transition-all duration-300 group flex flex-col sm:flex-row gap-6 items-start">
+                            <div class="w-14 h-14 bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shrink-0">
+                                <i class="fa-solid {{ $keunggulanIcons[$index % count($keunggulanIcons)] }}"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-600 transition-colors">{{ $chunk[0] }}</h3>
+                                <p class="text-slate-500 leading-relaxed">{{ $chunk[1] }}</p>
+                            </div>
                         </div>
-                        <p class="text-slate-500 leading-relaxed font-medium">{{ $item }}</p>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -176,7 +183,14 @@
                 <a href="{{ route('ppdb') }}" class="px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-full shadow-lg hover:shadow-brand-600/30 transition-all flex items-center gap-2">
                     Informasi Pendaftaran <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <a href="#contact" class="px-8 py-3.5 bg-white border-2 border-slate-200 hover:border-brand-200 hover:bg-slate-50 text-slate-700 font-bold rounded-full transition-all flex items-center gap-2">
+                @php
+                    $waPhone = trim((string) ($homeContent['nomor_telepon'] ?? '')) ?: '(0332) 555-0199';
+                    $waNumber = preg_replace('/[^0-9]/', '', $waPhone);
+                    if (str_starts_with($waNumber, '0')) {
+                        $waNumber = '62' . substr($waNumber, 1);
+                    }
+                @endphp
+                <a href="https://wa.me/{{ $waNumber }}" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 bg-white border-2 border-slate-200 hover:border-brand-200 hover:bg-slate-50 text-slate-700 font-bold rounded-full transition-all flex items-center gap-2">
                     Hubungi Kami
                 </a>
             </div>

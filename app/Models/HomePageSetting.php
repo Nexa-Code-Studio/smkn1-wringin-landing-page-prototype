@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
     'persen_melanjutkan_kuliah',
     'persen_bekerja_berwirausaha',
     'tahun_mengabdi',
+    'tahun_ppdb',
     'cache_version',
     'updated_by',
 ])]
@@ -34,6 +35,7 @@ class HomePageSetting extends Model
             'persen_melanjutkan_kuliah' => 'integer',
             'persen_bekerja_berwirausaha' => 'integer',
             'tahun_mengabdi' => 'integer',
+            'tahun_ppdb' => 'integer',
             'cache_version' => 'integer',
         ];
     }

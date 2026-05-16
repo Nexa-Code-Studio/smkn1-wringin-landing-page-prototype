@@ -42,6 +42,7 @@ class HomePageContentService
                 'persen_melanjutkan_kuliah' => $setting->persen_melanjutkan_kuliah,
                 'persen_bekerja_berwirausaha' => $setting->persen_bekerja_berwirausaha,
                 'tahun_mengabdi' => $setting->tahun_mengabdi,
+                'tahun_ppdb' => $setting->tahun_ppdb,
                 'featured_ekskul' => $setting->featuredExtracurriculars
                     ->pluck('name')
                     ->values()
@@ -109,6 +110,7 @@ class HomePageContentService
             'persen_melanjutkan_kuliah' => 32,
             'persen_bekerja_berwirausaha' => 68,
             'tahun_mengabdi' => 25,
+            'tahun_ppdb' => (int) date('Y'),
             'featured_ekskul' => [],
             'cache_version' => 1,
         ];

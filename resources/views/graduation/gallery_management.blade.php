@@ -293,6 +293,10 @@
                                 <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Tahun Mengabdi</label>
                                 <input id="stat-tahun-mengabdi" type="number" value="{{ $homeContent['tahun_mengabdi'] ?? 25 }}" class="w-full bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl focus:ring-brand-500 focus:border-brand-500 p-3 font-bold" placeholder="Contoh: 25">
                             </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Tahun PPDB</label>
+                                <input id="stat-tahun-ppdb" type="number" min="2000" max="2100" value="{{ $homeContent['tahun_ppdb'] ?? date('Y') }}" class="w-full bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl focus:ring-brand-500 focus:border-brand-500 p-3 font-bold" placeholder="Contoh: {{ date('Y') }}">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -468,6 +472,7 @@
             persen_melanjutkan_kuliah: document.getElementById('stat-melanjutkan-kuliah'),
             persen_bekerja_berwirausaha: document.getElementById('stat-bekerja-berwirausaha'),
             tahun_mengabdi: document.getElementById('stat-tahun-mengabdi'),
+            tahun_ppdb: document.getElementById('stat-tahun-ppdb'),
         };
         const homeContentSaveWrapper = document.getElementById('home-content-save-wrapper');
         const saveHomeContentBtn = document.getElementById('save-home-content');
@@ -661,6 +666,7 @@
             'persen_melanjutkan_kuliah',
             'persen_bekerja_berwirausaha',
             'tahun_mengabdi',
+            'tahun_ppdb',
         ]);
 
         function getFieldMap(page) {
@@ -693,6 +699,7 @@
                 persen_melanjutkan_kuliah: '32',
                 persen_bekerja_berwirausaha: '68',
                 tahun_mengabdi: '25',
+                tahun_ppdb: '{{ date('Y') }}',
             };
 
             Object.entries(statInputs).forEach(([key, input]) => {
@@ -1056,6 +1063,7 @@
                     persen_melanjutkan_kuliah: Number(statInputs.persen_melanjutkan_kuliah?.value || 0),
                     persen_bekerja_berwirausaha: Number(statInputs.persen_bekerja_berwirausaha?.value || 0),
                     tahun_mengabdi: Number(statInputs.tahun_mengabdi?.value || 0),
+                    tahun_ppdb: Number(statInputs.tahun_ppdb?.value || 0),
                     featured_ekskul: checkedEkskul,
                 };
             } else if (currentPageKey === 'profil') {

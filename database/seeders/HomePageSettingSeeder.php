@@ -28,6 +28,7 @@ class HomePageSettingSeeder extends Seeder
                 'persen_melanjutkan_kuliah' => 32,
                 'persen_bekerja_berwirausaha' => 68,
                 'tahun_mengabdi' => 25,
+                'tahun_ppdb' => (int) date('Y'),
                 'cache_version' => 1,
             ]
         );
