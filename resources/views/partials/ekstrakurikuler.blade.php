@@ -31,8 +31,8 @@
 
     $selectedNames = array_slice($selectedNames, 0, 3);
 
-    $featuredCards = array_map(function (string $name) use ($featuredCatalog) {
-        return $featuredCatalog[$name] ?? [
+    $featuredCards = array_map(function (string $name) use ($featuredCatalog, $ekskulNameToSlug, $featuredEkskulImages, $defaultWebpImage) {
+        $card = $featuredCatalog[$name] ?? [
             'name' => $name,
             'category' => 'Ekstrakurikuler',
             'desc' => 'Wadah pengembangan potensi dan kerja sama tim siswa.',
@@ -41,6 +41,12 @@
             'color' => 'teal',
             'image' => $defaultWebpImage,
         ];
+        $slug = $ekskulNameToSlug[$name] ?? null;
+        if ($slug && isset($featuredEkskulImages[$slug.'_hero_image'])) {
+            $card['image'] = $featuredEkskulImages[$slug.'_hero_image']['jpeg_url'];
+            $card['image_webp'] = $featuredEkskulImages[$slug.'_hero_image']['webp_url'] ?? null;
+        }
+        return $card;
     }, $selectedNames);
 
     $firstCard = $featuredCards[0] ?? $featuredCatalog['Pramuka'];

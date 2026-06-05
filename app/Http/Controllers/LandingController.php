@@ -49,7 +49,39 @@ class LandingController extends Controller
             ],
         ]);
 
-        return view('landing', compact('homeContent', 'landingImages', 'highlightedArticles'));
+        $catalog = $this->ekstrakurikulerCatalog();
+        $ekskulNameToSlug = [];
+
+        foreach ($catalog as $slug => $item) {
+            $ekskulNameToSlug[$item['name']] = $slug;
+        }
+
+        $featuredNames = $homeContent['featured_ekskul'] ?? [];
+        $featuredFallbackSlots = [];
+
+        foreach ($featuredNames as $name) {
+            $slug = $ekskulNameToSlug[$name] ?? null;
+
+            if ($slug) {
+                $featuredFallbackSlots[$slug.'_hero_image'] = [
+                    'jpeg' => self::DEFAULT_JPEG_PATH,
+                    'webp' => self::DEFAULT_WEBP_PATH,
+                    'alt' => $name,
+                ];
+            }
+        }
+
+        $featuredEkskulImages = ! empty($featuredFallbackSlots)
+            ? $pageImageContentService->getPageImages('ekstrakurikuler_detail', $featuredFallbackSlots)
+            : [];
+
+        return view('landing', compact(
+            'homeContent',
+            'landingImages',
+            'highlightedArticles',
+            'featuredEkskulImages',
+            'ekskulNameToSlug',
+        ));
     }
 
     /**
@@ -299,17 +331,20 @@ class LandingController extends Controller
         $fallbackSlots = [];
 
         foreach ($extras as $extra) {
-            $fallbackSlots[$extra['image_slot']] = [
+            $slug = $extra['slug'];
+            $fallbackSlots[$slug.'_hero_image'] = [
                 'jpeg' => $extra['image'],
                 'webp' => self::DEFAULT_WEBP_PATH,
                 'alt' => 'Kegiatan '.$extra['name'],
             ];
         }
 
-        $ekstrakurikulerImageMap = $pageImageContentService->getPageImages('ekstrakurikuler', $fallbackSlots);
+        $ekstrakurikulerImageMap = $pageImageContentService->getPageImages('ekstrakurikuler_detail', $fallbackSlots);
 
         foreach ($extras as &$extra) {
-            $resolvedImage = $ekstrakurikulerImageMap[$extra['image_slot']] ?? null;
+            $slug = $extra['slug'];
+            $slotKey = $slug.'_hero_image';
+            $resolvedImage = $ekstrakurikulerImageMap[$slotKey] ?? null;
 
             if ($resolvedImage) {
                 $extra['image'] = $resolvedImage['jpeg_url'];
