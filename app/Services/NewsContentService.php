@@ -80,6 +80,31 @@ class NewsContentService
     }
 
     /**
+     * @return array<int, array<string, mixed>>
+     */
+    public function landingHighlights(int $limit = 3): array
+    {
+        if (! $this->tablesReady() || $limit < 1) {
+            return [];
+        }
+
+        return NewsFeaturedArticle::query()
+            ->with([
+                'article' => fn ($query) => $query
+                    ->with(['coverAsset', 'submittedBy'])
+                    ->published(),
+            ])
+            ->ordered()
+            ->get()
+            ->pluck('article')
+            ->filter()
+            ->take($limit)
+            ->values()
+            ->map(fn (NewsArticle $article) => $this->resolveArticleSummary($article))
+            ->all();
+    }
+
+    /**
      * @return array{featured_articles: array<int, array<string, mixed>>, articles: LengthAwarePaginator, categories: Collection<int, string>, current_category: ?string}
      */
     public function listingPayload(?string $categorySlug = null): array

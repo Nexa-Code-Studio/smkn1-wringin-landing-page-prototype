@@ -17,7 +17,7 @@
             Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran {{ $tahunPpdb }}/{{ $tahunBerikutnya }} telah dibuka. Segera daftarkan diri Anda sebelum kuota terpenuhi.
         </p>
         <div data-animate="zoom-in" data-delay="200" class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#" class="px-8 py-4 bg-white text-brand-600 font-bold rounded-full shadow-lg hover:bg-slate-100 transition transform hover:-translate-y-1">
+            <a href="{{ route('ppdb') }}" class="px-8 py-4 bg-white text-brand-600 font-bold rounded-full shadow-lg hover:bg-slate-100 transition transform hover:-translate-y-1">
                 Daftar Online Sekarang
             </a>
             @php

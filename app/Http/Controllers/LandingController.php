@@ -17,9 +17,14 @@ class LandingController extends Controller
     /**
      * Display the landing page.
      */
-    public function index(HomePageContentService $homePageContentService, PageImageContentService $pageImageContentService): View
+    public function index(
+        HomePageContentService $homePageContentService,
+        PageImageContentService $pageImageContentService,
+        NewsContentService $newsContentService
+    ): View
     {
         $homeContent = $homePageContentService->getPayload();
+        $highlightedArticles = $newsContentService->landingHighlights(3);
 
         $landingImages = $pageImageContentService->getPageImages('landing', [
             'hero_main' => [
@@ -44,7 +49,7 @@ class LandingController extends Controller
             ],
         ]);
 
-        return view('landing', compact('homeContent', 'landingImages'));
+        return view('landing', compact('homeContent', 'landingImages', 'highlightedArticles'));
     }
 
     /**
