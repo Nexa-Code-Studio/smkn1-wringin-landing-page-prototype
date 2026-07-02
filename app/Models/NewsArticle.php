@@ -50,6 +50,11 @@ class NewsArticle extends Model
         return $this->belongsTo(PageAsset::class, 'cover_asset_id');
     }
 
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(NewsCategory::class, 'category_id');
+    }
+
     public function submittedBy(): MorphTo
     {
         return $this->morphTo();
