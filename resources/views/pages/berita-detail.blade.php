@@ -12,6 +12,7 @@
         }
         .article-content p {
             margin-bottom: 1.5rem;
+            text-align: justify;
         }
         .article-content h2 {
             font-family: 'Poppins', sans-serif;

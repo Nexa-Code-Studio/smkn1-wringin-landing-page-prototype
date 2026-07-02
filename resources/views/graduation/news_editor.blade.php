@@ -27,6 +27,9 @@
             margin-top: 2.5rem;
             margin-bottom: 1.25rem;
         }
+        .news-preview-content p {
+            text-align: justify;
+        }
         [x-cloak] { display: none !important; }
     </style>
 </head>
